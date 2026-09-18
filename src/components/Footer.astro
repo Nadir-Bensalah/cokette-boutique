@@ -53,8 +53,10 @@ const social = 'flex h-12 w-12 items-center justify-center rounded-full bg-paper
 
           <!-- La marque et les piliers -->
           <div class="footer-col flex min-w-0 flex-col gap-6 sm:col-span-2 lg:col-span-1 lg:pe-6 xl:pe-9">
-            <a href={href(routes.home)} class="block">
-              <Logo class="h-11 w-auto text-wine" />
+            <a href={href(routes.home)} class="block w-fit" aria-label={`${brand.nomCourt}, accueil`}>
+              <img src={asset('/images/marque/medaillon.png')} alt={brand.nom}
+                width="400" height="400" loading="lazy" decoding="async"
+                class="h-32 w-32 object-contain sm:h-36 sm:w-36" />
             </a>
             <p class="hand max-w-md text-3xl leading-tight text-wine">
               Des pièces choisies une par une.
