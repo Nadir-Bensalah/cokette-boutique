@@ -156,8 +156,12 @@ const chiffres = [
       Stock réel ♡
       <svg class="mt-1 h-3 w-40 text-wine" viewBox="0 0 160 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M3 8c40-6 90-6 154-2" /></svg>
     </p>
-    <Deco type="ciseaux" class="deco deco-lg -bottom-4 -start-6 w-52 text-rose/30" />
-    <Deco type="bobine" class="deco deco-lg -bottom-4 -end-4 w-48 text-rose/30" />
+    <img src={asset('/images/marque/fleurs.png')} alt="" width="460" height="378"
+      loading="lazy" decoding="async"
+      class="deco deco-lg -bottom-6 -start-10 w-56 -scale-x-100 opacity-70 xl:w-72" />
+    <img src={asset('/images/marque/fleurs-2.png')} alt="" width="460" height="396"
+      loading="lazy" decoding="async"
+      class="deco deco-lg -bottom-6 -end-8 w-56 opacity-70 xl:w-72" />
 
     <div class="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-24 xl:px-32">
       <div class="reveal text-center">
@@ -289,7 +293,9 @@ const chiffres = [
   <!-- Comment ça marche : le trait se dessine au défilement. -->
   <section id="comment" class="relative scroll-mt-20 overflow-hidden bg-rose-soft py-16 sm:py-20">
     <Deco type="ruban" class="deco deco-sway deco-lg start-4 top-10 w-24 -rotate-6 text-wine/20" />
-    <Deco type="perle" class="deco deco-lg end-6 top-16 w-20 rotate-12 text-wine/20" />
+    <img src={asset('/images/marque/attente.png')} alt="" width="560" height="784"
+      loading="lazy" decoding="async"
+      class="deco hidden xl:block end-2 bottom-0 w-40 opacity-90 2xl:w-48" />
     <div class="container-x">
       <SectionHead eyebrow="En quatre temps" title="Du live à votre dressing." align="center"
         text="Pas de compte obligatoire, pas de formulaire à rallonge." />
@@ -414,6 +420,9 @@ const chiffres = [
     <Deco type="epingle" class="deco deco-lg end-24 bottom-24 w-12 rotate-45 text-wine/20" />
     <Deco type="fleur" class="deco deco-lg start-[36%] bottom-16 w-10 -rotate-12 text-rose/50" />
     <p class="hand pointer-events-none absolute end-10 top-8 hidden -rotate-6 text-2xl font-semibold text-wine lg:block xl:end-16 xl:text-3xl" aria-hidden="true">♡ Merci à vous ♡</p>
+    <img src={asset('/images/marque/duo.png')} alt="" width="560" height="672"
+      loading="lazy" decoding="async"
+      class="deco hidden 2xl:block -bottom-4 end-2 w-52 opacity-90" />
 
     <div class="mx-auto grid w-full max-w-[1600px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10 lg:px-16 xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-16 xl:px-24">
       <div class="reveal lg:self-start lg:pt-6">
@@ -501,7 +510,9 @@ const chiffres = [
 
   <!-- Le live : appel final. -->
   <section class="relative overflow-hidden bg-wine-deep py-16 text-cream sm:py-20 lg:py-24">
-    <Deco type="ciseaux" class="deco deco-lg -start-8 bottom-10 w-32 text-rose/10" />
+    <img src={asset('/images/marque/duo-2.png')} alt="" width="560" height="784"
+      loading="lazy" decoding="async"
+      class="deco hidden xl:block start-2 bottom-0 w-40 opacity-75 2xl:w-48" />
     <Deco type="bobine" class="deco deco-lg end-6 top-14 w-28 text-rose/10 deco-sway" />
     <div class="container-x relative">
       <div class="reveal mx-auto max-w-2xl text-center">

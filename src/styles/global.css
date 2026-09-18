@@ -64,7 +64,7 @@
   a[href], button:not(:disabled), [role='button'], summary, label[for], select { cursor: pointer; }
   :root {
     color-scheme: light;
-    --header-h: 60px;
+    --header-h: 68px;
     --bottom-bar-h: 68px;
     --trust-h: 44px;
     --stick-top: calc(var(--header-h) + var(--trust-h));
