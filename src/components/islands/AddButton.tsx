@@ -182,27 +182,53 @@ export default function AddButton({ product, base, compact = false, size, classN
     );
   }
 
+  // Hors fiche produit (pas de taille choisie), le bouton large ouvre le même
+  // choix de tailles que le bouton rond : il agit, il n'instruit pas.
   return (
-    <button
-      ref={btn}
-      type="button"
-      onClick={onClick}
-      disabled={soldOut || (!size && dispo.length > 1)}
-      className={`btn btn-lg w-full ${
-        state === 'added' ? 'bg-sage text-white' : 'bg-wine text-white shadow-card hover:bg-wine-deep'
-      } ${className}`}
-    >
-      {soldOut ? 'Épuisé'
-        : state === 'added' ? (<><Check />Ajouté au panier</>)
-        : !size && dispo.length > 1 ? 'Choisissez une taille'
-        : (<>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M4 7h16l-1.5 12.5a1 1 0 0 1-1 .9h-11a1 1 0 0 1-1-.9z" />
-              <path d="M8 7a4 4 0 0 1 8 0" />
-            </svg>
-            Ajouter au panier
-          </>)}
-    </button>
+    <div className="relative" ref={wrap}>
+      <button
+        ref={btn}
+        type="button"
+        onClick={onClick}
+        disabled={soldOut}
+        aria-expanded={!size && dispo.length > 1 ? picking : undefined}
+        className={`btn btn-lg w-full ${
+          state === 'added' ? 'bg-sage text-white' : 'bg-wine text-white shadow-card hover:bg-wine-deep'
+        } ${className}`}
+      >
+        {soldOut ? 'Épuisé'
+          : state === 'added' ? (<><Check />Ajouté au panier</>)
+          : (<>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 7h16l-1.5 12.5a1 1 0 0 1-1 .9h-11a1 1 0 0 1-1-.9z" />
+                <path d="M8 7a4 4 0 0 1 8 0" />
+              </svg>
+              Ajouter au panier
+            </>)}
+      </button>
+
+      {picking && (
+        <div className="absolute bottom-full start-0 end-0 z-30 mb-2 rounded-lg border border-line bg-paper p-3 shadow-float">
+          <p className="pb-2 text-[11px] font-semibold uppercase tracking-wide text-ink-3">Quelle taille ?</p>
+          <div className="flex flex-wrap gap-2">
+            {product.sizes.map((s) => {
+              const reste = product.stock[s] ?? 0;
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => ajouter(s)}
+                  disabled={reste === 0}
+                  className="min-w-12 rounded-md border border-line-2 px-3 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-wine hover:bg-wine hover:text-white disabled:cursor-not-allowed disabled:border-line disabled:bg-cream-2 disabled:text-ink-3 disabled:line-through disabled:hover:bg-cream-2 disabled:hover:text-ink-3"
+                >
+                  {s}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

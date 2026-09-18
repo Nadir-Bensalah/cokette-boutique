@@ -225,3 +225,119 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cg fill='none' stroke='%238e1d42' stroke-opacity='0.07' stroke-width='1'%3E%3Ccircle cx='12' cy='12' r='1.5'/%3E%3Ccircle cx='36' cy='36' r='1.5'/%3E%3Cpath d='M30 8l6 6M8 30l6 6'/%3E%3C/g%3E%3C/svg%3E");
   }
 }
+
+/* ------------------------------------------------------------------
+   Matière : taches organiques, filigrane, animations de section.
+   Rien d'informatif ici.
+   ------------------------------------------------------------------ */
+
+/* Photo d'ouverture : zoom très lent, une seule fois. */
+@keyframes hero-zoom {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+.hero-zoom { animation: hero-zoom 9s var(--ease-out-expo) both; }
+
+/* Trait qui se dessine au défilement (pathLength="1" sur le chemin). */
+.draw-path path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.8s var(--ease-out-expo) 0.15s;
+}
+.draw-path.is-in path { stroke-dashoffset: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom { animation: none; }
+  .draw-path path { stroke-dashoffset: 0; transition: none; }
+}
+
+/* Bords de section : le liseré se pose À L'INTÉRIEUR de la section, collé à
+   son bord, au lieu de déborder au-dehors. Il survit ainsi à un `overflow`
+   coupé. Hors couche : doit l'emporter sur `top-0` / `bottom-0`. */
+.edge-in { top: auto; bottom: 0; }
+.edge-in-top { bottom: auto; top: 0; }
+
+/* Photos masquées en galet peint : deux formes, pour alterner. */
+@utility blob {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23000' d='M100 4c26 0 44 10 60 26 15 15 32 30 34 52 2 23-13 41-28 58-16 18-33 38-58 39-26 1-47-16-64-34C28 128 10 110 12 87c2-23 20-38 36-53C63 19 76 4 100 4Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23000' d='M100 4c26 0 44 10 60 26 15 15 32 30 34 52 2 23-13 41-28 58-16 18-33 38-58 39-26 1-47-16-64-34C28 128 10 110 12 87c2-23 20-38 36-53C63 19 76 4 100 4Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+@utility blob-2 {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23000' d='M104 6c28-2 52 12 68 32 15 19 20 44 14 68-6 25-24 46-47 55-24 10-52 5-73-10C45 136 32 112 32 86c0-27 14-50 33-63C81 12 90 7 104 6Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath fill='%23000' d='M104 6c28-2 52 12 68 32 15 19 20 44 14 68-6 25-24 46-47 55-24 10-52 5-73-10C45 136 32 112 32 86c0-27 14-50 33-63C81 12 90 7 104 6Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+
+@layer utilities {
+  /* Écriture à la main, pour les mots qui sonnent comme une note épinglée. */
+  .hand { font-family: var(--font-hand); }
+  .visual-blob { -webkit-mask-size: 128% 128%; mask-size: 128% 128%;
+                 -webkit-mask-position: center; mask-position: center; }
+}
+
+@layer components {
+  /* Les coups de cœur : photo au coin arrondi irrégulier, pastille ronde penchée. */
+  .deal-photo { border-radius: 1.25rem 1.25rem 2.5rem 1.25rem; }
+  .deal-tag {
+    position: absolute; top: .5rem; inset-inline-end: .5rem;
+    display: inline-flex; height: 4.25rem; width: 4.25rem;
+    align-items: center; justify-content: center;
+    border-radius: 999px; padding: .25rem; text-align: center;
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    line-height: 1.05; transform: rotate(8deg); box-shadow: var(--shadow-card);
+  }
+  .deal-spark {
+    position: absolute; inset-inline-start: .75rem; top: .75rem;
+    z-index: 2; width: 1.75rem; color: var(--color-wine);
+  }
+  .deals-arrow {
+    position: absolute; top: 42%; z-index: 5; display: none;
+    height: 3.5rem; width: 3.5rem; align-items: center; justify-content: center;
+    border-radius: 999px; background: var(--color-paper); color: var(--color-wine);
+    box-shadow: var(--shadow-card); transition: transform .2s;
+  }
+  .deals-arrow:hover { transform: scale(1.06); }
+  @media (min-width: 1024px) { .deals-arrow { display: inline-flex; } }
+
+  /* Chaque étape porte son dessin dans une pastille claire, le numéro se pose
+     dans le coin : on garde le compte, on gagne l'image. */
+  .step-badge {
+    position: relative; z-index: 10; display: flex;
+    align-items: center; justify-content: center; flex: none;
+    width: 48px; height: 48px; border-radius: var(--radius-pill);
+    background: var(--color-paper); box-shadow: var(--shadow-card);
+    outline: 4px solid var(--color-rose-soft);
+  }
+  .step-rank {
+    position: absolute; inset-inline-end: -6px; bottom: -6px;
+    display: grid; place-items: center; width: 22px; height: 22px;
+    border-radius: 999px; background: var(--color-wine); color: #fff;
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  }
+
+  /* Les avis : une bulle organique par cliente, son initiale posée dedans. */
+  .avis-body {
+    border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
+    background: var(--color-wine-soft);
+    padding: 9.5rem 1.75rem 2rem; margin-top: -5rem;
+  }
+  .avis-blob.is-cream .avis-body {
+    background: var(--color-cream-2);
+    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+  }
+  .avis-photo {
+    position: absolute; top: 0; inset-inline-start: 1rem; z-index: 2;
+    display: flex; height: 10rem; width: 10rem;
+    align-items: center; justify-content: center;
+    border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%;
+    background: color-mix(in srgb, var(--color-rose) 45%, var(--color-cream));
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-rose) 25%, transparent);
+  }
+  .avis-initial {
+    font-family: var(--font-display); font-size: 3.75rem;
+    font-weight: 600; color: var(--color-wine);
+  }
+}
