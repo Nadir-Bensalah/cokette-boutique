@@ -44,7 +44,24 @@ export function addToCart(item: Omit<Line, 'key' | 'qty'>, qty = 1) {
 export const setQty = (key: string, qty: number) =>
   ecrire(cartLines.get().map((l) => (l.key === key ? { ...l, qty: Math.max(1, Math.min(qty, l.max)) } : l)));
 
-export const removeLine = (key: string) => ecrire(cartLines.get().filter((l) => l.key !== key));
+/** La dernière ligne retirée, pour pouvoir revenir en arrière. */
+let derniere: { ligne: Line; rang: number } | null = null;
+
+export function removeLine(key: string) {
+  const lines = cartLines.get();
+  const rang = lines.findIndex((l) => l.key === key);
+  if (rang >= 0) derniere = { ligne: lines[rang]!, rang };
+  ecrire(lines.filter((l) => l.key !== key));
+}
+
+/** Remet la dernière ligne retirée à sa place. */
+export function undoRemove() {
+  if (!derniere) return;
+  const lines = [...cartLines.get()];
+  lines.splice(Math.min(derniere.rang, lines.length), 0, derniere.ligne);
+  derniere = null;
+  ecrire(lines);
+}
 export const clearCart = () => ecrire([]);
 export const openCartDrawer = () => cartOpen.set(true);
 export const closeCartDrawer = () => cartOpen.set(false);

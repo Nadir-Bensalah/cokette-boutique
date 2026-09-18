@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react';
-import { useState } from 'react';
-import { cartLines, cartTotal } from '@/stores/cart';
+import { useEffect, useState } from 'react';
+import { cartLines, cartTotal, clearCart } from '@/stores/cart';
+import { compte, enregistrerCommande, type Commande } from '@/stores/compte';
 
 const eur = (n: number) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
 const PORT = 4.95;
@@ -14,9 +15,31 @@ type Mode = 'retrait' | 'colissimo' | 'relais';
 export default function Checkout({ base }: { base: string }) {
   const lines = useStore(cartLines);
   const total = useStore(cartTotal);
+  const c = useStore(compte);
   const b = base.replace(/\/$/, '');
   const [mode, setMode] = useState<Mode>('retrait');
+  const [confirmee, setConfirmee] = useState<Commande | null>(null);
   const [envoye, setEnvoye] = useState(false);
+
+  // Connectée, ses informations sont déjà là : elle n'a rien à ressaisir.
+  const defaut = c?.adresses.find((a) => a.defaut) ?? c?.adresses[0];
+  const [v, setV] = useState({
+    prenom: '', nom: '', email: '', tel: '', adresse: '', cp: '', ville: '',
+  });
+
+  useEffect(() => {
+    if (!c) return;
+    setV((x) => ({
+      ...x,
+      prenom: x.prenom || c.prenom,
+      nom: x.nom || c.nom,
+      email: x.email || c.email,
+      tel: x.tel || defaut?.telephone || '',
+      adresse: x.adresse || defaut?.rue || '',
+      cp: x.cp || defaut?.cp || '',
+      ville: x.ville || defaut?.ville || '',
+    }));
+  }, [c, defaut]);
 
   const port = mode === 'retrait' || total >= FRANCO ? 0 : PORT;
 
@@ -36,12 +59,37 @@ export default function Checkout({ base }: { base: string }) {
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6"
             strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12.5 10 17.5 19 7" /></svg>
         </div>
-        <h2 className="mt-4 font-display text-2xl font-semibold">C'est noté&nbsp;!</h2>
-        <p className="mx-auto mt-3 max-w-sm text-ink-2">
-          Dans la version en ligne, vous seriez ici redirigée vers le paiement sécurisé Stripe,
-          puis vous recevriez un e-mail de confirmation.
+        <h2 className="mt-4 font-display text-2xl font-semibold">Merci&nbsp;!</h2>
+        {confirmee ? (
+          <>
+            <p className="mt-2 font-display text-lg font-semibold text-wine">{confirmee.numero}</p>
+            <p className="mx-auto mt-3 max-w-sm text-ink-2">
+              Votre commande est enregistrée. Vous la retrouvez à tout moment dans votre espace,
+              avec son suivi et sa facture.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              <a href={`${b}/compte`} className="btn btn-primary">Voir ma commande</a>
+              <a href={`${b}/boutique`} className="btn btn-ghost">Continuer mes achats</a>
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="mx-auto mt-3 max-w-sm text-ink-2">
+              Votre commande est bien prise en compte. Vous recevrez la confirmation
+              et le suivi par e-mail.
+            </p>
+            <p className="mx-auto mt-3 max-w-sm text-sm text-ink-3">
+              Avec un compte, vous retrouveriez ici vos commandes et vos factures.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              <a href={`${b}/compte`} className="btn btn-soft">Créer mon compte</a>
+              <a href={`${b}/boutique`} className="btn btn-ghost">Continuer mes achats</a>
+            </div>
+          </>
+        )}
+        <p className="mt-6 text-xs text-ink-3">
+          Démonstration&nbsp;: le paiement Stripe arrive avec la version complète.
         </p>
-        <a href={`${b}/boutique`} className="btn btn-soft mt-6">Continuer mes achats</a>
       </div>
     );
   }
@@ -61,20 +109,37 @@ export default function Checkout({ base }: { base: string }) {
 
   return (
     <form className="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]"
-      onSubmit={(e) => { e.preventDefault(); setEnvoye(true); }}>
+      onSubmit={(e) => {
+        e.preventDefault();
+        const cmd = enregistrerCommande(lines, mode, port);
+        setConfirmee(cmd);
+        clearCart();
+        setEnvoye(true);
+      }}>
       <div className="space-y-8">
+        {!c && (
+          <p className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-wine-soft px-4 py-3 text-sm">
+            <span className="text-ink-2">Vous avez un compte&nbsp;? Vos informations seront pré-remplies.</span>
+            <a href={`${b}/compte`} className="shrink-0 font-bold text-wine underline underline-offset-2">Se connecter</a>
+          </p>
+        )}
+
         <fieldset>
           <legend className="font-display text-xl font-semibold">Vos coordonnées</legend>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <div><label className="label" htmlFor="prenom">Prénom</label>
-              <input id="prenom" name="prenom" className="field" autoComplete="given-name" required /></div>
+              <input id="prenom" name="prenom" className="field" autoComplete="given-name" required
+                value={v.prenom} onChange={(e) => setV({ ...v, prenom: e.target.value })} /></div>
             <div><label className="label" htmlFor="nom">Nom</label>
-              <input id="nom" name="nom" className="field" autoComplete="family-name" required /></div>
+              <input id="nom" name="nom" className="field" autoComplete="family-name" required
+                value={v.nom} onChange={(e) => setV({ ...v, nom: e.target.value })} /></div>
             <div className="sm:col-span-2"><label className="label" htmlFor="email">E-mail</label>
-              <input id="email" name="email" type="email" className="field" autoComplete="email" required />
+              <input id="email" name="email" type="email" className="field" autoComplete="email" required
+                value={v.email} onChange={(e) => setV({ ...v, email: e.target.value })} />
               <p className="help">Pour recevoir la confirmation et le suivi.</p></div>
             <div className="sm:col-span-2"><label className="label" htmlFor="tel">Téléphone</label>
-              <input id="tel" name="tel" type="tel" className="field" autoComplete="tel" inputMode="tel" required /></div>
+              <input id="tel" name="tel" type="tel" className="field" autoComplete="tel" inputMode="tel" required
+                value={v.tel} onChange={(e) => setV({ ...v, tel: e.target.value })} /></div>
           </div>
         </fieldset>
 
@@ -89,11 +154,14 @@ export default function Checkout({ base }: { base: string }) {
           {mode !== 'retrait' && (
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2"><label className="label" htmlFor="adresse">Adresse</label>
-                <input id="adresse" name="adresse" className="field" autoComplete="street-address" required /></div>
+                <input id="adresse" name="adresse" className="field" autoComplete="street-address" required
+                  value={v.adresse} onChange={(e) => setV({ ...v, adresse: e.target.value })} /></div>
               <div><label className="label" htmlFor="cp">Code postal</label>
-                <input id="cp" name="cp" className="field" autoComplete="postal-code" inputMode="numeric" required /></div>
+                <input id="cp" name="cp" className="field" autoComplete="postal-code" inputMode="numeric" required
+                  value={v.cp} onChange={(e) => setV({ ...v, cp: e.target.value })} /></div>
               <div><label className="label" htmlFor="ville">Ville</label>
-                <input id="ville" name="ville" className="field" autoComplete="address-level2" required /></div>
+                <input id="ville" name="ville" className="field" autoComplete="address-level2" required
+                  value={v.ville} onChange={(e) => setV({ ...v, ville: e.target.value })} /></div>
             </div>
           )}
         </fieldset>

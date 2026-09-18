@@ -3,6 +3,7 @@ import Base from '@/layouts/Base.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import Deco from '@/components/deco/Deco.astro';
 import SizePicker from '@/components/islands/SizePicker';
+import BoutonFavori from '@/components/islands/BoutonFavori';
 import { href, asset, routes } from '@/lib/paths';
 import { products, categories, formatPrice, isSoldOut, availableSizes, byCategory } from '@/lib/data';
 
@@ -91,6 +92,10 @@ const ld = {
         <SizePicker client:load
           product={{ id: p.id, slug: p.slug, name: p.name, image: p.images[0] ?? '', price: p.price, sizes: p.sizes, stock: p.stock }}
           base={import.meta.env.BASE_URL} />
+
+        <div class="mt-5">
+          <BoutonFavori client:idle id={p.id} nom={p.name} base={import.meta.env.BASE_URL} />
+        </div>
 
         <dl class="mt-8 divide-y divide-line border-y border-line text-sm">
           <div class="flex gap-3 py-3">

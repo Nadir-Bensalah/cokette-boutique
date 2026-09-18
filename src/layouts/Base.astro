@@ -7,6 +7,7 @@ import TrustBar from '@/components/TrustBar.astro';
 import Footer from '@/components/Footer.astro';
 import BottomBar from '@/components/BottomBar.astro';
 import CartDrawer from '@/components/islands/CartDrawer';
+import CookieBanner from '@/components/islands/CookieBanner';
 
 interface Props {
   title?: string;
@@ -93,6 +94,7 @@ const ld = [business, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) :
     <Footer />
     {!noBottomBar && <BottomBar />}
     <CartDrawer client:idle base={import.meta.env.BASE_URL} />
+    <CookieBanner client:idle base={import.meta.env.BASE_URL} />
 
     <script>
       // Apparition au défilement. Ce qui est déjà à l'écran à l'ouverture
