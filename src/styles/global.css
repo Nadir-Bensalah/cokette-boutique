@@ -1,0 +1,227 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Cokette Girls · système visuel
+   Vin rosé, rose poudré, crème. Photos plein cadre, cadres de travers,
+   beaucoup d'air. Téléphone d'abord.
+   ------------------------------------------------------------------ */
+
+@theme {
+  --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  --color-ink: #2b1b20;
+  --color-ink-2: #5c3e48;
+  --color-ink-3: #8e6d78;
+  --color-line: #ecdde2;
+  --color-line-2: #dcc4cd;
+  --color-paper: #ffffff;
+  --color-cream: #fdf6f3;
+  --color-cream-2: #f9ecec;
+
+  --color-wine: #8e1d42;
+  --color-wine-deep: #5e0f2a;
+  --color-wine-soft: #fbeaf0;
+  --color-rose: #e8b4c4;
+  --color-rose-soft: #fdf0f4;
+  --color-gold: #a8842f;
+  --color-gold-soft: #f9f0dc;
+  --color-sage: #3f6b4a;
+  --color-sage-soft: #e8f0e9;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(43, 27, 32, 0.05), 0 8px 24px -12px rgba(43, 27, 32, 0.2);
+  --shadow-float: 0 12px 40px -12px rgba(43, 27, 32, 0.35);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-pop: pop 0.45s var(--ease-spring) both;
+  --animate-sway: sway 7s ease-in-out infinite;
+
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes sway {
+    0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+  }
+}
+
+@layer base {
+  a[href], button:not(:disabled), [role='button'], summary, label[for], select { cursor: pointer; }
+  :root {
+    color-scheme: light;
+    --header-h: 60px;
+    --bottom-bar-h: 68px;
+    --trust-h: 44px;
+    --stick-top: calc(var(--header-h) + var(--trust-h));
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    /* Les décors et les cartes penchées débordent volontiers : on coupe ici,
+       jamais avec un overflow sur un conteneur intermédiaire, qui casserait
+       le `position: sticky` de l'en-tête. */
+    overflow-x: clip;
+    min-height: 100dvh;
+  }
+  ::selection { background: var(--color-rose); color: var(--color-ink); }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+    text-wrap: balance;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+  }
+  p { text-wrap: pretty; }
+  img { max-width: 100%; height: auto; }
+  :focus-visible {
+    outline: 3px solid var(--color-wine);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  button, [role='button'] { touch-action: manipulation; }
+  input, select, textarea { font: inherit; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  min-height: 48px;
+  padding-inline: 1.25rem;
+  user-select: none;
+  transition: transform 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  &:active { transform: scale(0.97); }
+}
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .btn-primary { @apply btn bg-wine text-white shadow-card hover:bg-wine-deep; }
+  .btn-rose { @apply btn bg-rose text-ink hover:bg-wine hover:text-white; }
+  .btn-ghost { @apply btn border border-line-2 bg-paper text-ink hover:border-ink; }
+  .btn-soft { @apply btn bg-wine-soft text-wine hover:bg-rose; }
+  .btn-sm { min-height: 40px; padding-inline: 1rem; @apply text-sm; }
+  .btn-lg { min-height: 56px; padding-inline: 1.75rem; @apply text-base; }
+  .btn[disabled], .btn[aria-disabled='true'] { @apply cursor-not-allowed opacity-50; transform: none; }
+
+  .chip-nouveau { @apply chip bg-gold-soft text-gold; }
+  .chip-promo { @apply chip bg-wine text-white; }
+  .chip-rupture { @apply chip bg-ink text-cream; }
+
+  .card { @apply rounded-lg bg-paper shadow-card; }
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.14em] text-wine; }
+
+  .field {
+    @apply block w-full rounded-md border border-line-2 bg-paper px-4 py-3 text-base text-ink placeholder:text-ink-3 focus:border-wine focus:ring-4 focus:ring-wine/15 focus:outline-none;
+    min-height: 48px;
+  }
+  .label { @apply mb-1.5 block text-sm font-semibold text-ink-2; }
+  .help { @apply mt-1.5 text-sm text-ink-3; }
+
+  .skeleton {
+    @apply animate-shimmer rounded-md;
+    background: linear-gradient(90deg, #f4e7ea 25%, #fdf6f3 50%, #f4e7ea 75%);
+    background-size: 200% 100%;
+  }
+
+  /* Barre de catégories collante sous l'en-tête. */
+
+  /* Contenu rédactionnel des pages d'information. */
+  .prose-cokette h2 { @apply mt-10 mb-3 text-xl; }
+  .prose-cokette h3 { @apply mt-6 mb-2 text-lg; }
+  .prose-cokette p { @apply mb-4 text-ink-2; }
+  .prose-cokette ul { @apply mb-4 list-disc space-y-1.5 ps-5 text-ink-2; }
+  .prose-cokette strong { @apply font-semibold text-ink; }
+  .prose-cokette a { @apply text-wine underline underline-offset-2; }
+  .prose-cokette table { @apply w-full border-collapse text-sm; }
+  .prose-cokette :is(th, td) { @apply border-b border-line px-3 py-2.5 text-start; }
+  .prose-cokette th { @apply font-semibold; }
+  .prose-cokette .not-prose :is(p, a) { @apply m-0 text-inherit no-underline; }
+
+  .cat-bar {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 30;
+    background: color-mix(in srgb, var(--color-cream) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-line) 70%, transparent);
+  }
+}
+
+@layer utilities {
+  /* Apparition au défilement : visible au repos, l'animation ne fait
+     que l'amener. Sans JS, tout reste lisible. */
+  .reveal { opacity: 1; transform: none; }
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+
+  /* Place pour la barre du bas, qui n'existe que sous 1024 px. Le point de
+     rupture est écrit ici même : une classe lg:pb-0 posée à côté perdrait
+     contre cette règle, déclarée plus tard dans la même couche. */
+  .pb-bottom-bar { padding-bottom: calc(var(--bottom-bar-h) + env(safe-area-inset-bottom)); }
+  @media (width >= 64rem) { .pb-bottom-bar { padding-bottom: 0; } }
+
+  .mask-fade-x { mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent); }
+
+  /* Décor : les grands motifs disparaissent sur petit écran. */
+  .deco { pointer-events: none; position: absolute; }
+  @media (width < 40rem) { .deco-lg { display: none; } }
+  .deco-sway { animation: var(--animate-sway); }
+  @media (prefers-reduced-motion: reduce) { .deco-sway { animation: none; } }
+
+  /* Filigrane très pâle : un semis de points, comme un papier à patron.
+     Dans une data URI SVG la couleur s'écrit %23xxxxxx ; un # encodé deux
+     fois (%2523) charge le motif mais ne dessine rien. */
+  .filigree {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cg fill='none' stroke='%238e1d42' stroke-opacity='0.07' stroke-width='1'%3E%3Ccircle cx='12' cy='12' r='1.5'/%3E%3Ccircle cx='36' cy='36' r='1.5'/%3E%3Cpath d='M30 8l6 6M8 30l6 6'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}

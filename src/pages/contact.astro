@@ -1,0 +1,10 @@
+---
+import Base from '@/layouts/Base.astro';
+import InfoPage from '@/components/InfoPage.astro';
+import ContactForm from '@/components/islands/ContactForm';
+---
+<Base title="Nous écrire">
+  <InfoPage titre="Nous écrire" intro="Une question sur une taille, une commande, un délai ? Nous répondons vite." deco="perle">
+    <ContactForm client:visible />
+  </InfoPage>
+</Base>

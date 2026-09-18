@@ -1,0 +1,18 @@
+---
+const points = [
+  { d: 'M4 7h16l-1.2 12.2a1 1 0 0 1-1 .8H6.2a1 1 0 0 1-1-.8zM8.5 7a3.5 3.5 0 0 1 7 0', t: 'Retrait gratuit à Bray' },
+  { d: 'M3 13.5h12V7H3zM15 10.5h3.5L21 13.5v3h-6zM7 19.5m-1.8 0a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0-3.6 0M17.5 19.5m-1.8 0a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0-3.6 0', t: 'Expédition sous 48 h' },
+  { d: 'M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6zM9 12l2 2 4-4', t: 'Paiement sécurisé' },
+];
+---
+<div class="border-b border-line bg-wine text-white" style="height:var(--trust-h)">
+  <ul class="container-x scrollbar-none flex h-full items-center justify-start gap-6 overflow-x-auto text-xs font-semibold sm:justify-center">
+    {points.map((p) => (
+      <li class="flex shrink-0 items-center gap-1.5">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={p.d} /></svg>
+        {p.t}
+      </li>
+    ))}
+  </ul>
+</div>

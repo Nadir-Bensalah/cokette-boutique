@@ -1,0 +1,110 @@
+---
+/**
+ * Carte produit : carte crème bien droite, dedans un panneau rose légèrement
+ * de travers qui porte la photo, une étiquette inclinée en haut à droite, puis
+ * nom, accroche, prix et bouton d'ajout.
+ */
+import { formatPrice, isSoldOut, isLow, availableSizes, type Product } from '@/lib/data';
+import { href, asset, routes } from '@/lib/paths';
+import AddButton from '@/components/islands/AddButton';
+
+interface Props { product: Product; index?: number; eager?: boolean; }
+const { product: p, index = 0, eager = false } = Astro.props;
+
+const url = href(routes.product(p.slug));
+const soldOut = isSoldOut(p);
+const low = isLow(p);
+const dispo = availableSizes(p);
+const img = p.images[0] ? asset(`/images/products/${p.images[0]}`) : asset('/images/art/placeholder.svg');
+const tilt = index % 2 === 0 ? 'card-tilt-a' : 'card-tilt-b';
+const tag = soldOut
+  ? { label: 'Épuisé', cls: 'bg-ink text-cream' }
+  : low
+    ? { label: 'Dernière pièce', cls: 'bg-wine text-white' }
+    : p.badges.includes('nouveau')
+      ? { label: 'Nouveau', cls: 'bg-gold-soft text-gold' }
+      : null;
+---
+
+<article
+  class:list={['reveal group product-card relative flex flex-col rounded-lg bg-paper p-3 shadow-card transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-float sm:p-3.5', tilt]}
+  style={`--reveal-delay:${Math.min(index, 8) * 60}ms`}
+>
+  <a href={url} class="relative block" tabindex="-1" aria-hidden="true">
+    <!-- Panneau rose légèrement de travers, la photo reste droite dessus. -->
+    <div class="product-panel relative aspect-[3/4] rounded-lg bg-rose shadow-[0_10px_24px_-14px_rgba(142,29,66,.6)]">
+      <div class="product-photo absolute inset-2 overflow-hidden rounded-md bg-cream">
+        <img
+          src={img}
+          alt=""
+          width="800"
+          height="1066"
+          loading={eager ? 'eager' : 'lazy'}
+          fetchpriority={eager ? 'high' : 'auto'}
+          decoding="async"
+          class:list={[
+            'h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105',
+            soldOut && 'grayscale',
+          ]}
+        />
+      </div>
+    </div>
+    {tag && <span class:list={['product-tag', tag.cls]}>{tag.label}</span>}
+  </a>
+
+  <div class="flex flex-1 flex-col gap-1 pt-3 sm:pt-4">
+    <h3 class="text-base font-semibold leading-tight sm:text-lg">
+      <a href={url} class="after:absolute after:inset-0 after:content-['']">{p.name}</a>
+    </h3>
+    <p class="line-clamp-2 text-sm text-ink-3">{p.short}</p>
+
+    {!soldOut && dispo.length > 0 && (
+      <p class="mt-1.5 text-xs font-medium tracking-wide text-ink-3">
+        <span class="sr-only">Tailles disponibles :</span>
+        {dispo.join('  ·  ')}
+      </p>
+    )}
+
+    <div class="mt-auto flex items-end justify-between gap-2 pt-3">
+      <span class="whitespace-nowrap font-display text-lg font-semibold text-ink tabular sm:text-xl">
+        {formatPrice(p.price)}
+      </span>
+      <div class="relative z-10">
+        <AddButton client:visible product={{ id: p.id, slug: p.slug, name: p.name, image: p.images[0] ?? '', price: p.price, sizes: p.sizes, stock: p.stock }} base={import.meta.env.BASE_URL} compact />
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Le panneau penche, la photo à l'intérieur se redresse d'autant :
+     l'œil voit un cadre posé de travers, pas une photo tordue. */
+  .card-tilt-a .product-panel { transform: rotate(-2.5deg); }
+  .card-tilt-a .product-photo { transform: rotate(2.5deg) scale(1.04); }
+  .card-tilt-b .product-panel { transform: rotate(2deg); }
+  .card-tilt-b .product-photo { transform: rotate(-2deg) scale(1.04); }
+  .product-card:hover .product-panel { transform: rotate(0deg); }
+  .product-card:hover .product-photo { transform: rotate(0deg) scale(1.04); }
+  .product-panel,
+  .product-photo { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* L'étiquette mord sur le coin en haut à droite, un peu penchée. */
+  .product-tag {
+    position: absolute;
+    top: -0.35rem;
+    inset-inline-end: -0.35rem;
+    z-index: 2;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 16px -8px rgba(43, 27, 32, 0.5);
+    transform: rotate(6deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .product-panel,
+    .product-photo { transition: none; }
+  }
+</style>

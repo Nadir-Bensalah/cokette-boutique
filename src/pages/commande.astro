@@ -1,0 +1,13 @@
+---
+import Base from '@/layouts/Base.astro';
+import Checkout from '@/components/islands/Checkout';
+---
+<Base title="Votre commande" noBottomBar>
+  <section class="py-8 lg:py-12">
+    <div class="container-x max-w-4xl">
+      <h1 class="text-3xl sm:text-4xl">Votre commande</h1>
+      <p class="mt-2 text-ink-2">Quelques informations, et c'est réglé.</p>
+      <Checkout client:load base={import.meta.env.BASE_URL} />
+    </div>
+  </section>
+</Base>

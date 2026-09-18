@@ -1,0 +1,43 @@
+---
+import Base from '@/layouts/Base.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import Deco from '@/components/deco/Deco.astro';
+import { href, routes } from '@/lib/paths';
+import { categories, byCategory, products, newArrivals } from '@/lib/data';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { slug: c.slug }, props: { cat: c } }));
+}
+const { cat } = Astro.props;
+const liste = cat.slug === 'nouveautes' ? newArrivals() : byCategory(cat.slug);
+---
+<Base title={cat.name} description={cat.description}>
+  <section class="relative py-8 lg:py-12">
+    <Deco type="fleur" class="deco deco-lg end-2 top-4 w-28 text-wine/10 deco-sway" />
+    <div class="container-x relative">
+      <nav aria-label="Fil d'Ariane" class="text-sm text-ink-3">
+        <ol class="flex items-center gap-1.5">
+          <li><a href={href(routes.home)} class="hover:text-wine">Accueil</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href={href(routes.shop)} class="hover:text-wine">Boutique</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ink-2" aria-current="page">{cat.name}</li>
+        </ol>
+      </nav>
+
+      <h1 class="mt-4 text-3xl sm:text-4xl">{cat.name}</h1>
+      <p class="mt-2 max-w-lg text-ink-2">{cat.description}</p>
+
+      {liste.length === 0 ? (
+        <div class="mt-8 rounded-lg bg-paper p-8 text-center shadow-card">
+          <p class="text-ink-2">Rien dans cette catégorie pour le moment.</p>
+          <a href={href(routes.shop)} class="btn btn-soft btn-sm mt-4">Voir toute la boutique</a>
+        </div>
+      ) : (
+        <div class="mt-8 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {liste.map((p, i) => <ProductCard product={p} index={i} eager={i < 2} />)}
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

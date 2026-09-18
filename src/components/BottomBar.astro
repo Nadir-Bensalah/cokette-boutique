@@ -1,0 +1,33 @@
+---
+/** Barre d'action fixe en bas, sous 1024 px : tout à portée de pouce
+ *  pendant un live. Elle n'existe pas sur grand écran. */
+import { href, routes } from '@/lib/paths';
+const here = Astro.url.pathname.replace(/\/$/, '');
+const items = [
+  { label: 'Accueil', path: routes.home, d: 'M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10' },
+  { label: 'Boutique', path: routes.shop, d: 'M4 7h16l-1.2 12.2a1 1 0 0 1-1 .8H6.2a1 1 0 0 1-1-.8zM8.5 7a3.5 3.5 0 0 1 7 0' },
+  { label: 'Live', path: routes.live, d: 'M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0M6.5 6.5a8 8 0 0 0 0 11M17.5 6.5a8 8 0 0 1 0 11' },
+  { label: 'Compte', path: routes.account, d: 'M12 8.5m-3.8 0a3.8 3.8 0 1 0 7.6 0a3.8 3.8 0 1 0-7.6 0M4.5 20a7.5 7.5 0 0 1 15 0' },
+];
+---
+<nav class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-cream/95 backdrop-blur-md safe-bottom lg:hidden"
+  style="height:calc(var(--bottom-bar-h) + env(safe-area-inset-bottom))" aria-label="Navigation">
+  <ul class="grid h-[var(--bottom-bar-h)] grid-cols-4">
+    {items.map((i) => {
+      const actif = here === href(i.path).replace(/\/$/, '');
+      return (
+        <li>
+          <a href={href(i.path)} aria-current={actif ? 'page' : undefined}
+            class:list={['flex h-full flex-col items-center justify-center gap-1 text-[11px] font-semibold',
+              actif ? 'text-wine' : 'text-ink-3']}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d={i.d} />
+            </svg>
+            {i.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

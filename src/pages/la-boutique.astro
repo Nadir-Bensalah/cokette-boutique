@@ -1,0 +1,34 @@
+---
+import Base from '@/layouts/Base.astro';
+import InfoPage from '@/components/InfoPage.astro';
+import { href, routes } from '@/lib/paths';
+---
+<Base title="La boutique" description="Cokette Girls, prêt-à-porter féminin à Bray-sur-Somme.">
+  <InfoPage titre="La boutique" intro="Du prêt-à-porter choisi une pièce à la fois, à Bray-sur-Somme." deco="cintre">
+    <p>
+      Cokette Girls, c'est une boutique de prêt-à-porter féminin installée à Bray-sur-Somme.
+      Chaque pièce est choisie à la main, en petite quantité&nbsp;: vous ne croiserez pas
+      votre tenue à tous les coins de rue.
+    </p>
+    <h2>Les lives</h2>
+    <p>
+      Plusieurs fois par semaine, nous présentons les arrivages en direct sur les réseaux.
+      Vous posez vos questions, nous montrons les matières et les tombés, et vous commandez
+      directement depuis <a href={href(routes.live)}>la page live</a>.
+    </p>
+    <h2>Venir nous voir</h2>
+    <table>
+      <tbody>
+        <tr><th>Adresse</th><td>Bray-sur-Somme (80340)</td></tr>
+        <tr><th>Du mardi au samedi</th><td>10 h – 12 h 30 · 14 h – 19 h</td></tr>
+        <tr><th>Dimanche et lundi</th><td>Fermé</td></tr>
+      </tbody>
+    </table>
+    <h2>Le retrait en boutique</h2>
+    <p>
+      Commandez en ligne et venez chercher votre pièce&nbsp;: <strong>c'est gratuit</strong> et
+      disponible dès le lendemain. Vous pouvez l'essayer sur place et l'échanger immédiatement
+      si la taille ne va pas.
+    </p>
+  </InfoPage>
+</Base>

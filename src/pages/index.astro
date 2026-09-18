@@ -1,0 +1,190 @@
+---
+import Base from '@/layouts/Base.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import Deco from '@/components/deco/Deco.astro';
+import TornEdge from '@/components/deco/TornEdge.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import { href, asset, routes } from '@/lib/paths';
+import { categories, products, isSoldOut, newArrivals } from '@/lib/data';
+
+const vedettes = products.filter((p) => !isSoldOut(p)).slice(0, 8);
+const nouveautes = newArrivals().slice(0, 4);
+const heroImg = products.find((p) => p.images.length && !isSoldOut(p))?.images[0];
+const catsVisibles = categories.filter((c) => c.slug !== 'nouveautes');
+
+// Une icône de mercerie par rayon.
+const ICONES: Record<string, any> = {
+  robes: 'cintre', hauts: 'bouton', bas: 'ruban',
+  vestes: 'aiguille', chaussures: 'noeud', accessoires: 'perle',
+};
+---
+
+<Base ownTrustBar mainClass="">
+  <!-- Ouverture : une photo plein cadre, le nom, deux boutons. -->
+  <section class="relative overflow-hidden bg-cream-2">
+    <Deco type="cintre" class="deco deco-lg -start-6 top-16 w-28 rotate-[-8deg] text-wine/15 deco-sway" />
+    <Deco type="fleur" class="deco deco-lg end-4 top-24 w-24 text-wine/15" />
+    <Deco type="perle" class="deco deco-lg end-16 bottom-24 w-32 text-rose/40" />
+
+    <div class="container-x relative grid items-center gap-8 py-12 lg:grid-cols-2 lg:gap-14 lg:py-20">
+      <div class="reveal">
+        <p class="eyebrow">Bray-sur-Somme</p>
+        <h1 class="mt-3 text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
+          La mode qui vous<br /><em class="font-normal italic text-wine">ressemble</em>.
+        </h1>
+        <p class="mt-5 max-w-md text-lg text-ink-2">
+          Des pièces choisies une par une, en boutique et en live.
+          Retrait gratuit à Bray, ou livraison chez vous.
+        </p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href={href(routes.shop)} class="btn btn-primary btn-lg">Voir la boutique</a>
+          <a href={href(routes.live)} class="btn btn-ghost btn-lg">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-wine opacity-60"></span>
+              <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-wine"></span>
+            </span>
+            Le prochain live
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal relative" style="--reveal-delay:120ms">
+        <div class="relative mx-auto aspect-[3/4] w-full max-w-sm rotate-2 rounded-xl bg-rose p-3 shadow-float lg:max-w-md">
+          <img src={asset(`/images/products/${heroImg}`)} alt="Une pièce de la collection Cokette Girls"
+            width="900" height="1200" fetchpriority="high" decoding="async"
+            class="h-full w-full -rotate-2 rounded-lg object-cover" />
+        </div>
+      </div>
+    </div>
+
+    <TornEdge position="bottom" class="text-cream" height={26} />
+  </section>
+
+  <TrustBar />
+
+  <!-- Les catégories -->
+  <section class="relative py-12 lg:py-16">
+    <div class="container-x">
+      <div class="reveal flex items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Par envie</p>
+          <h2 class="mt-2 text-2xl sm:text-3xl">Qu'est-ce qui vous ferait plaisir&nbsp;?</h2>
+        </div>
+        <a href={href(routes.shop)} class="hidden shrink-0 text-sm font-semibold text-wine underline underline-offset-4 sm:inline">
+          Tout voir
+        </a>
+      </div>
+
+      <ul class="scrollbar-none mask-fade-x -mx-4 mt-6 flex gap-3 overflow-x-auto px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 lg:grid-cols-6">
+        {catsVisibles.map((c, i) => (
+          <li class="reveal w-36 shrink-0 sm:w-auto" style={`--reveal-delay:${i * 60}ms`}>
+            <a href={href(routes.category(c.slug))}
+              class="group flex h-full flex-col items-center gap-2 rounded-lg bg-paper p-4 text-center shadow-card transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-float">
+              <span class="grid h-12 w-12 place-items-center rounded-full bg-wine-soft text-wine transition-colors group-hover:bg-wine group-hover:text-white">
+                <Deco type={ICONES[c.slug] ?? 'bouton'} class="h-7 w-7" />
+              </span>
+              <span class="text-sm font-semibold leading-tight">{c.name}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Le live : la pièce maîtresse -->
+  <section class="relative overflow-hidden bg-ink py-14 text-cream lg:py-20">
+    <TornEdge position="top" class="text-cream" height={24} />
+    <Deco type="ciseaux" class="deco deco-lg -start-8 bottom-10 w-32 text-rose/10" />
+    <Deco type="bobine" class="deco deco-lg end-6 top-14 w-28 text-rose/10 deco-sway" />
+
+    <div class="container-x relative">
+      <div class="reveal mx-auto max-w-2xl text-center">
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-rose">En direct</p>
+        <h2 class="mt-3 text-3xl text-cream sm:text-4xl">Achetez pendant le live.</h2>
+        <p class="mt-4 text-lg text-cream/75">
+          Pendant nos directs, les pièces montrées apparaissent ici. Vous cliquez,
+          vous choisissez votre taille, c'est à vous. Sans attendre la fin.
+        </p>
+        <a href={href(routes.live)} class="btn btn-lg mt-7 bg-cream text-ink hover:bg-rose">
+          Voir la page live
+        </a>
+      </div>
+    </div>
+
+    <TornEdge position="bottom" class="text-cream" height={24} />
+  </section>
+
+  <!-- Les nouveautés -->
+  {nouveautes.length > 0 && (
+    <section class="relative py-12 lg:py-16">
+      <Deco type="epingle" class="deco deco-lg end-2 top-10 w-20 text-wine/10" />
+      <div class="container-x">
+        <div class="reveal">
+          <p class="eyebrow">Tout juste arrivé</p>
+          <h2 class="mt-2 text-2xl sm:text-3xl">Les nouveautés</h2>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {nouveautes.map((p, i) => <ProductCard product={p} index={i} eager={i < 2} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- La sélection -->
+  <section class="relative bg-cream-2 py-12 lg:py-16 filigree">
+    <TornEdge position="top" class="text-cream" height={20} />
+    <div class="container-x relative">
+      <div class="reveal flex items-end justify-between gap-4">
+        <div>
+          <p class="eyebrow">Notre sélection</p>
+          <h2 class="mt-2 text-2xl sm:text-3xl">Les pièces du moment</h2>
+        </div>
+        <a href={href(routes.shop)} class="shrink-0 text-sm font-semibold text-wine underline underline-offset-4">
+          Tout voir
+        </a>
+      </div>
+      <div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+        {vedettes.map((p, i) => <ProductCard product={p} index={i} />)}
+      </div>
+    </div>
+    <TornEdge position="bottom" class="text-cream" height={20} />
+  </section>
+
+  <!-- La boutique physique -->
+  <section class="relative py-12 lg:py-16">
+    <div class="container-x">
+      <div class="reveal grid items-center gap-8 rounded-xl bg-paper p-6 shadow-card sm:p-10 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p class="eyebrow">Venez nous voir</p>
+          <h2 class="mt-2 text-2xl sm:text-3xl">La boutique est à Bray-sur-Somme.</h2>
+          <p class="mt-4 text-ink-2">
+            Essayez, touchez, demandez conseil. Ce que vous commandez ici peut aussi
+            vous attendre en boutique&nbsp;: le retrait est gratuit.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href={href(routes.about)} class="btn btn-primary">Horaires et accès</a>
+            <a href={href(routes.contact)} class="btn btn-ghost">Nous écrire</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="rounded-lg bg-wine-soft p-6">
+            <dl class="space-y-4">
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wide text-wine">Adresse</dt>
+                <dd class="mt-1 font-semibold">Bray-sur-Somme (80340)</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wide text-wine">Retrait</dt>
+                <dd class="mt-1 font-semibold">Gratuit, dès le lendemain</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold uppercase tracking-wide text-wine">Livraison</dt>
+                <dd class="mt-1 font-semibold">Colissimo et Mondial Relay</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

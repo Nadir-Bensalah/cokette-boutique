@@ -1,0 +1,20 @@
+---
+import Base from '@/layouts/Base.astro';
+import Deco from '@/components/deco/Deco.astro';
+import ShopFilters from '@/components/islands/ShopFilters';
+import { categories, products } from '@/lib/data';
+---
+<Base title="La boutique" description="Toutes nos pièces : robes, hauts, pantalons, vestes, chaussures et accessoires.">
+  <section class="relative py-8 lg:py-12">
+    <Deco type="ruban" class="deco deco-lg end-0 top-6 w-36 text-wine/10" />
+    <div class="container-x relative">
+      <h1 class="text-3xl sm:text-4xl">La boutique</h1>
+      <p class="mt-2 max-w-lg text-ink-2">
+        {products.length} pièces en ligne. Filtrez par taille pour ne voir que ce qui vous va.
+      </p>
+      <div class="mt-8">
+        <ShopFilters client:load products={products} categories={categories} base={import.meta.env.BASE_URL} />
+      </div>
+    </div>
+  </section>
+</Base>

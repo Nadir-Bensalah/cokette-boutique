@@ -1,0 +1,17 @@
+---
+import Base from '@/layouts/Base.astro';
+import { href, routes } from '@/lib/paths';
+---
+<Base title="Page introuvable">
+  <section class="container-x py-20 text-center">
+    <p class="font-display text-6xl font-semibold text-wine">404</p>
+    <h1 class="mt-4 text-2xl">Cette page n'existe pas.</h1>
+    <p class="mx-auto mt-3 max-w-sm text-ink-2">
+      Elle a peut-être été déplacée, ou la pièce n'est plus en ligne.
+    </p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <a href={href(routes.shop)} class="btn btn-primary">Voir la boutique</a>
+      <a href={href(routes.home)} class="btn btn-ghost">Retour à l'accueil</a>
+    </div>
+  </section>
+</Base>

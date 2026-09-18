@@ -1,0 +1,118 @@
+---
+/**
+ * Petits dessins au trait posés dans les marges des sections.
+ * Jamais informatifs : toujours aria-hidden, jamais cliquables.
+ *
+ *   <Deco type="cintre" class="deco deco-lg -start-8 top-24 w-28 text-wine/25" />
+ *
+ * Le vocabulaire vient de l'atelier : couture, mercerie, et quelques
+ * éléments floraux pour l'air de la boutique.
+ */
+import type { DecoType } from './types';
+
+interface Props { type: DecoType; class?: string; }
+const { type, class: cls = '' } = Astro.props;
+const c = {
+  fill: 'none',
+  stroke: 'currentColor',
+  'stroke-width': '1.5',
+  'stroke-linecap': 'round' as const,
+  'stroke-linejoin': 'round' as const,
+};
+---
+
+<svg class={cls} viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+  {type === 'aiguille' && (
+    <g {...c}>
+      <path d="M22 98 L92 28" />
+      <circle cx="96" cy="24" r="7" />
+      <path d="M92 28 l-7 -7" />
+      <path d="M22 98 q-6 4 -8 10 q6 -2 10 -8" />
+    </g>
+  )}
+  {type === 'bouton' && (
+    <g {...c}>
+      <circle cx="60" cy="60" r="30" />
+      <circle cx="60" cy="60" r="22" stroke-dasharray="3 5" />
+      <circle cx="51" cy="51" r="3.5" /><circle cx="69" cy="51" r="3.5" />
+      <circle cx="51" cy="69" r="3.5" /><circle cx="69" cy="69" r="3.5" />
+    </g>
+  )}
+  {type === 'cintre' && (
+    <g {...c}>
+      <circle cx="60" cy="24" r="8" />
+      <path d="M60 32 v10" />
+      <path d="M60 42 L18 82 q-3 4 2 4 h80 q5 0 2 -4 z" />
+    </g>
+  )}
+  {type === 'ruban' && (
+    <g {...c}>
+      <path d="M10 46 q14 -20 28 0 t28 0 t28 0 t16 0" />
+      <path d="M10 66 q14 -20 28 0 t28 0 t28 0 t16 0" />
+      <path d="M10 86 q14 -20 28 0 t28 0 t28 0 t16 0" />
+    </g>
+  )}
+  {type === 'ciseaux' && (
+    <g {...c}>
+      <circle cx="38" cy="90" r="12" /><circle cx="82" cy="90" r="12" />
+      <path d="M47 82 L92 22" /><path d="M73 82 L28 22" />
+      <circle cx="60" cy="58" r="3" />
+    </g>
+  )}
+  {type === 'dentelle' && (
+    <g {...c}>
+      <path d="M12 42 q12 -14 24 0 t24 0 t24 0 t24 0" />
+      <path d="M12 42 v14 q12 14 24 0 t24 0 t24 0 t24 0 v-14" />
+      <circle cx="24" cy="64" r="2" /><circle cx="48" cy="64" r="2" />
+      <circle cx="72" cy="64" r="2" /><circle cx="96" cy="64" r="2" />
+    </g>
+  )}
+  {type === 'bobine' && (
+    <g {...c}>
+      <path d="M38 24 h44 M38 96 h44" />
+      <path d="M44 24 v72 M76 24 v72" />
+      <path d="M44 40 h32 M44 54 h32 M44 68 h32 M44 82 h32" />
+      <path d="M76 54 q16 -6 22 6" />
+    </g>
+  )}
+  {type === 'perle' && (
+    <g {...c}>
+      <path d="M20 70 q20 -34 40 -20 t40 -6" stroke-dasharray="1 9" />
+      <circle cx="34" cy="58" r="5" /><circle cx="56" cy="50" r="6" />
+      <circle cx="78" cy="52" r="5" /><circle cx="98" cy="44" r="4" />
+    </g>
+  )}
+  {type === 'fleur' && (
+    <g {...c}>
+      <circle cx="60" cy="48" r="9" />
+      <path d="M60 39 q-14 -14 -4 -22 q12 -2 4 22" />
+      <path d="M69 48 q18 -8 20 4 q-4 10 -20 -4" />
+      <path d="M60 57 q12 16 2 22 q-12 0 -2 -22" />
+      <path d="M51 48 q-18 -8 -20 4 q4 10 20 -4" />
+      <path d="M60 66 v38" />
+      <path d="M60 84 q-12 -6 -16 -18 q14 0 16 12" />
+    </g>
+  )}
+  {type === 'feuille' && (
+    <g {...c}>
+      <path d="M60 106 V44" />
+      <path d="M60 60 q-22 -6 -26 -26 q22 2 26 18" />
+      <path d="M60 46 q22 -6 26 -26 q-22 2 -26 18" />
+      <path d="M60 80 q-16 -4 -20 -18 q16 2 20 12" />
+    </g>
+  )}
+  {type === 'noeud' && (
+    <g {...c}>
+      <path d="M60 60 q-24 -22 -34 -8 q-8 14 12 18 q-16 6 -8 18 q10 12 30 -12" />
+      <path d="M60 60 q24 -22 34 -8 q8 14 -12 18 q16 6 8 18 q-10 12 -30 -12" />
+      <circle cx="60" cy="60" r="6" />
+    </g>
+  )}
+  {type === 'epingle' && (
+    <g {...c}>
+      <circle cx="30" cy="30" r="8" />
+      <path d="M36 36 L94 94" />
+      <path d="M94 94 q6 -2 8 -8 q-8 0 -8 8" />
+    </g>
+  )}
+</svg>

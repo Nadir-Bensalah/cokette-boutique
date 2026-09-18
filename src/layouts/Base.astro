@@ -1,0 +1,123 @@
+---
+import '@/styles/global.css';
+import { href, asset, routes } from '@/lib/paths';
+import Header from '@/components/Header.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import Footer from '@/components/Footer.astro';
+import BottomBar from '@/components/BottomBar.astro';
+import CartDrawer from '@/components/islands/CartDrawer';
+
+interface Props {
+  title?: string;
+  description?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noBottomBar?: boolean;
+  mainClass?: string;
+  /** L'accueil porte sa propre bande de réassurance, après le hero. */
+  ownTrustBar?: boolean;
+}
+const {
+  title, description, jsonLd, noBottomBar = false, mainClass = '', ownTrustBar = false,
+} = Astro.props;
+
+const SITE = 'Cokette Girls';
+const fullTitle = title ? `${title} · ${SITE}` : `${SITE} · Prêt-à-porter féminin à Bray-sur-Somme`;
+const desc = description ?? "Boutique de prêt-à-porter féminin à Bray-sur-Somme. Robes, hauts, vestes et accessoires. Retrait en boutique ou livraison.";
+const site = Astro.site ? Astro.site.toString().replace(/\/$/, '') : '';
+const canonical = `${site}${Astro.url.pathname}`;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ClothingStore'],
+  name: SITE,
+  description: desc,
+  url: `${site}${href(routes.home)}`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Bray-sur-Somme', postalCode: '80340', addressCountry: 'FR' },
+  priceRange: '€€',
+};
+const ld = [business, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      // Le contenu n'est masqué que si le navigateur sait l'animer. Un filet
+      // de sécurité le réaffiche au bout de 2 s si le script de révélation
+      // n'a pas pris la main : jamais de page blanche.
+      (function () {
+        var r = document.documentElement;
+        if (!('IntersectionObserver' in window)) return;
+        r.classList.add('js');
+        window.__revealFallback = setTimeout(function () { r.classList.remove('js'); }, 2000);
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#8e1d42" />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" href={asset('/favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <slot name="head" />
+  </head>
+
+  <body>
+    <a href="#contenu"
+      class="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-[90] focus:rounded-md focus:bg-wine focus:px-4 focus:py-2 focus:text-white">
+      Aller au contenu
+    </a>
+
+    <Header />
+    {!ownTrustBar && <TrustBar />}
+
+    <main id="contenu" class:list={[mainClass, !noBottomBar && 'pb-bottom-bar']}>
+      <slot />
+    </main>
+
+    <Footer />
+    {!noBottomBar && <BottomBar />}
+    <CartDrawer client:idle base={import.meta.env.BASE_URL} />
+
+    <script>
+      // Apparition au défilement. Ce qui est déjà à l'écran à l'ouverture
+      // ne doit pas attendre : la page est lisible dès la première image.
+      const demarrer = () => {
+        clearTimeout((window as any).__revealFallback);
+        const blocs = Array.from(document.querySelectorAll('.reveal'));
+        const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduit || !('IntersectionObserver' in window)) {
+          blocs.forEach((b) => b.classList.add('is-in'));
+          return;
+        }
+        const vu = new IntersectionObserver((entrees) => {
+          entrees.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('is-in');
+            vu.unobserve(e.target);
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        blocs.forEach((b) => {
+          if (b.getBoundingClientRect().top < window.innerHeight) b.classList.add('is-in');
+          else vu.observe(b);
+        });
+      };
+      demarrer();
+      window.addEventListener('beforeprint', () =>
+        document.querySelectorAll('.reveal').forEach((b) => b.classList.add('is-in')));
+    </script>
+  </body>
+</html>

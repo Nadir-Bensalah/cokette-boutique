@@ -1,0 +1,41 @@
+---
+/**
+ * Bord de section irrégulier, comme deux tissus cousus ensemble.
+ * À poser DANS une section en `relative` :
+ *
+ *   <TornEdge position="bottom" class="text-cream" />
+ *
+ * La couleur vient de `currentColor` : on donne au composant la couleur de la
+ * section SUIVANTE, le bord la fait mordre sur la section courante.
+ */
+type Position = 'top' | 'bottom';
+type Variant = 'couture' | 'vague';
+
+interface Props { position?: Position; variant?: Variant; class?: string; height?: number; }
+const { position = 'bottom', variant = 'couture', class: cls = '', height = 24 } = Astro.props;
+
+// Un feston régulier mais souple, comme un bord de dentelle.
+const COUTURE =
+  'M0,28 L0,14 Q25,2 50,14 T100,14 T150,14 T200,14 T250,14 T300,14 T350,14 T400,14 T450,14 T500,14 T550,14 T600,14 T650,14 T700,14 T750,14 T800,14 T850,14 T900,14 T950,14 T1000,14 T1050,14 T1100,14 T1150,14 T1200,14 L1200,28 Z';
+const VAGUE =
+  'M0,32 L0,16 C84,2 156,2 240,16 C324,28 396,28 480,16 C564,2 636,2 720,16 C804,28 876,28 960,16 C1044,2 1116,2 1200,16 L1200,32 Z';
+
+const d = variant === 'vague' ? VAGUE : COUTURE;
+const box = variant === 'vague' ? '0 0 1200 32' : '0 0 1200 28';
+---
+
+<svg
+  class:list={[
+    'pointer-events-none absolute inset-x-0 z-10 block w-full',
+    position === 'top' ? 'top-0' : 'bottom-0',
+    position === 'top' && 'rotate-180',
+    cls,
+  ]}
+  style={`height:${height}px`}
+  viewBox={box}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d={d} fill="currentColor"></path>
+</svg>

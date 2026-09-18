@@ -1,0 +1,12 @@
+---
+import Base from '@/layouts/Base.astro';
+import CartPage from '@/components/islands/CartPage';
+---
+<Base title="Votre panier" noBottomBar>
+  <section class="py-8 lg:py-12">
+    <div class="container-x">
+      <h1 class="text-3xl sm:text-4xl">Votre panier</h1>
+      <CartPage client:load base={import.meta.env.BASE_URL} />
+    </div>
+  </section>
+</Base>

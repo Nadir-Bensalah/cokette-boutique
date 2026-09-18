@@ -1,0 +1,120 @@
+---
+import Base from '@/layouts/Base.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import Deco from '@/components/deco/Deco.astro';
+import SizePicker from '@/components/islands/SizePicker';
+import { href, asset, routes } from '@/lib/paths';
+import { products, categories, formatPrice, isSoldOut, availableSizes, byCategory } from '@/lib/data';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+const { product: p } = Astro.props;
+
+const cat = categories.find((c) => c.slug === p.category);
+const soldOut = isSoldOut(p);
+const dispo = availableSizes(p);
+const site = Astro.site ? Astro.site.toString().replace(/\/$/, '') : '';
+const similaires = byCategory(p.category).filter((x) => x.id !== p.id).slice(0, 4);
+// Le JSX lit `<=` comme une balise : la comparaison reste ici.
+const peuDeTailles = dispo.length > 0 && dispo.length <= 2;
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: p.name,
+  description: p.short,
+  image: p.images.map((i) => `${site}${asset(`/images/products/${i}`)}`),
+  offers: {
+    '@type': 'Offer',
+    price: p.price.toFixed(2),
+    priceCurrency: 'EUR',
+    availability: soldOut ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+    url: `${site}${href(routes.product(p.slug))}`,
+  },
+};
+---
+<Base title={p.name} description={p.short} jsonLd={ld}>
+  <div class="container-x py-6 lg:py-10">
+    <nav aria-label="Fil d'Ariane" class="text-sm text-ink-3">
+      <ol class="flex flex-wrap items-center gap-1.5">
+        <li><a href={href(routes.home)} class="hover:text-wine">Accueil</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href={href(routes.shop)} class="hover:text-wine">Boutique</a></li>
+        {cat && (<>
+          <li aria-hidden="true">/</li>
+          <li><a href={href(routes.category(cat.slug))} class="hover:text-wine">{cat.name}</a></li>
+        </>)}
+        <li aria-hidden="true">/</li>
+        <li class="text-ink-2" aria-current="page">{p.name}</li>
+      </ol>
+    </nav>
+
+    <div class="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-14">
+      <!-- Les photos -->
+      <div data-product-hero class="reveal">
+        <div class="relative mx-auto max-w-md rotate-1 rounded-xl bg-rose p-3 shadow-float lg:max-w-none">
+          <img src={asset(`/images/products/${p.images[0]}`)} alt={p.name}
+            width="900" height="1200" fetchpriority="high" decoding="async"
+            class:list={['aspect-[3/4] w-full -rotate-1 rounded-lg object-cover', soldOut && 'grayscale']} />
+        </div>
+        {p.images.length > 1 && (
+          <ul class="mx-auto mt-4 grid max-w-md grid-cols-4 gap-3 lg:max-w-none">
+            {p.images.slice(1).map((img, i) => (
+              <li>
+                <img src={asset(`/images/products/${img}`)} alt={`${p.name}, vue ${i + 2}`}
+                  width="300" height="400" loading="lazy" decoding="async"
+                  class="aspect-[3/4] w-full rounded-md object-cover shadow-card" />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <!-- L'achat -->
+      <div class="reveal relative lg:sticky lg:top-24 lg:self-start" style="--reveal-delay:100ms">
+        <Deco type="aiguille" class="deco deco-lg end-0 -top-6 w-20 text-wine/10" />
+        {cat && <p class="eyebrow">{cat.name}</p>}
+        <h1 class="mt-2 text-3xl sm:text-4xl">{p.name}</h1>
+        <p class="mt-3 text-lg text-ink-2">{p.short}</p>
+
+        <p class="mt-5 font-display text-3xl font-semibold tabular">{formatPrice(p.price)}</p>
+
+        {soldOut && <p class="mt-2 inline-flex chip bg-ink text-cream">Épuisé</p>}
+        {!soldOut && peuDeTailles && (
+          <p class="mt-2 text-sm font-semibold text-wine">
+            Il ne reste que {dispo.length} taille{dispo.length > 1 ? 's' : ''}.
+          </p>
+        )}
+
+        <SizePicker client:load
+          product={{ id: p.id, slug: p.slug, name: p.name, image: p.images[0] ?? '', price: p.price, sizes: p.sizes, stock: p.stock }}
+          base={import.meta.env.BASE_URL} />
+
+        <dl class="mt-8 divide-y divide-line border-y border-line text-sm">
+          <div class="flex gap-3 py-3">
+            <dt class="w-32 shrink-0 font-semibold">Livraison</dt>
+            <dd class="text-ink-2">Colissimo ou Mondial Relay. Retrait gratuit en boutique à Bray-sur-Somme.</dd>
+          </div>
+          <div class="flex gap-3 py-3">
+            <dt class="w-32 shrink-0 font-semibold">Retours</dt>
+            <dd class="text-ink-2">14 jours pour changer d'avis, article non porté avec son étiquette.</dd>
+          </div>
+          <div class="flex gap-3 py-3">
+            <dt class="w-32 shrink-0 font-semibold">Paiement</dt>
+            <dd class="text-ink-2">Carte bancaire, Apple&nbsp;Pay et Google&nbsp;Pay, sécurisés par Stripe.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    {similaires.length > 0 && (
+      <section class="mt-16">
+        <h2 class="reveal text-2xl">Dans le même esprit</h2>
+        <div class="mt-5 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+          {similaires.map((x, i) => <ProductCard product={x} index={i} />)}
+        </div>
+      </section>
+    )}
+  </div>
+</Base>

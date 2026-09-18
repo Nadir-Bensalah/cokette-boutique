@@ -1,0 +1,624 @@
+{
+ "categories": [
+  {
+   "slug": "nouveautes",
+   "name": "Nouveautés",
+   "description": "Les dernières pièces arrivées en boutique."
+  },
+  {
+   "slug": "robes",
+   "name": "Robes",
+   "description": "Courtes, longues, pour tous les jours ou pour sortir."
+  },
+  {
+   "slug": "hauts",
+   "name": "Hauts",
+   "description": "Tops, blouses, chemises et t-shirts."
+  },
+  {
+   "slug": "bas",
+   "name": "Pantalons & jupes",
+   "description": "Fluides, ballon, rayés, en jupe ou en short."
+  },
+  {
+   "slug": "vestes",
+   "name": "Vestes & manteaux",
+   "description": "Blazers et vestes pour toutes les saisons."
+  },
+  {
+   "slug": "chaussures",
+   "name": "Chaussures",
+   "description": "Baskets, claquettes, pour marcher tout le jour."
+  },
+  {
+   "slug": "accessoires",
+   "name": "Accessoires",
+   "description": "Sacs et compléments qui changent une tenue."
+  }
+ ],
+ "products": [
+  {
+   "id": "p01",
+   "slug": "chemise-olive",
+   "name": "Chemise olive",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 28.0,
+   "images": [
+    "chemise-olive-1.jpeg",
+    "chemise-olive-2.jpeg",
+    "chemise-olive-3.jpeg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 5,
+    "M": 2,
+    "L": 2,
+    "XL": 0
+   },
+   "badges": [
+    "nouveau"
+   ],
+   "description": ""
+  },
+  {
+   "id": "p02",
+   "slug": "blazer-beige",
+   "name": "Blazer beige",
+   "short": "La pièce qui structure la silhouette.",
+   "category": "vestes",
+   "price": 32.5,
+   "images": [
+    "blazer-beige-1.jpeg",
+    "blazer-beige-2.jpeg",
+    "blazer-beige-3.jpeg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 1,
+    "M": 4,
+    "L": 1,
+    "XL": 5
+   },
+   "badges": [
+    "nouveau"
+   ],
+   "description": ""
+  },
+  {
+   "id": "p03",
+   "slug": "pantalon-fluide-rayures",
+   "name": "Pantalon fluide rayures",
+   "short": "Confortable, et qui tombe bien.",
+   "category": "bas",
+   "price": 38.5,
+   "images": [
+    "pantalon-fluide-rayures-1.jpg",
+    "pantalon-fluide-rayures-2.jpeg",
+    "pantalon-fluide-rayures-3.jpeg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 4,
+    "L": 3,
+    "XL": 0
+   },
+   "badges": [
+    "nouveau"
+   ],
+   "description": ""
+  },
+  {
+   "id": "p04",
+   "slug": "top-bordeaux",
+   "name": "Top bordeaux",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 28.0,
+   "images": [
+    "top-bordeaux-1.jpg",
+    "top-bordeaux-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 0,
+    "L": 0,
+    "XL": 0
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p05",
+   "slug": "top-chic-elegant",
+   "name": "Top chic & élégant",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 29.0,
+   "images": [
+    "top-chic-elegant-1.jpg",
+    "top-chic-elegant-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 1,
+    "M": 2,
+    "L": 2,
+    "XL": 1
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p06",
+   "slug": "t-shirt-noir-chic",
+   "name": "T-shirt noir chic",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 24.0,
+   "images": [
+    "t-shirt-noir-chic-1.jpg",
+    "t-shirt-noir-chic-2.jpg",
+    "t-shirt-noir-chic-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 0,
+    "L": 0,
+    "XL": 0
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p07",
+   "slug": "veste-ballon",
+   "name": "Veste ballon",
+   "short": "La pièce qui structure la silhouette.",
+   "category": "vestes",
+   "price": 29.0,
+   "images": [
+    "veste-ballon-1.jpg",
+    "veste-ballon-2.jpg",
+    "veste-ballon-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 0,
+    "L": 0,
+    "XL": 0
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p08",
+   "slug": "baskets-leopard",
+   "name": "Baskets léopard",
+   "short": "Pour tenir toute la journée.",
+   "category": "chaussures",
+   "price": 38.5,
+   "images": [
+    "baskets-leopard-1.jpg",
+    "baskets-leopard-2.jpeg",
+    "baskets-leopard-3.jpg"
+   ],
+   "sizes": [
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41"
+   ],
+   "stock": {
+    "36": 3,
+    "37": 1,
+    "38": 4,
+    "39": 2,
+    "40": 0,
+    "41": 1
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p09",
+   "slug": "sac-de-cour",
+   "name": "Sac de cour",
+   "short": "Le détail qui change tout.",
+   "category": "accessoires",
+   "price": 44.0,
+   "images": [
+    "sac-de-cour-1.jpg"
+   ],
+   "sizes": [
+    "Taille unique"
+   ],
+   "stock": {
+    "Taille unique": 3
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p10",
+   "slug": "sac-de-cours-xl",
+   "name": "Sac de cours XL",
+   "short": "Le détail qui change tout.",
+   "category": "accessoires",
+   "price": 46.0,
+   "images": [
+    "sac-de-cours-xl-1.jpg"
+   ],
+   "sizes": [
+    "Taille unique"
+   ],
+   "stock": {
+    "Taille unique": 0
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p11",
+   "slug": "top-blanc",
+   "name": "Top blanc",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 21.0,
+   "images": [
+    "top-blanc-1.jpg",
+    "top-blanc-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 2,
+    "L": 0,
+    "XL": 3
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p12",
+   "slug": "pantalon-ballon",
+   "name": "Pantalon ballon",
+   "short": "Confortable, et qui tombe bien.",
+   "category": "bas",
+   "price": 29.9,
+   "images": [
+    "pantalon-ballon-1.jpg",
+    "pantalon-ballon-2.jpg",
+    "pantalon-ballon-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 0,
+    "M": 4,
+    "L": 2,
+    "XL": 4
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p13",
+   "slug": "robe-courte",
+   "name": "Robe courte",
+   "short": "Une pièce qui se suffit à elle-même.",
+   "category": "robes",
+   "price": 32.5,
+   "images": [
+    "robe-courte-1.jpg",
+    "robe-courte-2.jpg",
+    "robe-courte-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 2,
+    "M": 2,
+    "L": 4,
+    "XL": 1
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p14",
+   "slug": "robe-longue-vert",
+   "name": "Robe longue vert",
+   "short": "Une pièce qui se suffit à elle-même.",
+   "category": "robes",
+   "price": 38.0,
+   "images": [
+    "robe-longue-vert-1.png"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 4,
+    "M": 4,
+    "L": 2,
+    "XL": 1
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p15",
+   "slug": "robe-longue-marron",
+   "name": "Robe longue marron",
+   "short": "Une pièce qui se suffit à elle-même.",
+   "category": "robes",
+   "price": 38.0,
+   "images": [
+    "robe-longue-marron-1.png"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 3,
+    "M": 5,
+    "L": 1,
+    "XL": 4
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p16",
+   "slug": "ensemble-jupe-short",
+   "name": "Ensemble jupe short",
+   "short": "Confortable, et qui tombe bien.",
+   "category": "bas",
+   "price": 32.0,
+   "images": [
+    "ensemble-jupe-short-1.jpg",
+    "ensemble-jupe-short-2.jpg",
+    "ensemble-jupe-short-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 1,
+    "M": 0,
+    "L": 3,
+    "XL": 3
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p17",
+   "slug": "robe-olive",
+   "name": "Robe olive",
+   "short": "Une pièce qui se suffit à elle-même.",
+   "category": "robes",
+   "price": 34.0,
+   "images": [
+    "robe-olive-1.jpg",
+    "robe-olive-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 4,
+    "M": 2,
+    "L": 5,
+    "XL": 3
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p18",
+   "slug": "haut-corail",
+   "name": "Haut corail",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 21.0,
+   "images": [
+    "haut-corail-1.jpg",
+    "haut-corail-2.jpg",
+    "haut-corail-3.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 3,
+    "M": 5,
+    "L": 4,
+    "XL": 3
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p19",
+   "slug": "jupe-longue-corail",
+   "name": "Jupe longue corail",
+   "short": "Confortable, et qui tombe bien.",
+   "category": "bas",
+   "price": 27.5,
+   "images": [
+    "jupe-longue-corail-1.jpg",
+    "jupe-longue-corail-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 2,
+    "M": 3,
+    "L": 1,
+    "XL": 4
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p20",
+   "slug": "claquettes",
+   "name": "Claquettes",
+   "short": "Pour tenir toute la journée.",
+   "category": "chaussures",
+   "price": 22.0,
+   "images": [
+    "claquettes-1.jpg"
+   ],
+   "sizes": [
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41"
+   ],
+   "stock": {
+    "36": 4,
+    "37": 3,
+    "38": 5,
+    "39": 3,
+    "40": 4,
+    "41": 1
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p21",
+   "slug": "blouse-blanche",
+   "name": "Blouse blanche",
+   "short": "À porter seul ou sous une veste.",
+   "category": "hauts",
+   "price": 27.0,
+   "images": [
+    "blouse-blanche-1.jpg",
+    "blouse-blanche-2.jpg"
+   ],
+   "sizes": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "stock": {
+    "S": 1,
+    "M": 4,
+    "L": 2,
+    "XL": 2
+   },
+   "badges": [],
+   "description": ""
+  },
+  {
+   "id": "p22",
+   "slug": "baskets",
+   "name": "Baskets",
+   "short": "Pour tenir toute la journée.",
+   "category": "chaussures",
+   "price": 25.0,
+   "images": [
+    "baskets-1.jpg",
+    "baskets-2.jpg"
+   ],
+   "sizes": [
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41"
+   ],
+   "stock": {
+    "36": 5,
+    "37": 2,
+    "38": 3,
+    "39": 2,
+    "40": 0,
+    "41": 1
+   },
+   "badges": [],
+   "description": ""
+  }
+ ]
+}
