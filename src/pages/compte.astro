@@ -1,11 +1,33 @@
 ---
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
+import { href, routes } from '@/lib/paths';
+import { brand } from '@/lib/brand';
 ---
-<Base title="Mon compte">
-  <InfoPage titre="Mon compte">
+<Base title="Mon compte" description="Votre espace client Cokette Girls.">
+  <InfoPage titre="Mon compte" intro="Vos commandes, vos adresses, vos favoris." deco="bouton">
+    <div class="not-prose rounded-lg bg-wine-soft p-6">
+      <p class="font-semibold text-wine">Cet espace arrive avec la mise en ligne.</p>
+      <p class="mt-2 text-sm text-ink-2">
+        Vous pourrez y retrouver vos commandes, suivre vos colis, enregistrer vos
+        adresses et garder vos pièces préférées de côté.
+      </p>
+    </div>
+
+    <h2>Commander sans compte</h2>
     <p>
-      Cette page sera complétée avec les textes définitifs de la boutique lors de la mise en ligne.
+      Le compte n'est pas obligatoire&nbsp;: vous pouvez commander en indiquant
+      simplement votre adresse de livraison. Le lien de suivi vous est envoyé par e-mail.
+    </p>
+
+    <h2>Une question sur une commande</h2>
+    <p>
+      Écrivez-nous à <a href={`mailto:${brand.email}`}>{brand.email}</a> ou
+      appelez le <a href={`tel:${brand.telephoneLien}`}>{brand.telephone}</a>
+      avec votre numéro de commande&nbsp;: nous vous répondons rapidement.
+    </p>
+    <p>
+      En attendant, <a href={href(routes.shop)}>la boutique est par ici</a>.
     </p>
   </InfoPage>
 </Base>

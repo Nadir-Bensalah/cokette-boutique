@@ -1,11 +1,109 @@
 ---
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
+import { href, routes } from '@/lib/paths';
+import { brand } from '@/lib/brand';
 ---
-<Base title="Conditions de vente">
-  <InfoPage titre="Conditions de vente">
+<Base title="Conditions générales de vente" description="Les conditions de vente de la boutique Cokette Girls.">
+  <InfoPage titre="Conditions générales de vente" intro="Ce qui s'applique quand vous commandez chez nous." deco="ciseaux">
+    <h2>1. Le vendeur</h2>
+    <table>
+      <tbody>
+        <tr><th>Dénomination</th><td>{brand.nom}</td></tr>
+        <tr><th>Statut</th><td>{brand.statut}</td></tr>
+        <tr><th>SIRET</th><td>{brand.siret}</td></tr>
+        <tr><th>Siège</th><td>{brand.adresse.complet}</td></tr>
+        <tr><th>E-mail</th><td><a href={`mailto:${brand.email}`}>{brand.email}</a></td></tr>
+        <tr><th>Téléphone</th><td><a href={`tel:${brand.telephoneLien}`}>{brand.telephone}</a></td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Ce que couvrent ces conditions</h2>
     <p>
-      Cette page sera complétée avec les textes définitifs de la boutique lors de la mise en ligne.
+      Elles s'appliquent à toute commande de {brand.activite.toLowerCase()} passée sur ce
+      site par un particulier. Valider une commande vaut acceptation de ces conditions.
     </p>
+
+    <h2>3. Les articles</h2>
+    <p>
+      Chaque fiche produit précise la matière, les tailles disponibles et le prix.
+      Les articles sont proposés dans la limite des stocks. Une taille épuisée
+      apparaît barrée et ne peut pas être ajoutée au panier.
+    </p>
+    <p>
+      Les photographies sont les nôtres et illustrent l'article au plus juste,
+      mais n'ont pas de valeur contractuelle.
+    </p>
+
+    <h2>4. Les prix</h2>
+    <p>
+      Les prix sont en euros, toutes taxes comprises. En tant que micro-entreprise,
+      la TVA n'est pas applicable (article 293 B du Code général des impôts).
+      Les frais de livraison s'ajoutent et sont indiqués avant le paiement.
+    </p>
+    <p>
+      Nous pouvons modifier nos prix à tout moment&nbsp;; votre commande est facturée
+      au tarif affiché au moment où vous la validez.
+    </p>
+
+    <h2>5. Passer commande</h2>
+    <p>
+      Vous choisissez vos articles et leur taille, puis vous vérifiez le récapitulatif
+      avant de payer. La commande est ferme une fois le paiement accepté. Vous recevez
+      une confirmation par e-mail.
+    </p>
+
+    <h2>6. Le paiement</h2>
+    <p>
+      Le paiement se fait en ligne par carte bancaire, Apple&nbsp;Pay ou Google&nbsp;Pay,
+      via notre prestataire Stripe. <strong>Vos coordonnées bancaires ne transitent
+      jamais par ce site</strong> et ne nous sont jamais communiquées.
+    </p>
+
+    <h2>7. La livraison</h2>
+    <table>
+      <thead><tr><th>Mode</th><th>Délai indicatif</th><th>Prix</th></tr></thead>
+      <tbody>
+        <tr><td>Retrait en boutique</td><td>Dès le lendemain</td><td>Gratuit</td></tr>
+        <tr><td>Colissimo à domicile</td><td>48 à 72 h</td><td>4,95 €</td></tr>
+        <tr><td>Mondial Relay</td><td>3 à 5 jours</td><td>4,95 €</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Livraison offerte dès 80 € d'achat</strong>, quel que soit le mode choisi.</p>
+    <p>
+      Les colis partent à l'adresse que vous indiquez. En cas de retard, écrivez-nous
+      à <a href={`mailto:${brand.email}`}>{brand.email}</a>&nbsp;: nous cherchons avec vous.
+    </p>
+
+    <h2>8. Changer d'avis</h2>
+    <p>
+      Vous disposez de <strong>14 jours</strong> à compter de la réception pour vous
+      rétracter, sans avoir à vous justifier (article L.221-18 du Code de la consommation).
+      Le détail de la marche à suivre est sur la page
+      <a href={href(routes.returns)}>Livraison et retours</a>.
+    </p>
+
+    <h2>9. Garanties</h2>
+    <p>
+      Tous les articles bénéficient de la garantie légale de conformité (articles
+      L.217-3 et suivants du Code de la consommation) et de la garantie contre les
+      vices cachés (articles 1641 et suivants du Code civil). Ces garanties
+      s'appliquent indépendamment du droit de rétractation.
+    </p>
+
+    <h2>10. Vos données</h2>
+    <p>
+      Nous collectons ce qui est nécessaire pour traiter et livrer votre commande.
+      Le détail est dans notre <a href={href(routes.privacy)}>politique de confidentialité</a>.
+    </p>
+
+    <h2>11. En cas de désaccord</h2>
+    <p>
+      Écrivez-nous d'abord&nbsp;: la plupart des situations se règlent en quelques
+      messages. Si nous ne trouvons pas de solution, vous pouvez saisir gratuitement
+      un médiateur de la consommation, ou la plateforme européenne de règlement
+      en ligne des litiges.
+    </p>
+    <p>À défaut d'accord, le droit français s'applique.</p>
   </InfoPage>
 </Base>

@@ -1,9 +1,10 @@
 ---
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
+import { brand } from '@/lib/brand';
 ---
-<Base title="Livraison et retours">
-  <InfoPage titre="Livraison et retours" deco="ruban">
+<Base title="Livraison et retours" description="Modes de livraison, délais et conditions de retour chez Cokette Girls.">
+  <InfoPage titre="Livraison et retours" intro="Comment votre commande arrive, et que faire si elle ne va pas." deco="ruban">
     <h2>Les modes de livraison</h2>
     <table>
       <thead><tr><th>Mode</th><th>Délai</th><th>Prix</th></tr></thead>
@@ -13,19 +14,69 @@ import InfoPage from '@/components/InfoPage.astro';
         <tr><td>Mondial Relay</td><td>3 à 5 jours</td><td>4,95 €</td></tr>
       </tbody>
     </table>
-    <p><strong>Livraison offerte dès 80 € d'achat</strong>, quel que soit le mode choisi.</p>
-    <h2>Les retours</h2>
+    <p><strong>Livraison offerte dès 80 € d'achat.</strong></p>
     <p>
-      Vous avez <strong>14 jours</strong> à compter de la réception pour changer d'avis.
-      L'article doit être non porté, non lavé, avec son étiquette d'origine.
+      Le retrait en boutique a un avantage&nbsp;: vous essayez sur place, et si la
+      taille ne va pas, on échange immédiatement.
     </p>
-    <ul>
-      <li>En boutique&nbsp;: échange ou remboursement immédiat.</li>
-      <li>Par la poste&nbsp;: les frais de retour restent à votre charge.</li>
-    </ul>
+
+    <h2>Changer d'avis</h2>
     <p>
-      Le remboursement intervient sous 14 jours après réception du colis, sur le moyen
-      de paiement utilisé lors de la commande.
+      Vous avez <strong>14 jours</strong> à compter de la réception pour nous dire que
+      l'article ne vous convient pas. Vous n'avez pas à vous justifier.
+    </p>
+    <p>L'article doit revenir&nbsp;:</p>
+    <ul>
+      <li>non porté et non lavé&nbsp;;</li>
+      <li>avec son étiquette d'origine&nbsp;;</li>
+      <li>dans un emballage qui le protège.</li>
+    </ul>
+
+    <h2>Comment faire</h2>
+    <ol class="etapes-simple">
+      <li>
+        <strong>Écrivez-nous</strong> à <a href={`mailto:${brand.email}`}>{brand.email}</a>
+        en indiquant votre numéro de commande et l'article concerné.
+      </li>
+      <li>
+        <strong>Nous vous répondons</strong> avec la marche à suivre.
+      </li>
+      <li>
+        <strong>Renvoyez le colis</strong> à&nbsp;: {brand.nom}, {brand.adresse.rue},
+        {' '}{brand.adresse.cp} {brand.adresse.ville}. Les frais de retour sont à
+        votre charge, sauf si l'erreur vient de nous ou si l'article est défectueux.
+      </li>
+    </ol>
+    <p>
+      Encore plus simple&nbsp;: rapportez l'article en boutique. C'est gratuit et
+      immédiat.
+    </p>
+
+    <h2>Le remboursement</h2>
+    <p>
+      Dès que nous recevons le colis et vérifions l'article, nous vous remboursons
+      <strong>sous 14 jours</strong>, sur le moyen de paiement que vous aviez utilisé.
+    </p>
+
+    <h2>Les échanges</h2>
+    <p>
+      Pour une autre taille ou un autre article, le plus rapide est de passer une
+      nouvelle commande et de nous renvoyer la première pièce. En boutique, l'échange
+      se fait directement.
+    </p>
+
+    <h2>Un article abîmé</h2>
+    <p>
+      Envoyez-nous une photo à <a href={`mailto:${brand.email}`}>{brand.email}</a>&nbsp;:
+      nous prenons les frais de retour à notre charge et nous vous remboursons ou
+      remplaçons l'article.
+    </p>
+
+    <h2>Nous joindre</h2>
+    <p>
+      Par téléphone au <a href={`tel:${brand.telephoneLien}`}>{brand.telephone}</a>,
+      par e-mail à <a href={`mailto:${brand.email}`}>{brand.email}</a>, ou
+      directement en boutique.
     </p>
   </InfoPage>
 </Base>

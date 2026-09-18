@@ -1,11 +1,77 @@
 ---
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
+import { brand } from '@/lib/brand';
 ---
-<Base title="Confidentialité">
-  <InfoPage titre="Confidentialité">
+<Base title="Confidentialité" description="Comment Cokette Girls traite vos données personnelles.">
+  <InfoPage titre="Politique de confidentialité" intro="Ce que nous collectons, pourquoi, et ce que vous pouvez exiger." deco="perle">
+    <h2>Qui est responsable</h2>
     <p>
-      Cette page sera complétée avec les textes définitifs de la boutique lors de la mise en ligne.
+      {brand.nom}, {brand.statut.toLowerCase()} immatriculée sous le SIRET {brand.siret},
+      dont le siège est au {brand.adresse.complet}.
+      Pour toute question&nbsp;: <a href={`mailto:${brand.email}`}>{brand.email}</a>.
+    </p>
+
+    <h2>Ce que nous collectons</h2>
+    <table>
+      <thead><tr><th>Données</th><th>Pourquoi</th><th>Base légale</th></tr></thead>
+      <tbody>
+        <tr><td>Nom, adresse, e-mail, téléphone</td><td>Traiter et livrer votre commande</td><td>Exécution du contrat</td></tr>
+        <tr><td>Historique de commandes</td><td>Votre suivi et notre service après-vente</td><td>Exécution du contrat</td></tr>
+        <tr><td>Adresse e-mail seule</td><td>Vous annoncer les lives, si vous l'avez demandé</td><td>Votre consentement</td></tr>
+        <tr><td>Pages consultées</td><td>Comprendre ce qui fonctionne sur le site</td><td>Intérêt légitime</td></tr>
+        <tr><td>Factures</td><td>Obligations comptables</td><td>Obligation légale</td></tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Nous ne voyons jamais vos coordonnées bancaires.</strong> Elles sont
+      traitées directement par Stripe, notre prestataire de paiement.
+    </p>
+
+    <h2>Qui y a accès</h2>
+    <p>Uniquement les prestataires nécessaires à votre commande&nbsp;:</p>
+    <ul>
+      <li>Stripe, pour le paiement&nbsp;;</li>
+      <li>La Poste et Mondial Relay, pour la livraison&nbsp;;</li>
+      <li>Notre hébergeur, pour le fonctionnement du site.</li>
+    </ul>
+    <p>
+      Nous ne vendons ni ne louons vos données. Elles ne sont transmises à personne
+      d'autre, sauf obligation légale.
+    </p>
+
+    <h2>Combien de temps</h2>
+    <ul>
+      <li>Commandes&nbsp;: 5 ans après la dernière commande.</li>
+      <li>Factures&nbsp;: 10 ans, comme l'exige la loi comptable.</li>
+      <li>Newsletter&nbsp;: jusqu'à votre désinscription.</li>
+      <li>Statistiques de visite&nbsp;: 13 mois au maximum.</li>
+      <li>Compte resté inactif&nbsp;: supprimé après 3 ans.</li>
+    </ul>
+
+    <h2>Vos droits</h2>
+    <p>
+      Vous pouvez à tout moment demander à <strong>consulter</strong> vos données,
+      les faire <strong>corriger</strong>, en demander l'<strong>effacement</strong>,
+      vous <strong>opposer</strong> à leur utilisation, ou en obtenir une
+      <strong>copie</strong> dans un format réutilisable.
+    </p>
+    <p>
+      Un e-mail à <a href={`mailto:${brand.email}`}>{brand.email}</a> suffit. Nous
+      répondons sous un mois. Si la réponse ne vous convient pas, vous pouvez saisir
+      la CNIL (<a href="https://www.cnil.fr" rel="noopener noreferrer" target="_blank">cnil.fr</a>).
+    </p>
+
+    <h2>Sécurité</h2>
+    <p>
+      Le site est chiffré de bout en bout (HTTPS). Les accès à la gestion sont
+      protégés par mot de passe et les sauvegardes sont quotidiennes.
+    </p>
+
+    <h2>Hors d'Europe</h2>
+    <p>
+      Vos données sont traitées dans l'Union européenne. Si un transfert ailleurs
+      devenait nécessaire, il se ferait dans le cadre prévu par le RGPD.
     </p>
   </InfoPage>
 </Base>

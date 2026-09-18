@@ -1,0 +1,67 @@
+---
+import Base from '@/layouts/Base.astro';
+import InfoPage from '@/components/InfoPage.astro';
+import { brand } from '@/lib/brand';
+---
+<Base title="Cookies" description="Les cookies utilisés sur le site Cokette Girls.">
+  <InfoPage titre="Politique de cookies" intro="Les petits fichiers que le site dépose, et comment les refuser." deco="bouton">
+    <h2>Ce qu'est un cookie</h2>
+    <p>
+      Un fichier déposé sur votre appareil lors de votre visite. Certains sont
+      indispensables au fonctionnement du site, d'autres servent à mesurer
+      l'audience ou à la publicité.
+    </p>
+
+    <h2>Ceux que nous déposons</h2>
+    <table>
+      <thead><tr><th>Type</th><th>À quoi ça sert</th><th>Consentement</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Nécessaires</td>
+          <td>Garder votre panier, votre session, votre choix de cookies</td>
+          <td>Non requis</td>
+        </tr>
+        <tr>
+          <td>Mesure d'audience</td>
+          <td>Compter les visites, voir quelles pages fonctionnent</td>
+          <td>Requis</td>
+        </tr>
+        <tr>
+          <td>Réseaux sociaux</td>
+          <td>Mesurer les visites venues de nos publications</td>
+          <td>Requis</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Sans votre accord, <strong>seuls les cookies nécessaires sont déposés</strong>.
+      Le site fonctionne normalement dans ce cas&nbsp;: vous pouvez naviguer,
+      remplir votre panier et commander.
+    </p>
+
+    <h2>Votre choix</h2>
+    <p>
+      Un bandeau vous demande votre accord à la première visite. Vous pouvez changer
+      d'avis à tout moment par le lien «&nbsp;Gestion des cookies&nbsp;» en bas de page.
+      Votre choix est conservé 6 mois, puis nous vous redemandons.
+    </p>
+
+    <h2>Durée</h2>
+    <p>
+      Aucun cookie n'est conservé plus de 13 mois. Passé ce délai, votre consentement
+      est redemandé.
+    </p>
+
+    <h2>Depuis votre navigateur</h2>
+    <p>
+      Chrome, Firefox, Safari et Edge permettent tous de bloquer ou supprimer les
+      cookies depuis leurs réglages. Attention&nbsp;: bloquer les cookies nécessaires
+      empêche le panier de fonctionner.
+    </p>
+
+    <h2>Une question</h2>
+    <p>
+      Écrivez-nous à <a href={`mailto:${brand.email}`}>{brand.email}</a>.
+    </p>
+  </InfoPage>
+</Base>

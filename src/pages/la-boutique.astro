@@ -2,33 +2,62 @@
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { href, routes } from '@/lib/paths';
+import { brand } from '@/lib/brand';
 ---
-<Base title="La boutique" description="Cokette Girls, prêt-à-porter féminin à Bray-sur-Somme.">
-  <InfoPage titre="La boutique" intro="Du prêt-à-porter choisi une pièce à la fois, à Bray-sur-Somme." deco="cintre">
+<Base title="La boutique" description="Cokette Girls by Rabaa, prêt-à-porter féminin à Bray-sur-Somme.">
+  <InfoPage titre="La boutique" intro="Cokette Girls by Rabaa, prêt-à-porter féminin à Bray-sur-Somme." deco="cintre">
     <p>
-      Cokette Girls, c'est une boutique de prêt-à-porter féminin installée à Bray-sur-Somme.
-      Chaque pièce est choisie à la main, en petite quantité&nbsp;: vous ne croiserez pas
-      votre tenue à tous les coins de rue.
+      Ici, chaque pièce est dénichée une par une. Pas de collections entières
+      commandées sur catalogue&nbsp;: des trouvailles, en petite quantité, choisies
+      parce qu'elles nous ont plu. C'est ce qui fait que vous ne croiserez pas votre
+      tenue partout.
     </p>
+    <p>
+      Et le style ne devrait pas coûter un mois de salaire. Nos prix restent ceux
+      d'une boutique de quartier, parce que c'est ce que nous sommes.
+    </p>
+
     <h2>Les lives</h2>
     <p>
-      Plusieurs fois par semaine, nous présentons les arrivages en direct sur les réseaux.
-      Vous posez vos questions, nous montrons les matières et les tombés, et vous commandez
-      directement depuis <a href={href(routes.live)}>la page live</a>.
+      Deux fois par semaine, nous présentons les arrivages en direct sur
+      <a href={brand.reseaux.instagram} rel="noopener noreferrer" target="_blank">Instagram</a>,
+      <a href={brand.reseaux.facebook} rel="noopener noreferrer" target="_blank">Facebook</a>
+      et <a href={brand.reseaux.tiktok} rel="noopener noreferrer" target="_blank">TikTok</a>.
+      Vous voyez les matières, les tombés, vous posez vos questions, et vous commandez
+      depuis <a href={href(routes.live)}>la page live</a> sans attendre la fin.
     </p>
+
     <h2>Venir nous voir</h2>
     <table>
       <tbody>
-        <tr><th>Adresse</th><td>Bray-sur-Somme (80340)</td></tr>
+        <tr><th>Adresse</th><td>{brand.adresse.rue}, {brand.adresse.cp} {brand.adresse.ville}</td></tr>
         <tr><th>Du mardi au samedi</th><td>10 h – 12 h 30 · 14 h – 19 h</td></tr>
         <tr><th>Dimanche et lundi</th><td>Fermé</td></tr>
+        <tr><th>Téléphone</th><td><a href={`tel:${brand.telephoneLien}`}>{brand.telephone}</a></td></tr>
+        <tr><th>E-mail</th><td><a href={`mailto:${brand.email}`}>{brand.email}</a></td></tr>
       </tbody>
     </table>
+
     <h2>Le retrait en boutique</h2>
     <p>
-      Commandez en ligne et venez chercher votre pièce&nbsp;: <strong>c'est gratuit</strong> et
-      disponible dès le lendemain. Vous pouvez l'essayer sur place et l'échanger immédiatement
-      si la taille ne va pas.
+      Commandez en ligne et venez chercher votre pièce&nbsp;: <strong>c'est gratuit</strong>,
+      disponible dès le lendemain, et vous pouvez l'essayer sur place. Si la taille ne
+      va pas, on échange tout de suite.
+    </p>
+
+    <h2>Un doute sur la taille</h2>
+    <p>
+      Écrivez-nous avant de commander en nous disant la pièce qui vous intéresse et
+      vos mesures. Nous vous dirons ce qui convient — c'est plus simple qu'un retour.
+      Le <a href={href('/guide-des-tailles')}>guide des tailles</a> donne déjà les
+      correspondances.
+    </p>
+
+    <h2>L'entreprise</h2>
+    <p>
+      {brand.nom} est une {brand.statut.toLowerCase()} immatriculée sous le
+      SIRET {brand.siret}, dont le siège est au {brand.adresse.complet}.
+      Les <a href={href(routes.legal)}>mentions légales</a> donnent le détail.
     </p>
   </InfoPage>
 </Base>

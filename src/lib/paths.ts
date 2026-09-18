@@ -22,4 +22,7 @@ export const routes = {
   terms: '/conditions-de-vente',
   legal: '/mentions-legales',
   privacy: '/confidentialite',
+  cookies: '/cookies',
+  returns: '/livraison-retours',
+  sizes: '/guide-des-tailles',
 } as const;

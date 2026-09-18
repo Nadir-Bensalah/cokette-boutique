@@ -1,11 +1,59 @@
 ---
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
+import { href, routes } from '@/lib/paths';
+import { brand } from '@/lib/brand';
 ---
-<Base title="Mentions légales">
-  <InfoPage titre="Mentions légales">
+<Base title="Mentions légales" description="Éditeur, hébergeur et propriété intellectuelle du site Cokette Girls.">
+  <InfoPage titre="Mentions légales" deco="epingle">
+    <h2>Éditeur du site</h2>
+    <table>
+      <tbody>
+        <tr><th>Dénomination</th><td>{brand.nom}</td></tr>
+        <tr><th>Statut juridique</th><td>{brand.statut}</td></tr>
+        <tr><th>SIRET</th><td>{brand.siret}</td></tr>
+        <tr><th>Siège</th><td>{brand.adresse.complet}</td></tr>
+        <tr><th>Téléphone</th><td><a href={`tel:${brand.telephoneLien}`}>{brand.telephone}</a></td></tr>
+        <tr><th>E-mail</th><td><a href={`mailto:${brand.email}`}>{brand.email}</a></td></tr>
+        <tr><th>Activité</th><td>{brand.activite}</td></tr>
+        <tr><th>TVA</th><td>Non applicable, article 293 B du Code général des impôts</td></tr>
+      </tbody>
+    </table>
     <p>
-      Cette page sera complétée avec les textes définitifs de la boutique lors de la mise en ligne.
+      La directrice de la publication est la gérante de {brand.nom}.
     </p>
+
+    <h2>Hébergement</h2>
+    <p>
+      Les informations relatives à l'hébergeur du site seront précisées ici à la mise en ligne.
+    </p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>
+      Les textes, photographies, visuels et éléments graphiques présents sur ce site
+      appartiennent à {brand.nom}, sauf mention contraire. Toute reproduction ou
+      utilisation, même partielle, est soumise à autorisation écrite préalable.
+    </p>
+
+    <h2>Responsabilité</h2>
+    <p>
+      Nous apportons le plus grand soin à l'exactitude des informations publiées.
+      Des erreurs ou omissions restent toutefois possibles&nbsp;: elles peuvent nous
+      être signalées à <a href={`mailto:${brand.email}`}>{brand.email}</a>, nous les
+      corrigeons dès que possible.
+    </p>
+    <p>
+      Les couleurs des articles peuvent varier légèrement selon les écrans. Les
+      photographies n'ont pas de valeur contractuelle.
+    </p>
+
+    <h2>Données personnelles et cookies</h2>
+    <p>
+      Consultez notre <a href={href(routes.privacy)}>politique de confidentialité</a> et
+      notre <a href={href(routes.cookies)}>politique de cookies</a>.
+    </p>
+
+    <h2>Droit applicable</h2>
+    <p>Ce site est soumis au droit français.</p>
   </InfoPage>
 </Base>
