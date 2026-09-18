@@ -16,6 +16,8 @@ const vedettes = dispo.slice(6, 12);
 const nouveautes = newArrivals().slice(0, 4);
 const heroImg = dispo[0]?.images[0];
 const portrait = dispo[3]?.images[0] ?? heroImg;
+// Le fond du hero : une autre pièce, floutée — pas la même que celle cadrée.
+const fondHero = dispo[5]?.images[0] ?? heroImg;
 const catsVisibles = categories.filter((c) => c.slug !== 'nouveautes');
 
 // Une icône de mercerie par rayon.
@@ -63,11 +65,19 @@ const chiffres = [
   <!-- Ouverture : le texte à gauche, la pièce montrée en entier à droite.
        Les photos de la boutique sont des portraits serrés : en fond plein
        écran elles ne montrent qu'un morceau. On les cadre au lieu de les subir. -->
-  <section class="relative isolate overflow-hidden bg-ink text-cream">
-    <!-- Voile de matière, pas une photo : le sujet reste la pièce à droite. -->
-    <div class="pointer-events-none absolute inset-0 opacity-[0.07]" aria-hidden="true"
-      style="background-image:radial-gradient(circle at 1px 1px, var(--color-rose) 1px, transparent 0);background-size:26px 26px"></div>
-    <Deco type="dentelle" class="deco deco-lg -start-16 bottom-0 w-72 text-rose/10" />
+  <section class="relative isolate overflow-hidden text-cream">
+    <!-- Le fond : une photo de la boutique, floutée et assombrie. Elle donne la
+         matière et la couleur ; le sujet reste la pièce cadrée à droite. -->
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <img src={asset(`/images/products/${fondHero}`)} alt="" width="1200" height="800"
+        fetchpriority="high" decoding="async"
+        class="h-full w-full scale-110 object-cover blur-2xl" />
+      <div class="absolute inset-0 bg-wine-deep/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-wine-deep/70 via-wine/45 to-transparent"></div>
+    </div>
+    <div class="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]" aria-hidden="true"
+      style="background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);background-size:26px 26px"></div>
+    <Deco type="dentelle" class="deco deco-lg -start-16 bottom-0 w-72 text-rose/15" />
 
     <div class="container-x relative grid items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
       <div>
@@ -407,11 +417,11 @@ const chiffres = [
         ))}
       </ul>
     </div>
-    <TornEdge position="bottom" height={26} class="edge-in text-ink" />
+    <TornEdge position="bottom" height={26} class="edge-in text-wine-deep" />
   </section>
 
   <!-- Le live : appel final. -->
-  <section class="relative overflow-hidden bg-ink py-16 text-cream sm:py-20 lg:py-24">
+  <section class="relative overflow-hidden bg-wine-deep py-16 text-cream sm:py-20 lg:py-24">
     <Deco type="ciseaux" class="deco deco-lg -start-8 bottom-10 w-32 text-rose/10" />
     <Deco type="bobine" class="deco deco-lg end-6 top-14 w-28 text-rose/10 deco-sway" />
     <div class="container-x relative">

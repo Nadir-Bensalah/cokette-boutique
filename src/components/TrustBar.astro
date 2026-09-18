@@ -1,18 +1,129 @@
 ---
-const points = [
-  { d: 'M4 7h16l-1.2 12.2a1 1 0 0 1-1 .8H6.2a1 1 0 0 1-1-.8zM8.5 7a3.5 3.5 0 0 1 7 0', t: 'Retrait gratuit à Bray' },
-  { d: 'M3 13.5h12V7H3zM15 10.5h3.5L21 13.5v3h-6zM7 19.5m-1.8 0a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0-3.6 0M17.5 19.5m-1.8 0a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0-3.6 0', t: 'Expédition sous 48 h' },
-  { d: 'M12 3l7 3v6c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6zM9 12l2 2 4-4', t: 'Paiement sécurisé' },
+import Icon from '@/components/Icon.astro';
+import type { IconName } from '@/components/icons';
+
+/**
+ * La bande de réassurance : un ruban vin qui défile, avec une vague en haut et
+ * une vague en bas qui mordent sur les sections voisines.
+ *
+ * Elle se colle sous l'en-tête dès qu'on l'atteint. Une fois collée, la vague
+ * du haut se replie pour que le bord soit droit contre la barre de navigation ;
+ * celle du bas reste, la bande garde sa forme.
+ *
+ * Sur l'accueil elle est posée après le hero. Ailleurs, Base.astro la met juste
+ * sous l'en-tête, donc elle est collée dès le premier écran.
+ */
+interface Props {
+  /** Au ras de l'en-tête dès le départ : pas de vague en haut à afficher. */
+  attached?: boolean;
+  class?: string;
+}
+const { attached = false, class: cls = '' } = Astro.props;
+
+const trust = [
+  'Retrait gratuit à Bray',
+  'Expédition sous 48 h',
+  'Livraison offerte dès 80 €',
+  '14 jours pour changer d’avis',
+  'Paiement sécurisé',
+  'Conseil taille par message',
 ];
+const icons: IconName[] = ['boutique', 'camion', 'colis', 'echange', 'carte', 'telephone'];
+const items = [...trust, ...trust];
+
+// Déchiré au-dessus, ondulé en dessous. Dans les deux tracés la matière est en
+// bas du cadre : celui du dessous est retourné pour venir se coller sous la bande.
+const TORN =
+  'M0,28 L0,9.4 L26.1,5.5 L52.2,17.0 L78.3,3.7 L104.3,14.3 L130.4,10.4 L156.5,3.3 L182.6,13.7 L208.7,2.9 L234.8,12.0 L260.9,3.6 L287.0,4.1 L313.0,11.8 L339.1,21.0 L365.2,4.8 L391.3,7.1 L417.4,16.4 L443.5,23.8 L469.6,15.3 L495.7,11.1 L521.7,24.5 L547.8,3.1 L573.9,21.7 L600.0,8.7 L626.1,5.3 L652.2,4.7 L678.3,9.1 L704.3,20.8 L730.4,6.2 L756.5,15.4 L782.6,16.7 L808.7,10.6 L834.8,14.6 L860.9,3.4 L887.0,3.4 L913.0,6.7 L939.1,17.6 L965.2,11.8 L991.3,9.2 L1017.4,15.5 L1043.5,12.4 L1069.6,8.9 L1095.7,20.3 L1121.7,18.1 L1147.8,7.6 L1173.9,15.2 L1200.0,14.1 L1200,28 Z';
+const WAVE =
+  'M0,32 L0,16 C84,2 156,2 240,16 C324,28 396,28 480,16 C564,2 636,2 720,16 C804,28 876,28 960,16 C1044,2 1116,2 1200,16 L1200,32 Z';
 ---
-<div class="border-b border-line bg-wine text-white" style="height:var(--trust-h)">
-  <ul class="container-x scrollbar-none flex h-full items-center justify-start gap-6 overflow-x-auto text-xs font-semibold sm:justify-center">
-    {points.map((p) => (
-      <li class="flex shrink-0 items-center gap-1.5">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={p.d} /></svg>
-        {p.t}
-      </li>
-    ))}
-  </ul>
+
+<div class="trust-anchor" aria-hidden="true"></div>
+<div class:list={['trust-bar', attached && 'is-attached', cls]} data-trust>
+  {!attached && (
+    <svg class="trust-wave trust-wave-top" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d={TORN} fill="currentColor" />
+    </svg>
+  )}
+
+  <div class="marquee relative overflow-hidden" aria-label={trust.join(', ')}>
+    <div class="marquee-track flex w-max">
+      <ul class="flex shrink-0 items-center gap-10 pe-10">
+        {items.map((item, i) => (
+          <li class="flex items-center gap-2.5 whitespace-nowrap text-sm font-bold uppercase tracking-wide">
+            <Icon name={icons[i % icons.length]!} class="h-5 w-5 shrink-0 text-rose" strokeWidth={1.6} />
+            {item}
+          </li>
+        ))}
+      </ul>
+      <ul class="flex shrink-0 items-center gap-10 pe-10" aria-hidden="true">
+        {items.map((item, i) => (
+          <li class="flex items-center gap-2.5 whitespace-nowrap text-sm font-bold uppercase tracking-wide">
+            <Icon name={icons[i % icons.length]!} class="h-5 w-5 shrink-0 text-rose" strokeWidth={1.6} />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <svg class="trust-wave trust-wave-bottom" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d={WAVE} fill="currentColor" transform="rotate(180 600 16)"></path>
+  </svg>
 </div>
+
+<script>
+  // La bande passe en « collée » quand son point d'ancrage sort par le haut.
+  // On ne se fie pas à une mesure de position : l'observateur suffit et ne
+  // coûte rien au défilement.
+  function armTrust() {
+    const anchor = document.querySelector<HTMLElement>('.trust-anchor');
+    const bar = document.querySelector<HTMLElement>('[data-trust]');
+    if (!anchor || !bar || bar.dataset.armed) return;
+    bar.dataset.armed = '1';
+    if (bar.classList.contains('is-attached') || !('IntersectionObserver' in window)) return;
+    const header = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 60;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry) bar.classList.toggle('is-stuck', !entry.isIntersecting && entry.boundingClientRect.top < header);
+      },
+      { rootMargin: `-${header}px 0px 0px 0px`, threshold: 0 },
+    );
+    io.observe(anchor);
+  }
+  armTrust();
+</script>
+
+<style>
+  .trust-anchor { height: 1px; margin-bottom: -1px; }
+
+  .trust-bar {
+    position: sticky;
+    top: var(--header-h);
+    z-index: 30;
+    height: var(--trust-h);
+    display: flex;
+    align-items: center;
+    background: var(--color-wine);
+    color: #fff;
+  }
+
+  /* Les deux vagues débordent de la bande et mordent sur les sections voisines. */
+  .trust-wave {
+    position: absolute;
+    inset-inline: 0;
+    display: block;
+    width: 100%;
+    color: var(--color-wine);
+    pointer-events: none;
+  }
+  .trust-wave-top { bottom: 100%; height: 26px; transition: opacity 0.2s linear; }
+  .trust-wave-bottom { top: 100%; height: 22px; }
+
+  /* Collée sous la barre de navigation : le haut devient droit. */
+  .trust-bar.is-stuck .trust-wave-top { opacity: 0; }
+
+  /* Le ruban défile sans fin. Deux listes identiques, la seconde masquée aux
+     lecteurs d'écran : la translation de -50 % reboucle sans saut. */
+</style>

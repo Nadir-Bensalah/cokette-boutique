@@ -341,3 +341,22 @@
     font-weight: 600; color: var(--color-wine);
   }
 }
+
+/* Le ruban de réassurance défile sans fin. Deux listes identiques, la seconde
+   masquée aux lecteurs d'écran : la translation de -50 % reboucle sans saut.
+   Ces règles vivent ici et non dans le style scopé du composant : Astro y
+   perdait les préfixes `:hover` et `@media`, et le ruban restait figé. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
