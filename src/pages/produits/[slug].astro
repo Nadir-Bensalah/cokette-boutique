@@ -55,6 +55,7 @@ const ld = {
       <div data-product-hero class="reveal">
         <div class="relative mx-auto max-w-md rotate-1 rounded-xl bg-rose p-3 shadow-float lg:max-w-none">
           <img src={asset(`/images/products/${p.images[0]}`)} alt={p.name}
+            transition:name={`photo-${p.id}`}
             width="900" height="1200" fetchpriority="high" decoding="async"
             class:list={['aspect-[3/4] w-full -rotate-1 rounded-lg object-cover', soldOut && 'grayscale']} />
         </div>

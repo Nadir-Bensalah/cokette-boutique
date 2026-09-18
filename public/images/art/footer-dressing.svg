@@ -1,172 +1,196 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 230" width="1600" height="230" preserveAspectRatio="xMidYMax meet" role="img" aria-label="">
-  <!-- Une scène de boutique en silhouette, à poser en bas du pied de page.
-       Trois plans : le fond très pâle, le portant, le premier plan dense.
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 240" width="1600" height="240" preserveAspectRatio="xMidYMax slice" role="img" aria-label="">
+  <!-- Une scène de boutique en silhouette, posée au bas du pied de page.
+       Trois plans de profondeur, comme un décor peint : le fond très pâle,
+       le portant au milieu, le mobilier dense au premier plan.
        Les teintes sont des gris tirés vers le vin, jamais du gris pur. -->
-  <defs>
-    <g id="cintre">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.6-2 4.2-4 4.8V13" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M1 13-28 34q-2.6 1.9 .6 1.9h56q3.2 0 .6-1.9z" />
+
+  <!-- ===== PLAN 3 : le fond, très pâle ===== -->
+  <g fill="#d6c6cb">
+    <!-- rayonnages de gauche -->
+    <rect x="34" y="62" width="250" height="5" rx="2.5"/>
+    <rect x="34" y="104" width="250" height="5" rx="2.5"/>
+    <rect x="34" y="146" width="250" height="5" rx="2.5"/>
+    <g>
+      <rect x="48" y="34" width="34" height="28" rx="4"/><rect x="90" y="26" width="26" height="36" rx="4"/>
+      <rect x="124" y="40" width="40" height="22" rx="4"/><rect x="172" y="30" width="28" height="32" rx="4"/>
+      <rect x="208" y="42" width="44" height="20" rx="4"/>
+      <rect x="52" y="78" width="40" height="26" rx="4"/><rect x="100" y="70" width="28" height="34" rx="4"/>
+      <rect x="136" y="82" width="44" height="22" rx="4"/><rect x="188" y="74" width="30" height="30" rx="4"/>
+      <rect x="226" y="86" width="34" height="18" rx="4"/>
+      <rect x="46" y="120" width="36" height="26" rx="4"/><rect x="90" y="114" width="30" height="32" rx="4"/>
+      <rect x="128" y="124" width="46" height="22" rx="4"/><rect x="182" y="116" width="28" height="30" rx="4"/>
+      <rect x="218" y="126" width="40" height="20" rx="4"/>
     </g>
-  </defs>
-
-  <!-- PLAN 3 : le fond, très pâle. Étagères et silhouettes lointaines. -->
-  <g fill="#cbb9bf" opacity=".5">
-    <rect x="60" y="96" width="210" height="4" rx="2"/>
-    <rect x="60" y="130" width="210" height="4" rx="2"/>
-    <rect x="76" y="72" width="26" height="24" rx="3"/>
-    <rect x="110" y="66" width="22" height="30" rx="3"/>
-    <rect x="140" y="76" width="30" height="20" rx="3"/>
-    <rect x="180" y="70" width="24" height="26" rx="3"/>
-    <rect x="212" y="78" width="34" height="18" rx="3"/>
-    <rect x="84" y="108" width="30" height="22" rx="3"/>
-    <rect x="122" y="104" width="24" height="26" rx="3"/>
-    <rect x="154" y="112" width="34" height="18" rx="3"/>
-    <rect x="196" y="106" width="26" height="24" rx="3"/>
-
-    <rect x="1330" y="96" width="210" height="4" rx="2"/>
-    <rect x="1330" y="130" width="210" height="4" rx="2"/>
-    <rect x="1346" y="74" width="28" height="22" rx="3"/>
-    <rect x="1382" y="66" width="22" height="30" rx="3"/>
-    <rect x="1412" y="78" width="32" height="18" rx="3"/>
-    <rect x="1452" y="70" width="24" height="26" rx="3"/>
-    <rect x="1484" y="76" width="30" height="20" rx="3"/>
-    <rect x="1352" y="110" width="32" height="20" rx="3"/>
-    <rect x="1392" y="104" width="24" height="26" rx="3"/>
-    <rect x="1424" y="108" width="30" height="22" rx="3"/>
-    <rect x="1464" y="106" width="26" height="24" rx="3"/>
+    <!-- rayonnages de droite -->
+    <rect x="1316" y="62" width="250" height="5" rx="2.5"/>
+    <rect x="1316" y="104" width="250" height="5" rx="2.5"/>
+    <rect x="1316" y="146" width="250" height="5" rx="2.5"/>
+    <g>
+      <rect x="1330" y="36" width="36" height="26" rx="4"/><rect x="1374" y="26" width="26" height="36" rx="4"/>
+      <rect x="1408" y="42" width="42" height="20" rx="4"/><rect x="1458" y="32" width="28" height="30" rx="4"/>
+      <rect x="1494" y="44" width="44" height="18" rx="4"/>
+      <rect x="1334" y="80" width="42" height="24" rx="4"/><rect x="1384" y="70" width="28" height="34" rx="4"/>
+      <rect x="1420" y="84" width="40" height="20" rx="4"/><rect x="1468" y="76" width="30" height="28" rx="4"/>
+      <rect x="1506" y="86" width="36" height="18" rx="4"/>
+      <rect x="1328" y="122" width="38" height="24" rx="4"/><rect x="1374" y="114" width="30" height="32" rx="4"/>
+      <rect x="1412" y="124" width="44" height="22" rx="4"/><rect x="1464" y="118" width="28" height="28" rx="4"/>
+      <rect x="1500" y="128" width="42" height="18" rx="4"/>
+    </g>
   </g>
 
-  <!-- PLAN 2 : le portant principal, avec ses vêtements pendus. -->
-  <g fill="#bda7af">
-    <!-- la barre et ses pieds -->
-    <rect x="300" y="52" width="1000" height="6" rx="3"/>
-    <rect x="352" y="52" width="5" height="121"/>
-    <rect x="1244" y="52" width="5" height="121"/>
-    <path d="M330 171h50v5h-50zM1222 171h50v5h-50z"/>
+  <!-- ===== PLAN 2 : le portant et ses vêtements ===== -->
+  <g fill="#c2a9b2">
+    <!-- la barre, ses montants et ses pieds -->
+    <rect x="316" y="44" width="968" height="7" rx="3.5"/>
+    <rect x="366" y="44" width="6" height="140"/>
+    <rect x="1228" y="44" width="6" height="140"/>
+    <path d="M342 184h54v6h-54zM1204 184h54v6h-54z"/>
 
-    <!-- robe longue -->
-    <g transform="translate(400 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-22 28q-2 1.4 .5 1.4h43q2.5 0 .5-1.4z"/>
-      <path d="M-15 30h32l10 86q1 6-5 6h-42q-6 0-5-6z"/>
+    <!-- robe longue à bretelles -->
+    <g transform="translate(418 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-26 33q-2.4 1.7 .6 1.7h51q3 0 .6-1.7z"/>
+      <path d="M-13 35h26l-4 18h-18z"/>
+      <path d="M-17 53h34l16 90q1.2 7-6 7h-54q-7.2 0-6-7z"/>
     </g>
+
     <!-- chemise -->
-    <g transform="translate(486 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-20 27q-1.8 1.3 .4 1.3h39q2.2 0 .4-1.3z"/>
-      <path d="M-14 29h30l6 20-8 3v42h-26V52l-8-3z"/>
+    <g transform="translate(512 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-24 32q-2.2 1.6 .5 1.6h47q2.7 0 .5-1.6z"/>
+      <path d="M-17 34h34l10 24-10 4v50h-34V62l-10-4z"/>
+      <path d="M0 34l-8 15 8 8 8-8z" fill="#d6c6cb"/>
+      <circle cx="0" cy="76" r="2.4" fill="#d6c6cb"/><circle cx="0" cy="90" r="2.4" fill="#d6c6cb"/>
     </g>
-    <!-- veste -->
-    <g transform="translate(566 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-23 29q-2 1.4 .5 1.4h45q2.5 0 .5-1.4z"/>
-      <path d="M-17 31h34l9 24-9 4v48h-34V59l-9-4z"/>
-      <path d="M0 31l-7 22h14z" fill="#cbb9bf"/>
+
+    <!-- blazer à revers -->
+    <g transform="translate(600 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-27 34q-2.5 1.8 .6 1.8h53q3.1 0 .6-1.8z"/>
+      <path d="M-20 36h40l11 27-11 5v56h-40V68l-11-5z"/>
+      <path d="M-8 36 0 62l8-26z" fill="#d6c6cb"/>
+      <path d="M-16 92h10v16h-10z" fill="#d6c6cb" opacity=".6"/>
     </g>
+
     <!-- jupe plissée -->
-    <g transform="translate(652 62)">
-      <rect x="-20" y="0" width="40" height="5" rx="2.5"/>
-      <path d="M-20 5h40l14 74q1 5-4 5h-60q-5 0-4-5z"/>
+    <g transform="translate(692 56)">
+      <rect x="-23" y="0" width="46" height="6" rx="3"/>
+      <path d="M-23 6h46l17 82q1.2 6-4.6 6h-70.8q-5.8 0-4.6-6z"/>
+      <g fill="#d6c6cb" opacity=".45">
+        <path d="M-14 6h4l-7 82h-5zM-3 6h4l-2 82h-5zM8 6h4l3 82h-5z"/>
+      </g>
     </g>
+
     <!-- robe courte -->
-    <g transform="translate(730 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-20 27q-1.8 1.3 .4 1.3h39q2.2 0 .4-1.3z"/>
-      <path d="M-14 29h30l12 58q1 5-4 5h-46q-5 0-4-5z"/>
+    <g transform="translate(784 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-23 31q-2.1 1.5 .5 1.5h45q2.6 0 .5-1.5z"/>
+      <path d="M-16 33h32l14 62q1 6-5 6h-50q-6 0-5-6z"/>
+      <path d="M-16 56h32l1 5h-34z" fill="#d6c6cb"/>
     </g>
-    <!-- pantalon -->
-    <g transform="translate(812 60)">
-      <rect x="-19" y="0" width="38" height="5" rx="2.5"/>
-      <path d="M-19 5h38l-3 88h-13l-5-56-5 56h-13z"/>
+
+    <!-- pantalon droit -->
+    <g transform="translate(872 54)">
+      <rect x="-22" y="0" width="44" height="6" rx="3"/>
+      <path d="M-22 6h44l-4 100h-15l-3-62-3 62h-15z"/>
+      <path d="M-22 18h44v3h-44z" fill="#d6c6cb" opacity=".5"/>
     </g>
-    <!-- top -->
-    <g transform="translate(884 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-18 25q-1.6 1.2 .4 1.2h35q2 0 .4-1.2z"/>
-      <path d="M-12 27h26l4 44h-34z"/>
+
+    <!-- top court -->
+    <g transform="translate(950 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-20 29q-1.9 1.4 .5 1.4h39q2.4 0 .5-1.4z"/>
+      <path d="M-14 31h28l5 48h-38z"/>
     </g>
+
     <!-- manteau long -->
-    <g transform="translate(956 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-24 30q-2.2 1.5 .6 1.5h47q2.8 0 .6-1.5z"/>
-      <path d="M-18 32h36l10 26-10 4v64h-36V62l-10-4z"/>
-      <circle cx="0" cy="74" r="2.6" fill="#cbb9bf"/>
-      <circle cx="0" cy="88" r="2.6" fill="#cbb9bf"/>
+    <g transform="translate(1028 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-29 35q-2.7 1.9 .7 1.9h56.6q3.4 0 .7-1.9z"/>
+      <path d="M-21 37h42l12 28-12 5v72h-42V70l-12-5z"/>
+      <path d="M-21 37v105M21 37v105" stroke="#d6c6cb" stroke-width="2" fill="none" opacity=".5"/>
+      <circle cx="0" cy="82" r="3" fill="#d6c6cb"/><circle cx="0" cy="98" r="3" fill="#d6c6cb"/>
+      <circle cx="0" cy="114" r="3" fill="#d6c6cb"/>
     </g>
+
     <!-- robe à volants -->
-    <g transform="translate(1046 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-19 26q-1.7 1.2 .4 1.2h37q2.1 0 .4-1.2z"/>
-      <path d="M-13 28h26l6 26h-38z"/>
-      <path d="M-22 56h44l6 24h-56z"/>
-      <path d="M-30 82h60l7 26q1 5-4 5h-66q-5 0-4-5z"/>
+    <g transform="translate(1122 36)">
+      <path d="M0 0a6 6 0 0 1 6 6c0 3-2.4 4.9-4.8 5.6V14" fill="none" stroke="#c2a9b2" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M1.2 14-22 30q-2 1.4 .5 1.4h43q2.5 0 .5-1.4z"/>
+      <path d="M-15 32h30l7 28h-44z"/>
+      <path d="M-25 62h50l7 26h-64z"/>
+      <path d="M-35 90h70l8 28q1 6-5 6h-76q-6 0-5-6z"/>
     </g>
-    <!-- blouse -->
-    <g transform="translate(1130 46)">
-      <path d="M0 0a5 5 0 0 1 5 5c0 2.5-2 4.1-4 4.7V12" fill="none" stroke="#bda7af" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M1 12-20 27q-1.8 1.3 .4 1.3h39q2.2 0 .4-1.3z"/>
-      <path d="M-14 29h30l7 22-8 3v40h-28V54l-8-3z"/>
-    </g>
+
     <!-- pantalon large -->
-    <g transform="translate(1200 60)">
-      <rect x="-21" y="0" width="42" height="5" rx="2.5"/>
-      <path d="M-21 5h42l-6 92h-14l-1-52-1 52h-14z"/>
+    <g transform="translate(1198 54)">
+      <rect x="-24" y="0" width="48" height="6" rx="3"/>
+      <path d="M-24 6h48l-7 104h-16l-1-58-1 58h-16z"/>
     </g>
   </g>
 
-  <!-- PLAN 1 : le sol et le mobilier au premier plan, plus dense. -->
-  <g fill="#a98d97">
-    <!-- le sol -->
-    <path d="M0 176h1600v54H0z"/>
-    <path d="M0 176c120-6 210 4 330 2 140-3 220-9 360-6 150 3 250 9 400 6 130-3 240-8 360-4 60 2 110 4 150 2v54H0z" opacity=".55"/>
+  <!-- ===== PLAN 1 : le sol et le mobilier, dense ===== -->
+  <g fill="#ab8b97">
+    <!-- le sol, avec un léger relief -->
+    <path d="M0 186h1600v54H0z"/>
+    <path d="M0 186c130-7 230 5 356 3 148-4 236-10 386-7 160 4 268 10 428 6 140-3 256-9 386-4 16 1 30 2 44 2v54H0z" opacity=".5"/>
 
     <!-- miroir sur pied, à gauche -->
-    <g transform="translate(120 88)">
-      <rect x="-26" y="0" width="52" height="86" rx="26"/>
-      <rect x="-3" y="86" width="6" height="7"/>
-      <path d="M-18 93h36l4 0v0z"/>
-      <ellipse cx="0" cy="93" rx="19" ry="4"/>
-      <ellipse cx="0" cy="26" rx="18" ry="26" fill="#bda7af" opacity=".5"/>
+    <g transform="translate(120 84)">
+      <rect x="-30" y="0" width="60" height="96" rx="30"/>
+      <rect x="-24" y="6" width="48" height="84" rx="24" fill="#c2a9b2"/>
+      <rect x="-3.5" y="96" width="7" height="8"/>
+      <ellipse cx="0" cy="105" rx="22" ry="5"/>
+      <path d="M-8 30q10 14 20 2" stroke="#d6c6cb" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
     </g>
 
-    <!-- pouf -->
-    <g transform="translate(232 152)">
-      <ellipse cx="0" cy="8" rx="26" ry="10"/>
-      <path d="M-26 8v-8q0-13 26-13t26 13v8z"/>
+    <!-- pouf capitonné -->
+    <g transform="translate(244 154)">
+      <ellipse cx="0" cy="12" rx="30" ry="11"/>
+      <path d="M-30 12V2q0-15 30-15t30 15v10z"/>
+      <path d="M-30 2h60M0 -13v25" stroke="#c2a9b2" stroke-width="2" opacity=".5" fill="none"/>
     </g>
 
-    <!-- table basse avec chapeau et sac -->
-    <g transform="translate(1382 140)">
-      <rect x="-40" y="0" width="80" height="5" rx="2.5"/>
-      <rect x="-34" y="5" width="4" height="36"/>
-      <rect x="30" y="5" width="4" height="36"/>
+    <!-- boîtes empilées -->
+    <g transform="translate(312 150)">
+      <rect x="-27" y="20" width="54" height="17" rx="2.5"/>
+      <rect x="-22" y="4" width="44" height="16" rx="2.5"/>
+      <rect x="-16" y="-9" width="32" height="13" rx="2.5"/>
+      <path d="M-27 27h54M-22 11h44" stroke="#c2a9b2" stroke-width="2" opacity=".55"/>
+    </g>
+
+    <!-- mannequin de couturière -->
+    <g transform="translate(1290 82)">
+      <path d="M0 0q19 0 22.5 25t-6.5 45q-3.5 9-16 9t-16-9q-10-20-6.5-45T0 0z"/>
+      <path d="M-20 34h40" stroke="#c2a9b2" stroke-width="2.5" opacity=".6" fill="none"/>
+      <rect x="-3" y="79" width="6" height="16"/>
+      <path d="M-17 95h34l-17 6z"/>
+      <ellipse cx="0" cy="100" rx="18" ry="5"/>
+    </g>
+
+    <!-- table basse : chapeau, sac, parfum -->
+    <g transform="translate(1400 142)">
+      <rect x="-46" y="0" width="92" height="6" rx="3"/>
+      <rect x="-39" y="6" width="5" height="40"/>
+      <rect x="34" y="6" width="5" height="40"/>
       <!-- chapeau -->
-      <ellipse cx="-16" cy="-2" rx="24" ry="5"/>
-      <path d="M-28 -2q0-16 12-16t12 16z"/>
-      <!-- sac -->
-      <path d="M12 -2v-14q0-9 9-9t9 9v14z" fill="none" stroke="#a98d97" stroke-width="3"/>
-      <rect x="8" y="-16" width="26" height="14" rx="2"/>
+      <ellipse cx="-22" cy="-2" rx="27" ry="6"/>
+      <path d="M-35 -2q0-19 13-19t13 19z"/>
+      <path d="M-33 -6h22" stroke="#c2a9b2" stroke-width="3" opacity=".6"/>
+      <!-- sac à main -->
+      <path d="M10 -2v-15q0-10 10-10t10 10v15" fill="none" stroke="#ab8b97" stroke-width="3.5"/>
+      <rect x="5" y="-18" width="30" height="16" rx="2.5"/>
+      <!-- flacon -->
+      <rect x="40" y="-14" width="10" height="12" rx="2"/>
+      <rect x="43" y="-18" width="4" height="4"/>
     </g>
 
-    <!-- plante, à droite -->
-    <g transform="translate(1522 126)">
-      <path d="M-13 26h26l-4 29h-18z"/>
-      <path d="M0 26V2M0 12q-14-4-16-18 14 1 16 14M0 8q13-5 15-18-13 1-15 14M0 20q-11-3-13-14 11 1 13 11" fill="none" stroke="#a98d97" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </g>
-
-    <!-- boîtes empilées, à gauche du portant -->
-    <g transform="translate(296 150)">
-      <rect x="-24" y="16" width="48" height="15" rx="2"/>
-      <rect x="-19" y="2" width="38" height="14" rx="2"/>
-      <rect x="-14" y="-10" width="28" height="12" rx="2"/>
-    </g>
-
-    <!-- mannequin de couturière, à droite du portant -->
-    <g transform="translate(1300 92)">
-      <path d="M0 0q17 0 20 22t-6 40q-3 8-14 8t-14-8q-9-18-6-40T0 0z"/>
-      <rect x="-2.6" y="70" width="5.2" height="14"/>
-      <path d="M-15 84h30l-15 5z"/>
-      <ellipse cx="0" cy="88" rx="16" ry="4"/>
+    <!-- plante en pot -->
+    <g transform="translate(1530 122)">
+      <path d="M-15 30h30l-5 34h-20z"/>
+      <path d="M-15 30h30v4h-30z" fill="#c2a9b2"/>
+      <path d="M0 30V0M0 14q-16-5-18-21 16 1 18 16M0 9q15-6 17-21-15 1-17 16M0 24q-13-4-15-16 13 1 15 13"
+        fill="none" stroke="#ab8b97" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
   </g>
 </svg>

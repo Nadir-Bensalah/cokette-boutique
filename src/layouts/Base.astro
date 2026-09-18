@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import { href, asset, routes } from '@/lib/paths';
 import Header from '@/components/Header.astro';
 import TrustBar from '@/components/TrustBar.astro';
@@ -72,6 +73,7 @@ const ld = [business, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) :
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" />
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <ClientRouter />
     <slot name="head" />
   </head>
 
@@ -116,6 +118,7 @@ const ld = [business, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) :
         });
       };
       demarrer();
+      document.addEventListener('astro:page-load', demarrer);
       window.addEventListener('beforeprint', () =>
         document.querySelectorAll('.reveal').forEach((b) => b.classList.add('is-in')));
     </script>

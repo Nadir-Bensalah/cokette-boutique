@@ -16,8 +16,11 @@ const vedettes = dispo.slice(6, 12);
 const nouveautes = newArrivals().slice(0, 4);
 const heroImg = dispo[0]?.images[0];
 const portrait = dispo[3]?.images[0] ?? heroImg;
-// Le fond du hero : une autre pièce, floutée — pas la même que celle cadrée.
-const fondHero = dispo[5]?.images[0] ?? heroImg;
+// Le fond du hero : une photo qui a du décor derrière elle. Un vêtement sur
+// fond uni, une fois flouté, ne donne qu'un aplat — inutile de l'y mettre.
+const fondHero =
+  dispo.find((x) => x.images.length >= 3 && x.slug !== dispo[0]?.slug)?.images[1]
+  ?? dispo[2]?.images[0] ?? heroImg;
 const catsVisibles = categories.filter((c) => c.slug !== 'nouveautes');
 
 // Une icône de mercerie par rayon.
@@ -48,9 +51,16 @@ const etapes = [
 ];
 
 const avis = [
-  { n: 'Sandrine', v: 'Commandé pendant le live du jeudi, récupéré le vendredi en boutique. La robe est encore plus jolie en vrai.' },
+  { n: 'Sandrine', v: 'Commandé pendant le live du jeudi, récupéré le vendredi en boutique. Encore plus jolie en vrai.' },
   { n: 'Élodie', v: 'Enfin un site où je vois tout de suite si ma taille est dispo. Ça change tout.' },
-  { n: 'Marie', v: 'Rabaa conseille vraiment bien. J’ai pris une taille au-dessus sur ses conseils, c’était le bon choix.' },
+  { n: 'Marie', v: 'J’ai pris une taille au-dessus sur ses conseils. C’était le bon choix.' },
+  { n: 'Céline', v: 'Colis reçu en deux jours, emballé avec un petit mot. On sent que c’est fait à la main.' },
+];
+
+const stats = [
+  { v: '+400', l: 'clientes' },
+  { v: '4,9/5', l: 'satisfaction' },
+  { v: '2019', l: 'depuis' },
 ];
 
 const chiffres = [
@@ -71,9 +81,9 @@ const chiffres = [
     <div class="absolute inset-0 -z-10" aria-hidden="true">
       <img src={asset(`/images/products/${fondHero}`)} alt="" width="1200" height="800"
         fetchpriority="high" decoding="async"
-        class="h-full w-full scale-110 object-cover blur-2xl" />
-      <div class="absolute inset-0 bg-wine-deep/80"></div>
-      <div class="absolute inset-0 bg-gradient-to-br from-wine-deep/70 via-wine/45 to-transparent"></div>
+        class="h-full w-full scale-110 object-cover blur-xl" />
+      <div class="absolute inset-0 bg-wine-deep/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-wine-deep/75 via-wine-deep/35 to-wine/20"></div>
     </div>
     <div class="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]" aria-hidden="true"
       style="background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);background-size:26px 26px"></div>
@@ -393,31 +403,97 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-cream" />
   </section>
 
-  <!-- Les avis : bulles organiques, initiale posée dedans. -->
+  <!-- Les avis : deux colonnes. À gauche le titre et les chiffres, à droite
+       un carrousel de bulles organiques, celle du milieu décalée vers le haut. -->
   <section class="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
-    <Deco type="perle" class="deco deco-lg -start-8 top-20 w-32 text-rose/40" />
-    <div class="container-x">
-      <SectionHead eyebrow="Elles en parlent" title="Ce qu'en disent nos clientes." align="center" />
-      <ul class="mt-16 grid gap-16 sm:gap-8 md:grid-cols-3">
-        {avis.map((a, i) => (
-          <li class:list={['avis-blob reveal relative', i % 2 === 1 && 'is-cream']} style={`--reveal-delay:${i * 100}ms`}>
-            <span class="avis-photo" aria-hidden="true">
-              <span class="avis-initial">{a.n.charAt(0)}</span>
-            </span>
-            <div class="avis-body">
-              <p class="text-ink-2">« {a.v} »</p>
-              <p class="mt-4 font-display text-lg font-semibold text-wine">{a.n}</p>
-              <p class="mt-1 flex gap-0.5 text-gold" aria-label="5 étoiles sur 5">
-                {[0, 1, 2, 3, 4].map(() => (
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.6-.8z" /></svg>
-                ))}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <Deco type="perle" class="deco deco-lg start-6 top-32 w-14 rotate-12 text-rose/50" />
+    <Deco type="bouton" class="deco deco-lg end-[38%] top-10 w-10 -rotate-45 text-wine/20" />
+    <Deco type="epingle" class="deco deco-lg end-24 bottom-24 w-12 rotate-45 text-wine/20" />
+    <Deco type="fleur" class="deco deco-lg start-[36%] bottom-16 w-10 -rotate-12 text-rose/50" />
+    <p class="hand pointer-events-none absolute end-10 top-8 hidden -rotate-6 text-2xl font-semibold text-wine lg:block xl:end-16 xl:text-3xl" aria-hidden="true">♡ Merci à vous ♡</p>
+
+    <div class="mx-auto grid w-full max-w-[1600px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10 lg:px-16 xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-16 xl:px-24">
+      <div class="reveal lg:self-start lg:pt-6">
+        <p class="eyebrow flex items-center gap-2">
+          <Icon name="coeur" class="h-5 w-5 text-wine" strokeWidth={1.8} />
+          Elles en parlent
+        </p>
+        <h2 class="mt-3 text-4xl leading-[1.02] text-wine sm:text-5xl">Merci les filles&nbsp;!</h2>
+        <svg class="mt-3 h-3 w-56 text-rose" viewBox="0 0 220 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M3 8c60-6 130-6 214-2" /></svg>
+        <p class="mt-5 text-base leading-relaxed text-ink-2">
+          Ce qu'elles disent après un live, un retrait en boutique, ou un colis
+          reçu plus vite que prévu.
+        </p>
+        <ul class="mt-8 flex divide-x divide-line">
+          {stats.map((st, i) => (
+            <li class:list={['flex flex-col items-center gap-1 text-center', i === 0 ? 'pe-4' : 'px-4']}>
+              <Icon name={(['coeur', 'etoile', 'boutique'] as const)[i]!} class="h-8 w-8 text-wine" strokeWidth={1.5} />
+              <span class="font-display text-2xl font-semibold leading-none text-ink tabular">{st.v}</span>
+              <span class="text-xs text-ink-3">{st.l}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="relative">
+        <button type="button" class="avis-arrow -start-4 lg:-start-8 xl:-start-12" data-avis-prev aria-label="Avis précédent">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6" /></svg>
+        </button>
+        <button type="button" class="avis-arrow -end-4 lg:-end-8 xl:-end-12" data-avis-next aria-label="Avis suivant">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+        </button>
+
+        <ul class="scrollbar-none flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 pt-6 lg:px-10 lg:pt-14" data-avis-track>
+          {avis.map((r, i) => (
+            <li class:list={['reveal relative w-[82vw] max-w-[24rem] shrink-0 snap-center lg:w-[46%] xl:w-[31%] lg:max-w-none', i === 1 && 'lg:-translate-y-8']}
+              style={`--reveal-delay:${i * 90}ms`}>
+              <div class:list={['avis-blob relative', i % 2 ? 'is-cream' : '']}>
+                <span class="avis-photo" aria-hidden="true">
+                  <span class="avis-initial">{r.n.charAt(0)}</span>
+                </span>
+                <Deco type="fleur" class="deco -end-2 top-24 w-10 rotate-12 text-rose" />
+                <Deco type="epingle" class="avis-spark" />
+                <div class="avis-body">
+                  <svg class="h-9 w-9 text-wine" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M4 12.5C4 8.4 6.6 5.5 10.5 4.5l.7 1.7C8.9 7 7.6 8.4 7.3 10.2H10v6.3H4zm10 0c0-4.1 2.6-7 6.5-8l.7 1.7c-2.3.8-3.6 2.2-3.9 4H21v6.3h-6z" />
+                  </svg>
+                  <p class="hand mt-1 text-[1.45rem] font-medium leading-snug text-ink">« {r.v} »</p>
+                  <div class="mt-3 flex items-center gap-0.5 text-gold" role="img" aria-label="5 étoiles sur 5">
+                    {[0, 1, 2, 3, 4].map(() => (
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.6-5-2.7-5 2.7 1-5.6-4-3.9 5.6-.8z" /></svg>
+                    ))}
+                  </div>
+                  <footer class="mt-4 flex items-center gap-3">
+                    <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-wine-soft font-display text-base font-semibold text-wine" aria-hidden="true">
+                      {r.n.charAt(0)}
+                    </span>
+                    <span class="min-w-0">
+                      <cite class="block truncate text-sm font-bold not-italic text-ink">{r.n}</cite>
+                      <span class="text-xs text-ink-3">Cliente à Bray</span>
+                    </span>
+                  </footer>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-2 flex justify-center gap-2" data-avis-dots aria-hidden="true">
+          {avis.map((_, i) => (
+            <span class:list={['dot h-2.5 w-2.5 rounded-full transition-colors', i === 0 && 'is-on']} />
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-col items-center gap-4">
+          <a href={href(routes.shop)} class="btn btn-primary btn-lg min-h-16 px-12 text-lg">
+            Voir la boutique
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          </a>
+          <p class="hand text-2xl font-semibold text-wine">À très vite en boutique ♡</p>
+        </div>
+      </div>
     </div>
-    <TornEdge position="bottom" height={26} class="edge-in text-wine-deep" />
+    <TornEdge position="bottom" variant="vague" height={26} class="edge-in text-wine-deep" />
   </section>
 
   <!-- Le live : appel final. -->
@@ -470,6 +546,27 @@ const chiffres = [
       cancelAnimationFrame(tick);
       tick = requestAnimationFrame(() => {
         const i = Math.round(track.scrollLeft / (pas() + 20));
+        dots.forEach((d, n) => d.classList.toggle('is-on', n === i));
+      });
+    }, { passive: true });
+  }
+
+  // Le carrousel des avis : même mécanique, sa propre piste.
+  const avisTrack = document.querySelector<HTMLElement>('[data-avis-track]');
+  if (avisTrack) {
+    const dots = Array.from(document.querySelectorAll<HTMLElement>('[data-avis-dots] span'));
+    const pas = () => avisTrack.querySelector('li')?.getBoundingClientRect().width ?? 340;
+
+    document.querySelector('[data-avis-prev]')?.addEventListener('click', () =>
+      avisTrack.scrollBy({ left: -pas() - 24, behavior: 'smooth' }));
+    document.querySelector('[data-avis-next]')?.addEventListener('click', () =>
+      avisTrack.scrollBy({ left: pas() + 24, behavior: 'smooth' }));
+
+    let t2 = 0;
+    avisTrack.addEventListener('scroll', () => {
+      cancelAnimationFrame(t2);
+      t2 = requestAnimationFrame(() => {
+        const i = Math.round(avisTrack.scrollLeft / (pas() + 24));
         dots.forEach((d, n) => d.classList.toggle('is-on', n === i));
       });
     }, { passive: true });

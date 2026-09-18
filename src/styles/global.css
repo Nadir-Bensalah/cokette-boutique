@@ -320,13 +320,13 @@
 
   /* Les avis : une bulle organique par cliente, son initiale posée dedans. */
   .avis-body {
-    border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%;
+    border-radius: 52% 48% 46% 54% / 34% 36% 64% 66%;
     background: var(--color-wine-soft);
-    padding: 9.5rem 1.75rem 2rem; margin-top: -5rem;
+    padding: 8.5rem 2.25rem 2.25rem; margin-top: -5rem;
   }
   .avis-blob.is-cream .avis-body {
     background: var(--color-cream-2);
-    border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    border-radius: 46% 54% 52% 48% / 36% 34% 66% 64%;
   }
   .avis-photo {
     position: absolute; top: 0; inset-inline-start: 1rem; z-index: 2;
@@ -340,6 +340,18 @@
     font-family: var(--font-display); font-size: 3.75rem;
     font-weight: 600; color: var(--color-wine);
   }
+  .avis-spark {
+    position: absolute; inset-inline-start: -0.75rem; top: 3rem;
+    z-index: 2; width: 2rem; color: var(--color-gold);
+  }
+  .avis-arrow {
+    position: absolute; top: 45%; z-index: 5; display: none;
+    height: 3.5rem; width: 3.5rem; align-items: center; justify-content: center;
+    border-radius: 999px; background: var(--color-paper); color: var(--color-wine);
+    box-shadow: var(--shadow-card); transition: transform .2s;
+  }
+  .avis-arrow:hover { transform: scale(1.06); }
+  @media (min-width: 1024px) { .avis-arrow { display: inline-flex; } }
 }
 
 /* Le ruban de réassurance défile sans fin. Deux listes identiques, la seconde
@@ -359,4 +371,19 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
+}
+
+/* Transitions de page (Astro ClientRouter). Fondu doux, pas de glissement :
+   la photo du produit, elle, se transforme d'une page à l'autre grâce au
+   `transition:name` partagé entre la carte et la fiche. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.28s;
+  animation-timing-function: var(--ease-out-expo);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
