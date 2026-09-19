@@ -429,9 +429,6 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-rose-soft" />
   </section>
 
-{DEMO ? (
-  <Voile titre="Les avis des clientes" teinte="cream" hauteur="28rem" />
-  ) : (
   <!-- Le mot de Rabaa : sa photo dans la boutique, sa phrase. -->
   <section class="relative overflow-hidden bg-rose-soft py-14 sm:py-20">
     <Deco type="fleur" class="deco deco-lg -start-6 top-8 w-28 text-wine/15 deco-sway" />
@@ -467,6 +464,9 @@ const chiffres = [
     <TornEdge position="bottom" height={24} class="edge-in text-cream" />
   </section>
 
+{DEMO ? (
+  <Voile titre="Les avis des clientes" teinte="cream" hauteur="28rem" />
+  ) : (
   <!-- Les avis : deux colonnes. À gauche le titre et les chiffres, à droite
        un carrousel de bulles organiques, celle du milieu décalée vers le haut. -->
   <section class="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
