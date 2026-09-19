@@ -3,12 +3,41 @@ import Bientot from '@/components/Bientot.astro';
 import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
-import { href, routes } from '@/lib/paths';
+import { href, asset, routes } from '@/lib/paths';
+import TornEdge from '@/components/deco/TornEdge.astro';
 import { brand } from '@/lib/brand';
+import Deco from '@/components/deco/Deco.astro';
 ---
-{DEMO ? <Bientot titre="La boutique" texte="La page de présentation arrive avec la version complète." /> : (
-<Base title="La boutique" description="Cokette Girls by Rabaa, prêt-à-porter féminin à Bray-sur-Somme.">
-  <InfoPage titre="La boutique" intro="Cokette Girls by Rabaa, prêt-à-porter féminin à Bray-sur-Somme." deco="cintre">
+{false ? <Bientot titre="" texte="" /> : (
+<Base title="À propos de Rabaa" description="Qui est derrière Cokette Girls, et pourquoi chaque pièce est choisie à la main.">
+  <section class="relative overflow-hidden bg-rose-soft py-12 sm:py-16">
+    <Deco type="fleur" class="deco deco-lg end-4 top-6 w-24 text-wine/15" />
+    <div class="container-x grid items-center gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
+      <div class="relative mx-auto w-full max-w-xs lg:max-w-sm">
+        <div class="rotate-[-2deg] rounded-2xl bg-paper p-3 shadow-float">
+          <img src={asset('/images/marque/rabaa-portrait.webp')} alt="Rabaa dans sa boutique"
+            width="900" height="1600" fetchpriority="high" decoding="async"
+            class="aspect-[3/4] w-full rotate-[2deg] rounded-xl object-cover object-top" />
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">À propos de moi</p>
+        <h1 class="mt-3 text-3xl leading-[1.05] sm:text-4xl lg:text-5xl">Hey les filles&nbsp;!</h1>
+        <p class="mt-5 text-lg text-ink-2">
+          Prêtes pour une virée shopping sans bouger du canapé&nbsp;? Ici, chaque pièce est une
+          petite pépite dénichée rien que pour vous.
+        </p>
+        <p class="hand mt-6 text-2xl text-wine">Craque sans compter (ou presque)</p>
+      </div>
+    </div>
+    <TornEdge position="bottom" height={24} class="edge-in text-cream" />
+  </section>
+
+  <InfoPage titre="Du style, des prix cool, et zéro culpabilité" intro="On aime le style, les pièces uniques et surtout les prix qui ne font pas mal au porte-monnaie." deco="cintre">
+    <p>
+      Que vous ayez envie d'un look casual, d'une tenue qui claque ou juste de vous faire
+      plaisir, il y a ce qu'il vous faut. Faites un tour, laissez parler vos envies, et craquez.
+    </p>
     <p>
       Ici, chaque pièce est dénichée une par une. Pas de collections entières
       commandées sur catalogue&nbsp;: des trouvailles, en petite quantité, choisies

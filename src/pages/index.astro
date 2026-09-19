@@ -426,12 +426,47 @@ const chiffres = [
         {vedettes.map((p, i) => <ProductCard product={p} index={i} />)}
       </div>
     </div>
-    <TornEdge position="bottom" height={26} class="edge-in text-cream" />
+    <TornEdge position="bottom" height={26} class="edge-in text-rose-soft" />
   </section>
 
 {DEMO ? (
   <Voile titre="Les avis des clientes" teinte="cream" hauteur="28rem" />
   ) : (
+  <!-- Le mot de Rabaa : sa photo dans la boutique, sa phrase. -->
+  <section class="relative overflow-hidden bg-rose-soft py-14 sm:py-20">
+    <Deco type="fleur" class="deco deco-lg -start-6 top-8 w-28 text-wine/15 deco-sway" />
+    <div class="container-x">
+      <div class="reveal mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
+        <div class="relative mx-auto w-full max-w-xs lg:max-w-none">
+          <div class="relative rotate-2 rounded-2xl bg-paper p-3 shadow-float">
+            <img src={asset('/images/marque/rabaa-boutique.webp')} alt="Rabaa, dans sa boutique à Bray-sur-Somme"
+              width="900" height="1200" loading="lazy" decoding="async"
+              class="aspect-[3/4] w-full -rotate-2 rounded-xl object-cover object-top" />
+          </div>
+          <span class="hand absolute -bottom-5 -end-2 z-10 rotate-[-4deg] rounded-full bg-wine px-4 py-1.5 text-lg text-white shadow-card">Rabaa</span>
+        </div>
+        <blockquote class="relative">
+          <svg class="absolute -start-2 -top-6 h-14 w-14 text-rose" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4 12.5C4 8.4 6.6 5.5 10.5 4.5l.7 1.7C8.9 7 7.6 8.4 7.3 10.2H10v6.3H4zm10 0c0-4.1 2.6-7 6.5-8l.7 1.7c-2.3.8-3.6 2.2-3.9 4H21v6.3h-6z" />
+          </svg>
+          <p class="relative font-display text-2xl leading-snug text-ink sm:text-3xl">
+            Ma passion pour la mode est devenue une réalité, et chaque jour, j'ai le plaisir de
+            partager cette passion avec vous à travers des vêtements qui vous font rêver et vous subliment.
+          </p>
+          <footer class="mt-6 flex flex-wrap items-center gap-4">
+            <cite class="font-display text-lg font-semibold not-italic text-wine">Rabaa</cite>
+            <span class="text-sm text-ink-3">Cokette Girls, Bray-sur-Somme</span>
+            <a href={href(routes.about)} class="ms-auto inline-flex items-center gap-1.5 text-sm font-bold text-wine underline underline-offset-4">
+              Son histoire
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+    <TornEdge position="bottom" height={24} class="edge-in text-cream" />
+  </section>
+
   <!-- Les avis : deux colonnes. À gauche le titre et les chiffres, à droite
        un carrousel de bulles organiques, celle du milieu décalée vers le haut. -->
   <section class="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
