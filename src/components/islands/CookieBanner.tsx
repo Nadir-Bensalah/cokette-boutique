@@ -73,7 +73,7 @@ export default function CookieBanner({ base }: { base: string }) {
             <h2 id="ck-titre" className="font-display text-lg font-semibold">Les cookies</h2>
             <p className="mt-1 text-sm leading-snug text-ink-2">
               Le strict nécessaire est toujours actif&nbsp;: votre panier et votre session.
-              Pour le reste — mesurer les visites et savoir d'où viennent nos clientes —
+              Pour le reste, mesurer les visites et savoir d'où viennent nos clientes,
               nous vous demandons votre accord.{' '}
               <a href={`${b}/cookies`} className="font-semibold text-wine underline underline-offset-2">
                 Notre politique de cookies

@@ -141,7 +141,7 @@ export default function AddButton({ product, base, compact = false, size, classN
           type="button"
           onClick={onClick}
           disabled={soldOut}
-          aria-label={soldOut ? `${product.name} — épuisé` : `Ajouter ${product.name} au panier`}
+          aria-label={soldOut ? `${product.name}, épuisé` : `Ajouter ${product.name} au panier`}
           aria-expanded={dispo.length > 1 ? picking : undefined}
           className={`inline-flex h-11 w-11 items-center justify-center rounded-full shadow-card transition-[transform,background-color] duration-200 active:scale-90 disabled:cursor-not-allowed disabled:opacity-40 ${
             state === 'added' ? 'bg-sage text-white'

@@ -11,7 +11,7 @@ import type { Line } from './cart';
  * À la mise en ligne, seules les quatre fonctions du bas changent
  * (`creer`, `connecter`, `deconnecter`, `enregistrerCommande`) : elles
  * appelleront Supabase au lieu du stockage local. Les écrans, eux, ne
- * bougent pas — ils ne parlent qu'à ce fichier.
+ * bougent pas : ils ne parlent qu'à ce fichier.
  *
  * Aucun mot de passe n'est stocké en clair : on garde une empreinte
  * SHA-256 salée. Ça ne remplace pas une vraie authentification serveur,

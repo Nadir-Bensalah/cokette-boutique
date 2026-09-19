@@ -17,7 +17,7 @@ const nouveautes = newArrivals().slice(0, 4);
 const heroImg = dispo[0]?.images[0];
 const portrait = dispo[3]?.images[0] ?? heroImg;
 // Le fond du hero : une photo qui a du décor derrière elle. Un vêtement sur
-// fond uni, une fois flouté, ne donne qu'un aplat — inutile de l'y mettre.
+// fond uni, une fois flouté, ne donne qu'un aplat. Inutile de l'y mettre.
 const fondHero =
   dispo.find((x) => x.images.length >= 3 && x.slug !== dispo[0]?.slug)?.images[1]
   ?? dispo[2]?.images[0] ?? heroImg;
@@ -372,7 +372,7 @@ const chiffres = [
         <p class="reveal mt-5 text-lg leading-relaxed text-ink-2" style="--reveal-delay: 120ms">
           Chaque pièce est choisie à la main, en petite quantité. Vous ne croiserez pas votre
           tenue à tous les coins de rue. Et si vous hésitez sur la taille, on vous répond
-          avant que vous commandiez — c'est plus simple qu'un retour.
+          avant que vous commandiez. C'est plus simple qu'un retour.
         </p>
 
         <ul class="reveal mt-10 grid gap-5 sm:grid-cols-2 sm:gap-6" style="--reveal-delay: 180ms">

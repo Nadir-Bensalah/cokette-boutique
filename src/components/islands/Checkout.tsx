@@ -10,7 +10,7 @@ const FRANCO = 80;
 type Mode = 'retrait' | 'colissimo' | 'relais';
 
 /** Tunnel en une seule page : tout tient dans un écran de téléphone.
- *  La démonstration s'arrête avant le paiement — c'est Stripe qui prend
+ *  La démonstration s'arrête avant le paiement. C'est Stripe qui prend
  *  le relais dans la version branchée. */
 export default function Checkout({ base }: { base: string }) {
   const lines = useStore(cartLines);
