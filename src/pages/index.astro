@@ -6,6 +6,8 @@ import Icon from '@/components/Icon.astro';
 import Deco from '@/components/deco/Deco.astro';
 import TornEdge from '@/components/deco/TornEdge.astro';
 import TrustBar from '@/components/TrustBar.astro';
+import Voile from '@/components/deco/../Voile.astro';
+import { DEMO } from '@/lib/demo';
 import AddButton from '@/components/islands/AddButton';
 import { href, asset, routes } from '@/lib/paths';
 import { categories, products, formatPrice, isSoldOut, isLow, availableSizes, newArrivals } from '@/lib/data';
@@ -238,6 +240,9 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-cream-2" />
   </section>
 
+{DEMO ? (
+  <Voile titre="Les rayons" teinte="cream" hauteur="24rem" />
+  ) : (
   <!-- Les rayons : cartes horizontales, photo en galet peint. -->
   <section class="filigree relative overflow-hidden bg-cream-2 py-16 sm:py-20">
     <Deco type="dentelle" class="deco deco-lg end-0 top-4 w-24 rotate-6 text-wine/20" />
@@ -274,6 +279,8 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-paper" />
   </section>
 
+  )}
+
   <!-- Les nouveautés -->
   {nouveautes.length > 0 && (
     <section class="relative overflow-hidden bg-paper py-16 sm:py-20">
@@ -290,6 +297,9 @@ const chiffres = [
     </section>
   )}
 
+{DEMO ? (
+  <Voile titre="Comment ça marche" teinte="rose" hauteur="26rem" />
+  ) : (
   <!-- Comment ça marche : le trait se dessine au défilement. -->
   <section id="comment" class="relative scroll-mt-20 overflow-hidden bg-rose-soft py-16 sm:py-20">
     <Deco type="ruban" class="deco deco-sway deco-lg start-4 top-10 w-24 -rotate-6 text-wine/20" />
@@ -334,6 +344,11 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-cream" />
   </section>
 
+  )}
+
+{DEMO ? (
+  <Voile titre="La boutique, son histoire, ses chiffres" teinte="cream" hauteur="30rem" />
+  ) : (
   <!-- La boutique : portrait en galet, chiffres, bouton. -->
   <section class="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-28">
     <div class="mx-auto grid w-full max-w-[1600px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-10 xl:gap-24 xl:px-12">
@@ -399,6 +414,8 @@ const chiffres = [
     <TornEdge position="bottom" variant="vague" height={28} class="edge-in text-paper" />
   </section>
 
+  )}
+
   <!-- La sélection -->
   <section class="relative overflow-hidden bg-paper py-16 sm:py-20">
     <Deco type="bouton" class="deco deco-lg end-2 top-10 w-20 text-wine/15" />
@@ -412,6 +429,9 @@ const chiffres = [
     <TornEdge position="bottom" height={26} class="edge-in text-cream" />
   </section>
 
+{DEMO ? (
+  <Voile titre="Les avis des clientes" teinte="cream" hauteur="28rem" />
+  ) : (
   <!-- Les avis : deux colonnes. À gauche le titre et les chiffres, à droite
        un carrousel de bulles organiques, celle du milieu décalée vers le haut. -->
   <section class="relative overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
@@ -507,6 +527,8 @@ const chiffres = [
     </div>
     <TornEdge position="bottom" variant="vague" height={26} class="edge-in text-wine-deep" />
   </section>
+
+  )}
 
   <!-- Le live : appel final. -->
   <section class="relative overflow-hidden bg-wine-deep py-16 text-cream sm:py-20 lg:py-24">

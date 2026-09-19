@@ -1,9 +1,12 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { href, routes } from '@/lib/paths';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Mentions légales" texte="Les mentions légales arrivent avec la version complète." /> : (
 <Base title="Mentions légales" description="Éditeur, hébergeur et propriété intellectuelle du site Cokette Girls.">
   <InfoPage titre="Mentions légales" deco="epingle">
     <h2>Éditeur du site</h2>
@@ -57,3 +60,4 @@ import { brand } from '@/lib/brand';
     <p>Ce site est soumis au droit français.</p>
   </InfoPage>
 </Base>
+)}

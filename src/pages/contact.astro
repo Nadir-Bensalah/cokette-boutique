@@ -1,9 +1,12 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import ContactForm from '@/components/islands/ContactForm';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Nous écrire" texte="Le formulaire de contact arrive avec la version complète." /> : (
 <Base title="Nous écrire" description="Contacter Cokette Girls à Bray-sur-Somme.">
   <InfoPage titre="Nous écrire" intro="Une question sur une taille, une commande, un délai ? Nous répondons vite." deco="perle">
     <div class="not-prose mb-10 grid gap-4 sm:grid-cols-3">
@@ -41,3 +44,4 @@ import { brand } from '@/lib/brand';
     <ContactForm client:visible />
   </InfoPage>
 </Base>
+)}

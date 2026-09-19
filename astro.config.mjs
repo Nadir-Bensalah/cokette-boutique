@@ -12,5 +12,5 @@ export default defineConfig({
   base: BASE,
   trailingSlash: 'ignore',
   integrations: [react()],
-  vite: { plugins: [tailwind()] },
+  vite: { plugins: [tailwind()], envPrefix: ['PUBLIC_', 'DEMO'] },
 });

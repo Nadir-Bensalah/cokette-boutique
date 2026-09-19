@@ -1,0 +1,17 @@
+---
+import Base from '@/layouts/Base.astro';
+import Voile from '@/components/Voile.astro';
+import { href, routes } from '@/lib/paths';
+interface Props { titre: string; texte: string }
+const { titre, texte } = Astro.props;
+---
+<Base title={titre}>
+  <Voile titre={titre} hauteur="22rem" teinte="rose" />
+  <section class="container-x py-10 text-center">
+    <p class="mx-auto max-w-md text-ink-2">{texte}</p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a href={href(routes.shop)} class="btn btn-primary">Voir la boutique</a>
+      <a href={href(routes.home)} class="btn btn-ghost">Retour à l'accueil</a>
+    </div>
+  </section>
+</Base>

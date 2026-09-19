@@ -1,10 +1,14 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import Compte from '@/components/islands/Compte';
 ---
+{DEMO ? <Bientot titre="Votre espace cliente" texte="Commandes, adresses, favoris et préférences arrivent avec la version complète." /> : (
 <Base title="Mon compte" description="Vos commandes, vos adresses et vos préférences.">
   <InfoPage titre="Mon compte" deco="bouton">
     <Compte client:load base={import.meta.env.BASE_URL} />
   </InfoPage>
 </Base>
+)}

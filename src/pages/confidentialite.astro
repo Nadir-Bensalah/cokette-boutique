@@ -1,8 +1,11 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Confidentialité" texte="La politique de confidentialité arrive avec la version complète." /> : (
 <Base title="Confidentialité" description="Comment Cokette Girls traite vos données personnelles.">
   <InfoPage titre="Politique de confidentialité" intro="Ce que nous collectons, pourquoi, et ce que vous pouvez exiger." deco="perle">
     <h2>Qui est responsable</h2>
@@ -75,3 +78,4 @@ import { brand } from '@/lib/brand';
     </p>
   </InfoPage>
 </Base>
+)}

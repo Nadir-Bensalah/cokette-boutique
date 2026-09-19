@@ -1,7 +1,10 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import Checkout from '@/components/islands/Checkout';
 ---
+{DEMO ? <Bientot titre="Le paiement" texte="Le tunnel de commande et le paiement Stripe arrivent avec la version complète." /> : (
 <Base title="Votre commande" noBottomBar>
   <section class="py-8 lg:py-12">
     <div class="container-x max-w-4xl">
@@ -11,3 +14,4 @@ import Checkout from '@/components/islands/Checkout';
     </div>
   </section>
 </Base>
+)}

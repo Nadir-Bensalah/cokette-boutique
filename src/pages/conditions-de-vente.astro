@@ -1,9 +1,12 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { href, routes } from '@/lib/paths';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Conditions de vente" texte="Les conditions générales arrivent avec la version complète." /> : (
 <Base title="Conditions générales de vente" description="Les conditions de vente de la boutique Cokette Girls.">
   <InfoPage titre="Conditions générales de vente" intro="Ce qui s'applique quand vous commandez chez nous." deco="ciseaux">
     <h2>1. Le vendeur</h2>
@@ -107,3 +110,4 @@ import { brand } from '@/lib/brand';
     <p>À défaut d'accord, le droit français s'applique.</p>
   </InfoPage>
 </Base>
+)}

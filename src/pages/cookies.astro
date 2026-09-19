@@ -1,8 +1,11 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Cookies" texte="La politique de cookies arrive avec la version complète." /> : (
 <Base title="Cookies" description="Les cookies utilisés sur le site Cokette Girls.">
   <InfoPage titre="Politique de cookies" intro="Les petits fichiers que le site dépose, et comment les refuser." deco="bouton">
     <h2>Ce qu'est un cookie</h2>
@@ -65,3 +68,4 @@ import { brand } from '@/lib/brand';
     </p>
   </InfoPage>
 </Base>
+)}

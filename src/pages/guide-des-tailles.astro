@@ -1,7 +1,10 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 ---
+{DEMO ? <Bientot titre="Le guide des tailles" texte="Le guide des tailles arrive avec la version complète." /> : (
 <Base title="Guide des tailles" description="Trouver la bonne taille chez Cokette Girls.">
   <InfoPage titre="Guide des tailles" intro="Un mètre de couturière, deux minutes, et plus de doute." deco="aiguille">
     <h2>Vêtements</h2>
@@ -31,3 +34,4 @@ import InfoPage from '@/components/InfoPage.astro';
     </p>
   </InfoPage>
 </Base>
+)}

@@ -1,4 +1,6 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import Deco from '@/components/deco/Deco.astro';
@@ -11,6 +13,7 @@ export function getStaticPaths() {
 const { cat } = Astro.props;
 const liste = cat.slug === 'nouveautes' ? newArrivals() : byCategory(cat.slug);
 ---
+{DEMO && cat.slug !== 'nouveautes' ? <Bientot titre={cat.name} texte="Ce rayon arrive avec la version complète. La boutique, elle, montre déjà toutes les pièces." /> : (
 <Base title={cat.name} description={cat.description}>
   <section class="relative py-8 lg:py-12">
     <Deco type="fleur" class="deco deco-lg end-2 top-4 w-28 text-wine/10 deco-sway" />
@@ -41,3 +44,4 @@ const liste = cat.slug === 'nouveautes' ? newArrivals() : byCategory(cat.slug);
     </div>
   </section>
 </Base>
+)}

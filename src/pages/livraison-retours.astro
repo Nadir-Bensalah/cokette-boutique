@@ -1,8 +1,11 @@
 ---
+import Bientot from '@/components/Bientot.astro';
+import { DEMO } from '@/lib/demo';
 import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { brand } from '@/lib/brand';
 ---
+{DEMO ? <Bientot titre="Livraison et retours" texte="Les conditions de livraison et de retour arrivent avec la version complète." /> : (
 <Base title="Livraison et retours" description="Modes de livraison, délais et conditions de retour chez Cokette Girls.">
   <InfoPage titre="Livraison et retours" intro="Comment votre commande arrive, et que faire si elle ne va pas." deco="ruban">
     <h2>Les modes de livraison</h2>
@@ -80,3 +83,4 @@ import { brand } from '@/lib/brand';
     </p>
   </InfoPage>
 </Base>
+)}

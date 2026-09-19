@@ -1,0 +1,53 @@
+---
+/**
+ * Section voilée de la démonstration. Le vrai contenu n'est pas rendu :
+ * à sa place, un fond flou peint en CSS, un titre et une mention.
+ * Retirer un style ne révèle rien, il n'y a rien dessous.
+ */
+interface Props { titre: string; hauteur?: string; teinte?: 'cream' | 'rose' | 'vin' }
+const { titre, hauteur = '26rem', teinte = 'cream' } = Astro.props;
+---
+<section class:list={['voile', `voile--${teinte}`]} style={`min-height:${hauteur}`} aria-label={`${titre}, réservé à la version complète`}>
+  <div class="voile__fond" aria-hidden="true">
+    <span class="voile__tache voile__tache--a"></span>
+    <span class="voile__tache voile__tache--b"></span>
+    <span class="voile__tache voile__tache--c"></span>
+    <span class="voile__ligne" style="top:22%;width:38%"></span>
+    <span class="voile__ligne" style="top:34%;width:62%"></span>
+    <span class="voile__ligne" style="top:46%;width:54%"></span>
+    <span class="voile__bloc" style="left:8%;top:58%"></span>
+    <span class="voile__bloc" style="left:38%;top:58%"></span>
+    <span class="voile__bloc" style="left:68%;top:58%"></span>
+  </div>
+  <div class="voile__etiquette">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/>
+    </svg>
+    <span><b>{titre}</b><span class="voile__sub">Dans la version complète</span></span>
+  </div>
+</section>
+
+<style>
+  .voile { position: relative; overflow: hidden; display: grid; place-items: center; }
+  .voile--cream { background: var(--color-cream); }
+  .voile--rose { background: var(--color-rose-soft); }
+  .voile--vin { background: var(--color-wine-deep); }
+  /* Le « flou » est peint : des taches et des barres douces, pas une image. */
+  .voile__fond { position: absolute; inset: 0; filter: blur(14px); opacity: .9; pointer-events: none; }
+  .voile__tache { position: absolute; border-radius: 50%; }
+  .voile__tache--a { width: 42%; aspect-ratio: 1; left: -8%; top: -20%; background: var(--color-rose); opacity: .55; }
+  .voile__tache--b { width: 36%; aspect-ratio: 1; right: -6%; top: 10%; background: var(--color-wine); opacity: .18; }
+  .voile__tache--c { width: 30%; aspect-ratio: 1; left: 40%; bottom: -18%; background: var(--color-gold); opacity: .22; }
+  .voile__ligne { position: absolute; left: 8%; height: 1.6rem; border-radius: 999px; background: var(--color-ink); opacity: .12; }
+  .voile__bloc { position: absolute; width: 24%; height: 34%; border-radius: 1.25rem; background: var(--color-paper); opacity: .7; }
+  .voile--vin .voile__ligne, .voile--vin .voile__bloc { background: #fff; }
+  .voile__etiquette {
+    position: relative; display: flex; align-items: center; gap: .8rem;
+    padding: .9rem 1.25rem .9rem 1rem; border-radius: 999px;
+    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    color: var(--color-ink); box-shadow: var(--shadow-float); backdrop-filter: blur(6px);
+  }
+  .voile__etiquette svg { color: var(--color-wine); flex: none; }
+  .voile__etiquette b { display: block; font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; line-height: 1.1; }
+  .voile__sub { display: block; font-size: .78rem; color: var(--color-ink-3); margin-top: .15rem; }
+</style>
