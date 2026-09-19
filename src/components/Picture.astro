@@ -1,0 +1,46 @@
+---
+import { photoSources } from '@/lib/img';
+
+/**
+ * Photo responsive : AVIF et WebP en 480/768/1080/1600 avec repli JPEG.
+ * `src` est le chemin public de l'original :
+ *   <Picture src="/images/products/robe-olive-1.jpg" alt="…" sizes="(min-width: 1024px) 25vw, 50vw" />
+ * Les variantes viennent de scripts/images.mjs. Le navigateur ne télécharge
+ * que la largeur dont il a besoin, dans le format le plus léger qu'il sait lire.
+ *
+ * Les photos ne se sélectionnent pas, ne se glissent pas, et le menu contextuel
+ * est coupé : ça décourage la copie au passage, sans prétendre l'empêcher.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  sizes?: string;
+  class?: string;
+  imgClass?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  width?: number;
+  height?: number;
+  transitionName?: string;
+}
+const { src, alt, sizes = '100vw', class: cls = '', imgClass = '', loading = 'lazy', fetchpriority = 'auto', width = 1200, height = 1600, transitionName } = Astro.props;
+const p = photoSources(src);
+---
+
+<picture class={cls}>
+  <source type="image/avif" srcset={p.avif} sizes={sizes} />
+  <source type="image/webp" srcset={p.webp} sizes={sizes} />
+  <img
+    src={p.fallback}
+    alt={alt}
+    class={imgClass}
+    loading={loading}
+    decoding="async"
+    fetchpriority={fetchpriority}
+    width={width}
+    height={height}
+    sizes={sizes}
+    draggable="false"
+    transition:name={transitionName}
+  />
+</picture>

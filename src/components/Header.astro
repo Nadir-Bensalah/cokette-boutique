@@ -2,6 +2,7 @@
 import { href, asset, routes } from '@/lib/paths';
 import CartBadge from '@/components/islands/CartBadge';
 import CompteLien from '@/components/islands/CompteLien';
+import Picture from '@/components/Picture.astro';
 
 const nav = [
   { label: 'Boutique', path: routes.shop },
@@ -15,11 +16,7 @@ const here = Astro.url.pathname.replace(/\/$/, '');
 <header class="sticky top-0 z-40 border-b border-line bg-cream/90 backdrop-blur-md" style="height:var(--header-h)">
   <div class="container-x flex h-full items-center justify-between gap-4">
     <a href={href(routes.home)} class="flex items-center" aria-label="Cokette Girls by Rabaa, accueil">
-      <img src={asset('/images/marque/texte.png')}
-        srcset={`${asset('/images/marque/texte.png')} 1x, ${asset('/images/marque/texte@2x.png')} 2x`}
-        alt="Cokette Girls by Rabaa" width="420" height="168"
-        fetchpriority="high" decoding="async"
-        class="h-11 w-auto object-contain sm:h-12" />
+      <Picture src="/images/marque/texte.png" alt="Cokette Girls by Rabaa" sizes="140px" loading="eager" fetchpriority="high" class="block" imgClass="h-11 w-auto object-contain sm:h-12" width={420} height={168} />
     </a>
 
     <nav class="hidden lg:block" aria-label="Navigation principale">

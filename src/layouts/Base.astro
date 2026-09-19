@@ -131,6 +131,11 @@ const ld = [business, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) :
       };
       demarrer();
       document.addEventListener('astro:page-load', demarrer);
+      // Le clic droit et le glisser sont coupés sur les photos, pas ailleurs :
+      // le texte reste sélectionnable, les liens se copient normalement.
+      const surPhoto = (e: Event) => (e.target as HTMLElement).closest?.('img, picture');
+      document.addEventListener('contextmenu', (e) => { if (surPhoto(e)) e.preventDefault(); });
+      document.addEventListener('dragstart', (e) => { if (surPhoto(e)) e.preventDefault(); });
       window.addEventListener('beforeprint', () =>
         document.querySelectorAll('.reveal').forEach((b) => b.classList.add('is-in')));
     </script>

@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { useEffect, useState } from 'react';
 import type { Line } from '@/stores/cart';
+import Photo from './Photo';
 import { cartLines, cartTotal, removeLine, setQty, undoRemove } from '@/stores/cart';
 
 const eur = (n: number) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
@@ -49,7 +50,7 @@ export default function CartPage({ base }: { base: string }) {
           {lines.map((l) => (
             <li key={l.key} className="flex gap-4 rounded-lg bg-paper p-4 shadow-card">
               <a href={`${b}/produits/${l.slug}`} className="h-[132px] w-[100px] shrink-0 overflow-hidden rounded-lg bg-cream" tabIndex={-1} aria-hidden="true">
-                <img src={`${b}/images/products/${l.image}`} alt="" loading="lazy" className="h-full w-full object-cover" />
+                <Photo src={`/images/products/${l.image}`} base={base} sizes="100px" className="h-full w-full object-cover" width={100} height={132} />
               </a>
               <div className="flex min-w-0 flex-1 flex-col">
                 <div className="flex items-start justify-between gap-3">

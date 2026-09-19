@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import Photo from './Photo';
 
 interface P {
   id: string; slug: string; name: string; short: string; category: string;
@@ -113,8 +114,7 @@ export default function ShopFilters({ products, categories, base }: {
                 <a href={`${b}/produits/${p.slug}`} className="relative block" tabIndex={-1} aria-hidden="true">
                   <div className="panel relative aspect-[3/4] rounded-lg bg-rose shadow-[0_10px_24px_-14px_rgba(142,29,66,.6)]">
                     <div className="photo absolute inset-2 overflow-hidden rounded-md bg-cream">
-                      <img src={`${b}/images/products/${p.images[0]}`} alt="" width="800" height="1066" loading="lazy" decoding="async"
-                        className={`h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 ${epuise ? 'grayscale' : ''}`} />
+                      <Photo src={`/images/products/${p.images[0]}`} base={base} sizes="(min-width: 1024px) 25vw, 50vw" className={`h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 ${epuise ? 'grayscale' : ''}`} width={800} height={1066} />
                     </div>
                   </div>
                   {epuise && <span className="tag bg-ink text-cream">Épuisé</span>}

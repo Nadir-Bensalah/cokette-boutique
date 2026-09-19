@@ -387,3 +387,15 @@
     animation: none;
   }
 }
+
+/* ------------------------------------------------------------------
+   Les photos ne se sélectionnent pas, ne se glissent pas hors de la page,
+   et le menu contextuel est coupé dessus. Ça décourage la copie au passage ;
+   ça n'empêche pas quelqu'un de déterminé, et on ne prétend pas le contraire.
+   ------------------------------------------------------------------ */
+img, picture {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}

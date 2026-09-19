@@ -6,6 +6,7 @@ import Logo from '@/components/Logo.astro';
 import Deco from '@/components/deco/Deco.astro';
 import TornEdge from '@/components/deco/TornEdge.astro';
 import NewsletterForm from '@/components/islands/NewsletterForm';
+import Picture from '@/components/Picture.astro';
 
 /**
  * Le pied de page : quatre colonnes séparées par des filets (marque et piliers,
@@ -54,9 +55,7 @@ const social = 'flex h-12 w-12 items-center justify-center rounded-full bg-paper
           <!-- La marque et les piliers -->
           <div class="footer-col flex min-w-0 flex-col gap-6 sm:col-span-2 lg:col-span-1 lg:pe-6 xl:pe-9">
             <a href={href(routes.home)} class="block w-fit" aria-label={`${brand.nomCourt}, accueil`}>
-              <img src={asset('/images/marque/medaillon.png')} alt={brand.nom}
-                width="800" height="533" loading="lazy" decoding="async"
-                class="h-auto w-44 sm:w-52" />
+              <Picture src="/images/marque/medaillon.png" alt={brand.nom} sizes="208px" class="block w-44 sm:w-52" imgClass="h-auto w-full" width={800} height={533} />
             </a>
             <p class="hand max-w-md text-3xl leading-tight text-wine">
               Des pièces choisies une par une.
@@ -172,7 +171,7 @@ const social = 'flex h-12 w-12 items-center justify-center rounded-full bg-paper
       <!-- La scène de boutique en filigrane : posée entière au ras de la vague,
            jamais rognée en haut, estompée vers le haut et sur les côtés. -->
       <div class="footer-scene pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true">
-        <img src={asset('/images/art/footer-dressing.svg')} alt="" width="1600" height="240"
+        <img src={asset('/images/art/footer-dressing.svg')} alt="" draggable="false" width="1600" height="240"
           loading="lazy" decoding="async" class="block h-full w-full object-cover object-bottom" />
       </div>
 

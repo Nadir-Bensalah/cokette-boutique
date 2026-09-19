@@ -1,6 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Photo from './Photo';
 import catalogue from '@/data/catalogue.json';
 import type { Line } from '@/stores/cart';
 import {
@@ -295,7 +296,7 @@ export default function CartDrawer({ base }: { base: string }) {
                 {lines.map((l) => (
                   <li key={l.key} className="cd-line">
                     <a href={`${b}/produits/${l.slug}`} className="cd-thumb" tabIndex={-1} aria-hidden="true">
-                      <img src={`${b}/images/products/${l.image}`} alt="" loading="lazy" />
+                      <Photo src={`/images/products/${l.image}`} base={base} sizes="100px" className="h-full w-full object-cover" width={100} height={132} />
                     </a>
                     <div className="flex min-w-0 flex-1 flex-col gap-1">
                       <div className="flex items-start gap-3">
@@ -374,7 +375,7 @@ export default function CartDrawer({ base }: { base: string }) {
                   return (
                     <li key={p.id} className="cd-sug">
                       <a href={`${b}/produits/${p.slug}`} className="h-16 w-12 shrink-0 overflow-hidden rounded-md bg-cream" tabIndex={-1} aria-hidden="true">
-                        <img src={`${b}/images/products/${p.images[0]}`} alt="" loading="lazy" className="h-full w-full object-cover" />
+                        <Photo src={`/images/products/${p.images[0]}`} base={base} sizes="48px" className="h-full w-full object-cover" width={48} height={64} />
                       </a>
                       <div className="min-w-0 flex-1">
                         <a href={`${b}/produits/${p.slug}`} className="line-clamp-2 text-sm font-bold leading-tight">{p.name}</a>

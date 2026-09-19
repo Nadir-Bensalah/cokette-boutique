@@ -70,7 +70,7 @@ export default function AddButton({ product, base, compact = false, size, classN
     const a = from.getBoundingClientRect();
     const b = target.getBoundingClientRect();
     const ghost = document.createElement('img');
-    ghost.src = (from as HTMLImageElement).currentSrc || `${base.replace(/\/$/, '')}/images/products/${product.image}`;
+    ghost.src = (from as HTMLImageElement).currentSrc || `${base.replace(/\/$/, '')}/images/products/${product.image.replace(/\.(jpe?g|png|webp)$/i, '')}.jpg`;
     ghost.alt = '';
     Object.assign(ghost.style, {
       position: 'fixed',

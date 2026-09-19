@@ -4,6 +4,7 @@ import ProductCard from '@/components/ProductCard.astro';
 import Deco from '@/components/deco/Deco.astro';
 import SizePicker from '@/components/islands/SizePicker';
 import BoutonFavori from '@/components/islands/BoutonFavori';
+import Picture from '@/components/Picture.astro';
 import { href, asset, routes } from '@/lib/paths';
 import { products, categories, formatPrice, isSoldOut, availableSizes, byCategory } from '@/lib/data';
 
@@ -55,18 +56,16 @@ const ld = {
       <!-- Les photos -->
       <div data-product-hero class="reveal">
         <div class="relative mx-auto max-w-md rotate-1 rounded-xl bg-rose p-3 shadow-float lg:max-w-none">
-          <img src={asset(`/images/products/${p.images[0]}`)} alt={p.name}
-            transition:name={`photo-${p.id}`}
-            width="900" height="1200" fetchpriority="high" decoding="async"
-            class:list={['aspect-[3/4] w-full -rotate-1 rounded-lg object-cover', soldOut && 'grayscale']} />
+          <Picture src={`/images/products/${p.images[0]}`} alt={p.name} sizes="(min-width: 1024px) 50vw, 100vw"
+            imgClass={`aspect-[3/4] w-full -rotate-1 rounded-lg object-cover ${soldOut ? 'grayscale' : ''}`}
+            loading="eager" fetchpriority="high" width={900} height={1200} transitionName={`photo-${p.id}`} />
         </div>
         {p.images.length > 1 && (
           <ul class="mx-auto mt-4 grid max-w-md grid-cols-4 gap-3 lg:max-w-none">
             {p.images.slice(1).map((img, i) => (
               <li>
-                <img src={asset(`/images/products/${img}`)} alt={`${p.name}, vue ${i + 2}`}
-                  width="300" height="400" loading="lazy" decoding="async"
-                  class="aspect-[3/4] w-full rounded-md object-cover shadow-card" />
+                <Picture src={`/images/products/${img}`} alt={`${p.name}, vue ${i + 2}`} sizes="(min-width: 1024px) 12vw, 25vw"
+                  imgClass="aspect-[3/4] w-full rounded-md object-cover shadow-card" width={300} height={400} />
               </li>
             ))}
           </ul>

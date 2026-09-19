@@ -1,5 +1,6 @@
 import { useStore } from '@nanostores/react';
 import { useMemo, useState } from 'react';
+import Photo from './Photo';
 import catalogue from '@/data/catalogue.json';
 import {
   compte, creer, connecter, deconnecter, majCompte, changerMotDePasse,
@@ -161,8 +162,7 @@ function CarteCommande({ c, base }: { c: Commande; base: string }) {
           <ul className="space-y-3">
             {c.lignes.map((l) => (
               <li key={l.key} className="flex items-center gap-3">
-                <img src={`${b}/images/products/${l.image}`} alt="" width="48" height="64" loading="lazy"
-                  className="h-16 w-12 rounded-md object-cover" />
+                <Photo src={`/images/products/${l.image}`} base={base} sizes="48px" className="h-16 w-12 rounded-md object-cover" width={48} height={64} />
                 <div className="min-w-0 flex-1">
                   <a href={`${b}/produits/${l.slug}`} className="block truncate text-sm font-semibold hover:text-wine">{l.name}</a>
                   <p className="text-xs text-ink-3">Taille {l.size} · ×{l.qty}</p>
@@ -372,8 +372,7 @@ function Favoris({ c, base }: { c: NonNullable<ReturnType<typeof compte.get>>; b
       {pieces.map((p) => (
         <article key={p.id} className="rounded-lg bg-paper p-3 shadow-card">
           <a href={`${b}/produits/${p.slug}`} className="block overflow-hidden rounded-md bg-cream">
-            <img src={`${b}/images/products/${p.images[0]}`} alt="" width="300" height="400" loading="lazy"
-              className="aspect-[3/4] w-full object-cover" />
+            <Photo src={`/images/products/${p.images[0]}`} base={base} sizes="(min-width: 640px) 20vw, 45vw" className="aspect-[3/4] w-full object-cover" width={300} height={400} />
           </a>
           <h3 className="mt-2 text-sm font-semibold leading-tight">
             <a href={`${b}/produits/${p.slug}`} className="hover:text-wine">{p.name}</a>

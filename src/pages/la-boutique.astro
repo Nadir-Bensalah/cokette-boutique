@@ -5,6 +5,7 @@ import Base from '@/layouts/Base.astro';
 import InfoPage from '@/components/InfoPage.astro';
 import { href, asset, routes } from '@/lib/paths';
 import TornEdge from '@/components/deco/TornEdge.astro';
+import Picture from '@/components/Picture.astro';
 import { brand } from '@/lib/brand';
 import Deco from '@/components/deco/Deco.astro';
 ---
@@ -15,9 +16,7 @@ import Deco from '@/components/deco/Deco.astro';
     <div class="container-x grid items-center gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
       <div class="relative mx-auto w-full max-w-xs lg:max-w-sm">
         <div class="rotate-[-2deg] rounded-2xl bg-paper p-3 shadow-float">
-          <img src={asset('/images/marque/rabaa-portrait.webp')} alt="Rabaa dans sa boutique"
-            width="900" height="1600" fetchpriority="high" decoding="async"
-            class="aspect-[3/4] w-full rotate-[2deg] rounded-xl object-cover object-top" />
+          <Picture src="/images/marque/rabaa-portrait.jpg" alt="Rabaa dans sa boutique" sizes="(min-width: 1024px) 30vw, 80vw" loading="eager" fetchpriority="high" imgClass="aspect-[3/4] w-full rotate-[2deg] rounded-xl object-cover object-top" width={900} height={1600} />
         </div>
       </div>
       <div>

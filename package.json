@@ -4,12 +4,15 @@
   "version": "0.1.0",
   "description": "Boutique en ligne de prêt-à-porter féminin, pensée pour la vente en live. Téléphone d'abord.",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/images.mjs && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "images": "node scripts/images.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
@@ -20,5 +23,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

@@ -6,6 +6,7 @@ import Icon from '@/components/Icon.astro';
 import Deco from '@/components/deco/Deco.astro';
 import TornEdge from '@/components/deco/TornEdge.astro';
 import TrustBar from '@/components/TrustBar.astro';
+import Picture from '@/components/Picture.astro';
 import Voile from '@/components/deco/../Voile.astro';
 import { DEMO } from '@/lib/demo';
 import AddButton from '@/components/islands/AddButton';
@@ -84,9 +85,7 @@ const chiffres = [
     <!-- Le fond : une photo de la boutique, floutée et assombrie. Elle donne la
          matière et la couleur ; le sujet reste la pièce cadrée à droite. -->
     <div class="absolute inset-0 -z-10" aria-hidden="true">
-      <img src={asset(`/images/products/${fondHero}`)} alt="" width="1200" height="800"
-        fetchpriority="high" decoding="async"
-        class="h-full w-full scale-110 object-cover blur-xl" />
+      <Picture src={`/images/products/${fondHero}`} alt="" sizes="100vw" loading="eager" fetchpriority="low" class="block h-full w-full" imgClass="h-full w-full scale-110 object-cover blur-xl" width={1200} height={800} />
       <div class="absolute inset-0 bg-wine-deep/60"></div>
       <div class="absolute inset-0 bg-gradient-to-br from-wine-deep/75 via-wine-deep/35 to-wine/20"></div>
     </div>
@@ -136,9 +135,7 @@ const chiffres = [
           <svg class="ms-16 mt-1 h-9 w-14 text-rose" viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4c10 12 24 22 44 28M48 32l-11 1M48 32l-3-10" /></svg>
         </p>
         <div class="relative rotate-2 rounded-2xl bg-rose p-3 shadow-float">
-          <img src={asset(`/images/products/${heroImg}`)} alt="Une pièce de la collection Cokette Girls"
-            width="900" height="1200" fetchpriority="high" decoding="async"
-            class="hero-zoom aspect-[3/4] w-full -rotate-2 rounded-xl object-cover" />
+          <Picture src={`/images/products/${heroImg}`} alt="Une pièce de la collection Cokette Girls" sizes="(min-width: 1024px) 40vw, 90vw" loading="eager" fetchpriority="high" imgClass="hero-zoom aspect-[3/4] w-full -rotate-2 rounded-xl object-cover" width={900} height={1200} />
         </div>
         <span class="absolute -bottom-4 -end-3 z-20 rounded-full bg-cream px-4 py-2 text-sm font-bold text-ink shadow-card sm:-end-6">
           22 pièces en ligne
@@ -161,12 +158,8 @@ const chiffres = [
       Stock réel ♡
       <svg class="mt-1 h-3 w-40 text-wine" viewBox="0 0 160 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M3 8c40-6 90-6 154-2" /></svg>
     </p>
-    <img src={asset('/images/marque/fleurs.png')} alt="" width="460" height="378"
-      loading="lazy" decoding="async"
-      class="deco deco-lg -bottom-6 -start-10 w-56 -scale-x-100 opacity-70 xl:w-72" />
-    <img src={asset('/images/marque/fleurs-2.png')} alt="" width="460" height="396"
-      loading="lazy" decoding="async"
-      class="deco deco-lg -bottom-6 -end-8 w-56 opacity-70 xl:w-72" />
+    <Picture src="/images/marque/fleurs.png" alt="" sizes="288px" class="deco deco-lg -bottom-6 -start-10 w-56 -scale-x-100 opacity-70 xl:w-72" imgClass="h-auto w-full" width={460} height={378} />
+    <Picture src="/images/marque/fleurs-2.png" alt="" sizes="288px" class="deco deco-lg -bottom-6 -end-8 w-56 opacity-70 xl:w-72" imgClass="h-auto w-full" width={460} height={396} />
 
     <div class="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-24 xl:px-32">
       <div class="reveal text-center">
@@ -201,8 +194,7 @@ const chiffres = [
                 style={`--reveal-delay:${i * 80}ms`}>
                 <Deco type="epingle" class="deal-spark" />
                 <a href={href(routes.product(p.slug))} class="deal-photo block overflow-hidden" tabindex="-1" aria-hidden="true">
-                  <img src={asset(`/images/products/${p.images[0]}`)} alt="" width="800" height="1000" loading="lazy" decoding="async"
-                    class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <Picture src={`/images/products/${p.images[0]}`} alt="" sizes="(min-width: 1024px) 30vw, 80vw" imgClass="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105" width={800} height={1000} />
                 </a>
                 <span class:list={['deal-tag', tag.cls]} aria-hidden="true">{tag.label}</span>
                 <div class="relative mt-4 px-2 pb-1">
@@ -262,8 +254,7 @@ const chiffres = [
                 class="group flex items-center gap-3 rounded-xl bg-paper p-3 pe-4 shadow-card transition-shadow hover:shadow-float sm:gap-4 sm:p-4 sm:pe-5">
                 <div class="w-[42%] shrink-0">
                   <div class={i % 2 ? 'blob-2' : 'blob'}>
-                    <img src={asset(`/images/products/${photo}`)} alt="" width="600" height="600" loading="lazy" decoding="async"
-                      class="aspect-square w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
+                    <Picture src={`/images/products/${photo}`} alt="" sizes="(min-width: 640px) 15vw, 40vw" imgClass="aspect-square w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" width={600} height={600} />
                   </div>
                 </div>
                 <div class="min-w-0 flex-1">
@@ -306,9 +297,7 @@ const chiffres = [
   <!-- Comment ça marche : le trait se dessine au défilement. -->
   <section id="comment" class="relative scroll-mt-20 overflow-hidden bg-rose-soft py-16 sm:py-20">
     <Deco type="ruban" class="deco deco-sway deco-lg start-4 top-10 w-24 -rotate-6 text-wine/20" />
-    <img src={asset('/images/marque/attente.png')} alt="" width="560" height="784"
-      loading="lazy" decoding="async"
-      class="deco hidden xl:block end-2 bottom-0 w-40 opacity-90 2xl:w-48" />
+    <Picture src="/images/marque/attente.png" alt="" sizes="224px" class="deco hidden xl:block end-2 bottom-0 w-40 opacity-90 2xl:w-48" imgClass="h-auto w-full" width={560} height={784} />
     <div class="container-x">
       <SectionHead eyebrow="En quatre temps" title="Du live à votre dressing." align="center"
         text="Pas de compte obligatoire, pas de formulaire à rallonge." />
@@ -362,8 +351,7 @@ const chiffres = [
         <Deco type="ruban" class="deco -end-6 top-10 z-10 w-36 -rotate-[100deg] text-rose/50" />
         <Deco type="ruban" class="deco -start-10 bottom-6 z-10 w-36 rotate-[150deg] text-rose/50" />
         <div class="blob-2 visual-blob rotate-1">
-          <img src={asset(`/images/products/${portrait}`)} alt="La boutique Cokette Girls à Bray-sur-Somme"
-            width="1400" height="1400" loading="lazy" decoding="async" class="aspect-square w-full object-cover" />
+          <Picture src={`/images/products/${portrait}`} alt="La boutique Cokette Girls à Bray-sur-Somme" sizes="(min-width: 1024px) 45vw, 100vw" imgClass="aspect-square w-full object-cover" width={1400} height={1400} />
         </div>
         <div class="absolute bottom-6 start-8 z-20 flex items-center gap-3 rounded-lg bg-gold-soft px-5 py-3 shadow-card sm:start-12">
           <svg class="h-9 w-9 shrink-0 text-wine" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -377,9 +365,7 @@ const chiffres = [
       </div>
 
       <div class="relative">
-        <img src={asset('/images/marque/medaillon.png')} alt="Cokette Girls by Rabaa"
-          width="800" height="533" loading="lazy" decoding="async"
-          class="reveal mb-5 h-auto w-40 sm:w-48" />
+        <Picture src="/images/marque/medaillon.png" alt="Cokette Girls by Rabaa" sizes="192px" class="reveal mb-5 block w-40 sm:w-48" imgClass="h-auto w-full" width={800} height={533} />
         <p class="reveal eyebrow flex items-center gap-2">
           La boutique
           <span class="h-px w-10 bg-wine/40" aria-hidden="true"></span>
@@ -439,9 +425,7 @@ const chiffres = [
       <div class="reveal mx-auto grid max-w-5xl items-center gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-14">
         <div class="relative mx-auto w-full max-w-xs lg:max-w-none">
           <div class="relative rotate-2 rounded-2xl bg-paper p-3 shadow-float">
-            <img src={asset('/images/marque/rabaa-boutique.webp')} alt="Rabaa, dans sa boutique à Bray-sur-Somme"
-              width="900" height="1200" loading="lazy" decoding="async"
-              class="aspect-[3/4] w-full -rotate-2 rounded-xl object-cover object-top" />
+            <Picture src="/images/marque/rabaa-boutique.jpg" alt="Rabaa, dans sa boutique à Bray-sur-Somme" sizes="(min-width: 1024px) 30vw, 80vw" imgClass="aspect-[3/4] w-full -rotate-2 rounded-xl object-cover object-top" width={900} height={1200} />
           </div>
           <span class="hand absolute -bottom-5 -end-2 z-10 rotate-[-4deg] rounded-full bg-wine px-4 py-1.5 text-lg text-white shadow-card">Rabaa</span>
         </div>
@@ -478,9 +462,7 @@ const chiffres = [
     <Deco type="epingle" class="deco deco-lg end-24 bottom-24 w-12 rotate-45 text-wine/20" />
     <Deco type="fleur" class="deco deco-lg start-[36%] bottom-16 w-10 -rotate-12 text-rose/50" />
     <p class="hand pointer-events-none absolute end-10 top-8 hidden -rotate-6 text-2xl font-semibold text-wine lg:block xl:end-16 xl:text-3xl" aria-hidden="true">♡ Merci à vous ♡</p>
-    <img src={asset('/images/marque/duo.png')} alt="" width="560" height="672"
-      loading="lazy" decoding="async"
-      class="deco hidden 2xl:block -bottom-4 end-2 w-52 opacity-90" />
+    <Picture src="/images/marque/duo.png" alt="" sizes="208px" class="deco hidden 2xl:block -bottom-4 end-2 w-52 opacity-90" imgClass="h-auto w-full" width={560} height={672} />
 
     <div class="mx-auto grid w-full max-w-[1600px] items-center gap-12 px-4 sm:px-6 lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-10 lg:px-16 xl:grid-cols-[340px_minmax(0,1fr)] xl:gap-16 xl:px-24">
       <div class="reveal lg:self-start lg:pt-6">
@@ -569,9 +551,7 @@ const chiffres = [
 
   <!-- Le live : appel final. -->
   <section class="relative overflow-hidden bg-wine-deep py-16 text-cream sm:py-20 lg:py-24">
-    <img src={asset('/images/marque/duo-2.png')} alt="" width="560" height="784"
-      loading="lazy" decoding="async"
-      class="deco hidden xl:block start-2 bottom-0 w-40 opacity-75 2xl:w-48" />
+    <Picture src="/images/marque/duo-2.png" alt="" sizes="192px" class="deco hidden xl:block start-2 bottom-0 w-40 opacity-75 2xl:w-48" imgClass="h-auto w-full" width={560} height={784} />
     <Deco type="bobine" class="deco deco-lg end-6 top-14 w-28 text-rose/10 deco-sway" />
     <div class="container-x relative">
       <div class="reveal mx-auto max-w-2xl text-center">
