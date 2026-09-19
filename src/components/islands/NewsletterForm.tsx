@@ -8,7 +8,7 @@ export default function NewsletterForm() {
   if (envoye) {
     return (
       <p className="rounded-lg bg-sage-soft px-4 py-3 text-sm font-semibold text-sage">
-        C'est noté. À jeudi pour le prochain live.
+        C'est noté. On vous prévient avant le prochain live.
       </p>
     );
   }

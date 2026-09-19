@@ -46,30 +46,33 @@ const badgesHero = [
 ];
 
 const etapes = [
-  { i: 'live' as const, t: 'On présente en live', x: 'Plusieurs fois par semaine, sur Instagram et Facebook.' },
+  { i: 'live' as const, t: 'On présente en live', x: 'Suivez nos réseaux : les lives y sont annoncés.' },
   { i: 'taille' as const, t: 'Vous choisissez la taille', x: 'Le stock affiché est le vrai : ce qui est là est à vous.' },
   { i: 'paiement' as const, t: 'Vous payez en ligne', x: 'Carte, Apple Pay ou Google Pay. En quelques secondes.' },
   { i: 'colis' as const, t: 'Vous recevez ou vous passez', x: 'Chez vous sous 48 h, ou en boutique dès le lendemain.' },
 ];
 
+// Les avis viendront des vraies clientes : ceux-ci sont des exemples de mise en
+// page, marqués comme tels à l'écran, jamais présentés comme réels.
 const avis = [
-  { n: 'Sandrine', v: 'Commandé pendant le live du jeudi, récupéré le vendredi en boutique. Encore plus jolie en vrai.' },
-  { n: 'Élodie', v: 'Enfin un site où je vois tout de suite si ma taille est dispo. Ça change tout.' },
-  { n: 'Marie', v: 'J’ai pris une taille au-dessus sur ses conseils. C’était le bon choix.' },
-  { n: 'Céline', v: 'Colis reçu en deux jours, emballé avec un petit mot. On sent que c’est fait à la main.' },
+  { n: 'Exemple', v: 'Ici, l’avis d’une cliente : ce qu’elle a commandé, comment ça s’est passé.' },
+  { n: 'Exemple', v: 'Un deuxième avis, pour montrer la mise en page.' },
+  { n: 'Exemple', v: 'Un troisième. Les vrais remplaceront ceux-ci.' },
 ];
 
+// Ces trois chiffres sont à confirmer avec Rabaa avant la mise en ligne.
 const stats = [
-  { v: '+400', l: 'clientes' },
-  { v: '4,9/5', l: 'satisfaction' },
-  { v: '2019', l: 'depuis' },
+  { v: '22', l: 'pièces en ligne' },
+  { v: 'Bray', l: 'sur-Somme' },
+  { v: '14 j', l: 'pour changer d’avis' },
 ];
 
+// Année d'ouverture et rythme des lives : à confirmer avec Rabaa.
 const chiffres = [
-  { v: '2019', l: 'La boutique ouvre', x: 'À Bray-sur-Somme, rue principale.' },
   { v: '22', l: 'Pièces en ligne', x: 'Choisies une par une, en petite quantité.' },
   { v: '48 h', l: 'Pour être livrée', x: 'Ou dès le lendemain en retrait.' },
-  { v: '2×', l: 'Lives par semaine', x: 'Le mardi et le jeudi, à 20 h.' },
+  { v: '14 j', l: 'Pour changer d’avis', x: 'Retour ou échange, sans justification.' },
+  { v: '0 €', l: 'De retrait en boutique', x: 'Commandez en ligne, passez la chercher.' },
 ];
 ---
 
@@ -354,7 +357,7 @@ const chiffres = [
     <div class="mx-auto grid w-full max-w-[1600px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16 lg:px-10 xl:gap-24 xl:px-12">
       <div class="reveal relative pt-20 sm:pt-24">
         <p class="hand pointer-events-none absolute start-2 top-2 z-20 w-56 -rotate-3 text-3xl font-semibold leading-tight text-wine" aria-hidden="true">
-          Depuis 2019 à Bray
+          Bray-sur-Somme
         </p>
         <Deco type="ruban" class="deco -end-6 top-10 z-10 w-36 -rotate-[100deg] text-rose/50" />
         <Deco type="ruban" class="deco -start-10 bottom-6 z-10 w-36 rotate-[150deg] text-rose/50" />
@@ -368,7 +371,7 @@ const chiffres = [
           </svg>
           <span class="text-sm font-bold leading-tight text-ink">
             Bray-sur-Somme
-            <span class="block font-semibold text-ink-2">Du mardi au samedi</span>
+            <span class="block font-semibold text-ink-2">15 Place de la Liberté</span>
           </span>
         </div>
       </div>
@@ -488,8 +491,7 @@ const chiffres = [
         <h2 class="mt-3 text-4xl leading-[1.02] text-wine sm:text-5xl">Merci les filles&nbsp;!</h2>
         <svg class="mt-3 h-3 w-56 text-rose" viewBox="0 0 220 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M3 8c60-6 130-6 214-2" /></svg>
         <p class="mt-5 text-base leading-relaxed text-ink-2">
-          Ce qu'elles disent après un live, un retrait en boutique, ou un colis
-          reçu plus vite que prévu.
+          Les avis de vos clientes s'afficheront ici, avec leur prénom et leur mot.
         </p>
         <ul class="mt-8 flex divide-x divide-line">
           {stats.map((st, i) => (
@@ -536,7 +538,7 @@ const chiffres = [
                     </span>
                     <span class="min-w-0">
                       <cite class="block truncate text-sm font-bold not-italic text-ink">{r.n}</cite>
-                      <span class="text-xs text-ink-3">Cliente à Bray</span>
+                      <span class="text-xs text-ink-3">Exemple d’avis</span>
                     </span>
                   </footer>
                 </div>
@@ -578,7 +580,7 @@ const chiffres = [
             <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream opacity-70"></span>
             <span class="relative inline-flex h-2 w-2 rounded-full bg-cream"></span>
           </span>
-          Prochain live jeudi, 20 h
+          Les lives sont annoncés sur nos réseaux
         </p>
         <h2 class="mt-5 text-3xl text-cream sm:text-4xl lg:text-5xl">Achetez pendant le live.</h2>
         <p class="mt-4 text-lg text-cream/75">
